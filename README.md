@@ -126,7 +126,7 @@ If you can see a nice json result out of it, you can try to use http method POST
 Finally, for testing purposes, you can just run this command at your main directory:
 
 ``` sh
-$ phpunit -c app/
+$ phpunit -c app/ or $ ./vendor/bin/phpunit -c app/
 ```
 
 Final

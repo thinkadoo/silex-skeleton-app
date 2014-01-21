@@ -9,6 +9,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'dbname'   => 'todotestdb',
         'host'     => 'localhost',
         'user'     => 'root',
-        'password' => ''
+        'password' => 'root'
     ),
 ));
