@@ -1,7 +1,7 @@
 Silex Skeleton ReSTful
 ======================
 
-[![Build Status](https://travis-ci.org/makusu/silex-skeleton-rest.png?branch=master)](https://travis-ci.org/makusu/silex-skeleton-rest)
+[![Build Status](https://travis-ci.org/thinkadoo/silex-skeleton-rest.png?branch=master)](https://travis-ci.org/thinkadoo/silex-skeleton-rest)
 
 Description
 -----------
