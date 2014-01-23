@@ -123,10 +123,16 @@ Try also put this in your url:
 
 If you can see a nice json result out of it, you can try to use http method POST, PUT and DELETE to manipulate the database using your api.
 
-Finally, for testing purposes, you can just run this command at your main directory:
+For testing purposes, you can just run this command at your main directory:
 
 ``` sh
-$ phpunit -c app/ or $ ./vendor/bin/phpunit -c app/
+$ ./vendor/bin/phpunit -c app/
+```
+
+Finally for code standards:
+
+``` sh
+$ ./vendor/bin/phpcs ./src/ --standard=PSR2
 ```
 
 Final
