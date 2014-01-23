@@ -143,3 +143,4 @@ class ControllerCore implements ControllerProviderInterface
         // @codingStandardsIgnoreEnd
     }
 }
+/* End of file ControllerCore.php */

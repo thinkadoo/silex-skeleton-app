@@ -38,3 +38,4 @@ class ItemRepository extends RepositoryCore
         return $this->db->insert($this->table, $params);
     }
 }
+/* End of file ItemRepository.php */

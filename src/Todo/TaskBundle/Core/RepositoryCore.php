@@ -73,9 +73,9 @@ class RepositoryCore
     public function findAll()
     {
         $sql = "SELECT * FROM `$this->table`";
-        $categories = $this->db->fetchAll($sql);
+        $items = $this->db->fetchAll($sql);
 
-        return $categories;
+        return $items;
     }
     /**
      * find
@@ -87,9 +87,9 @@ class RepositoryCore
     public function find($id)
     {
         $sql = "SELECT * FROM `$this->table` WHERE `id` = $id";
-        $category = $this->db->fetchAssoc($sql);
+        $item = $this->db->fetchAssoc($sql);
 
-        return $category;
+        return $item;
     }
     /**
      * delete
@@ -127,3 +127,4 @@ class RepositoryCore
         return $this->db->update($this->table, $params, array('id' => $id));
     }
 }
+/* End of file RepositoryCore.php */

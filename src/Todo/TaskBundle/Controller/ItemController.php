@@ -45,3 +45,4 @@ class ItemController extends ControllerCore
         return $controller;
     }
 }
+/* End of file ItemController.php */
