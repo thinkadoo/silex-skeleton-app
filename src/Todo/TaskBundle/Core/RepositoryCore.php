@@ -22,14 +22,19 @@ namespace Todo\TaskBundle\Core;
  */
 class RepositoryCore
 {
+    /**
+     * @var object $db
+     */
     protected $db;
-
+    /**
+     * @var String $table
+     */
     protected $table;
 
     /**
      * setDB
      *
-     * @param Object $db database injected
+     * @param object $db database injected
      *
      * @return void
      */
@@ -37,6 +42,7 @@ class RepositoryCore
     {
         $this->db = $db;
     }
+
     /**
      * setTable
      *
@@ -48,10 +54,11 @@ class RepositoryCore
     {
         $this->table = $table;
     }
+
     /**
      * constructor
      *
-     * @param Object $db database injected
+     * @param object $db database injected
      *
      * @return void
      */
@@ -65,6 +72,7 @@ class RepositoryCore
         $table = strtolower(substr($class, 0, -10));
         $this->setTable($table);
     }
+
     /**
      * findAll
      *
@@ -77,6 +85,7 @@ class RepositoryCore
 
         return $items;
     }
+
     /**
      * find
      *
@@ -91,6 +100,7 @@ class RepositoryCore
 
         return $item;
     }
+
     /**
      * delete
      *
@@ -102,6 +112,7 @@ class RepositoryCore
     {
         return $this->db->delete($this->table, array('id' => $id));
     }
+
     /**
      * insert
      *

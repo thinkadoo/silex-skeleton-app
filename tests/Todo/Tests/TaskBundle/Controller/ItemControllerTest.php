@@ -1,16 +1,46 @@
 <?php
-
+/**
+ * File: RepositoryCoreTest.php
+ *
+ * PHP Version 5.5.0
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Todo_Tests_TaskBundle_Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
 namespace Todo\Tests\TaskBundle\Controller;
 
 use Silex\WebTestCase;
-
+/**
+ * Class ItemControllerTest
+ *
+ * @category Api_Rest_Implementation
+ * @package  Todo\Tests\TaskBundle\Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
 class ItemControllerTest extends WebTestCase
 {
-    public function createApplication() {
-        return require $_SERVER['APP_DIR'] . "/app_test.php";
+    /**
+     * createApplication
+     *
+     * @return mixed|\Symfony\Component\HttpKernel\HttpKernel
+     */
+    public function createApplication()
+    {
+        return include $_SERVER['APP_DIR'] . "/app_test.php";
     }
 
+    /**
+     * testInitialPage
+     *
+     * @return void
+     */
     public function testInitialPage()
     {
     }
 }
+/* End of file ItemControllerTest.php */

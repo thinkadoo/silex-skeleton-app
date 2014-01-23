@@ -30,21 +30,22 @@ use Symfony\Component\HttpFoundation\Request;
 class ControllerCore implements ControllerProviderInterface
 {
     /**
-     * @var Object $repository
+     * @var object $repository
      */
     protected $repository;
     /**
-     * @var Object $controller
+     * @var object $controller
      */
     protected $controller;
 
     /**
      * setRepository
      *
-     * @param Object $repository dependency inject the repository used
+     * @param object $repository dependency inject the repository used
      *
      * @return void
      */
+
     public function setRepository($repository)
     {
         $this->repository = $repository;
@@ -53,10 +54,11 @@ class ControllerCore implements ControllerProviderInterface
     /**
      * setController
      *
-     * @param Object $controller dependency inject the controller used
+     * @param object $controller dependency inject the controller used
      *
      * @return void
      */
+
     public function setController($controller)
     {
         $this->controller = $controller;
@@ -67,6 +69,7 @@ class ControllerCore implements ControllerProviderInterface
      *
      * @return void
      */
+
     public function __construct()
     {
         $calledClass = explode('\\', get_called_class());
@@ -83,6 +86,7 @@ class ControllerCore implements ControllerProviderInterface
      *
      * @return ControllerCollection
      */
+
     public function connect(Application $app)
     {
         // @codingStandardsIgnoreStart
@@ -90,6 +94,7 @@ class ControllerCore implements ControllerProviderInterface
         $controller = $this->controller;
 
         $targetRepository = "Todo\\TaskBundle\\Repository\\" . $this->repository . "Repository";
+
         /**
          * get
          */
@@ -99,6 +104,7 @@ class ControllerCore implements ControllerProviderInterface
 
             return $app->json($results);
         });
+
         /**
          * get/id
          */
@@ -109,6 +115,7 @@ class ControllerCore implements ControllerProviderInterface
             return $app->json($result);
         })
         ->assert('id', '\d+');
+
         /**
          * post
          */
@@ -118,6 +125,7 @@ class ControllerCore implements ControllerProviderInterface
 
             return $app->json($repository->insert($params));
         });
+
         /**
          * put/id
          */
@@ -128,6 +136,7 @@ class ControllerCore implements ControllerProviderInterface
             return $app->json($repository->update($id, $params));
         })
         ->assert('id', '\d+');
+
         /**
          * delete/id
          */

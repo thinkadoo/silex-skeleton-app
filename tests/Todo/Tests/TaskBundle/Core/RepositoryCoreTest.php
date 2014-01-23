@@ -1,127 +1,223 @@
 <?php
-
+/**
+ * File: RepositoryCoreTest.php
+ *
+ * PHP Version 5.5.0
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Todo_Tests_TaskBundle_Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
 namespace Todo\Tests\TaskBundle\Core;
 
 use Silex\Application;
 use Todo\TaskBundle\Core\RepositoryCore;
+/**
+ * Class RepositoryCoreTest
+ *
+ * @category Api_Rest_Implementation
+ * @package  Todo\Tests\TaskBundle\Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
+{
+    /**
+     * @var null
+     */
+    static private $_pdo = null;
+    /**
+     * @var object
+     */
+    private $_conn;
+    /**
+     * @var mixed
+     */
+    private $_db;
+    /**
+     * @var \Todo\TaskBundle\Core\RepositoryCore
+     */
+    private $_repositoryCore;
 
-class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase {
-
-    static private $pdo = null;
-
-    private $conn;
-
-    private $db;
-
-    private $repositoryCore;
-
-    public function __construct() {
+    /**
+     * constructor
+     *
+     */
+    public function __construct()
+    {
         $tableName = 'item';
 
-        $this->db = require __DIR__ . "/../../db.php";
-        $this->repositoryCore = new RepositoryCore($this->db);
-        $this->repositoryCore->setTable($tableName);
+        $this->_db = include __DIR__ . "/../../db.php";
+        $this->_repositoryCore = new RepositoryCore($this->_db);
+        $this->_repositoryCore->setTable($tableName);
     }
 
+    /**
+     * getConnection
+     *
+     * @return object|\PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     */
     public function getConnection()
     {
-        if ($this->conn === null) {
-            if (self::$pdo == null) {
-                self::$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        if ($this->_conn === null) {
+            if (self::$_pdo == null) {
+                self::$_pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
             }
-            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+            $this->_conn = $this->createDefaultDBConnection(self::$_pdo, $GLOBALS['DB_DBNAME']);
         }
 
-        return $this->conn;
+        return $this->_conn;
     }
 
+    /**
+     * getDataSet
+     *
+     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet
+     */
     public function getDataSet()
     {
-        self::$pdo->exec("set foreign_key_checks=0");
+        self::$_pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
             __DIR__ . "/../../DataSet/Item/seedItem.yml"
         );
     }
 
-    public function testConstructRepositoryCoreClass() {
+    /**
+     * testConstructRepositoryCoreClass
+     *
+     * @return void
+     */
+    public function testConstructRepositoryCoreClass()
+    {
         $inputTableName = 'item';
-        $this->repositoryCore = new RepositoryCore($this->db);
-        $this->repositoryCore->setTable($inputTableName);
+        $this->_repositoryCore = new RepositoryCore($this->_db);
+        $this->_repositoryCore->setTable($inputTableName);
     }
 
-    public function testFindAll() {
+    /**
+     * testFindAll
+     *
+     * @return void
+     */
+    public function testFindAll()
+    {
         $expected = $this->getConnection()->getRowCount('item');
-        $actual = count($this->repositoryCore->findAll());
+        $actual = count($this->_repositoryCore->findAll());
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testFind_inputId1_outputNameDownloadSilexSkeletonRest() {
+    /**
+     * testFind_inputId1_outputNameDownloadSilexSkeletonRest
+     *
+     * @return void
+     */
+    public function testFindInputId1OutputNameDownloadSilexSkeletonRest()
+    {
         $inputId = 1;
 
         $expected = 'Download silex-skeleton-rest.';
-        $item = $this->repositoryCore->find($inputId);
+        $item = $this->_repositoryCore->find($inputId);
         $actual = $item['name'];
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testFind_inputId2_outputNameUtilizeTheSkeletonSoICanUseItForMyProject() {
+    /**
+     * testFind_inputId2_outputNameUtilizeTheSkeletonSoICanUseItForMyProject
+     *
+     * @return void
+     */
+    public function testFindInputId2OutputNameUtilizeTheSkeletonSoICanUseItForMyProject()
+    {
         $inputId = 2;
 
         $expected = 'Utilize the skeleton so I can use it for my project.';
-        $item = $this->repositoryCore->find($inputId);
+        $item = $this->_repositoryCore->find($inputId);
         $actual = $item['name'];
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testFind_inputId10_outputNull() {
+    /**
+     * testFind_inputId10_outputNull
+     *
+     * @return void
+     */
+    public function testFindInputId10OutputNull()
+    {
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->repositoryCore->find($inputId);
+        $actual = $this->_repositoryCore->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testDelete_inputId1() {
+    /**
+     * testDelete_inputId1
+     *
+     * @return void
+     */
+    public function testDeleteInputId1()
+    {
         $inputId = 1;
 
-        $this->repositoryCore->delete($inputId);
+        $this->_repositoryCore->delete($inputId);
         $expected = null;
-        $actual = $this->repositoryCore->find($inputId);
+        $actual = $this->_repositoryCore->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testDelete_inputId10() {
+    /**
+     * testDelete_inputId10
+     *
+     * @return void
+     */
+    public function testDeleteInputId10()
+    {
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->repositoryCore->delete($inputId);
+        $actual = $this->_repositoryCore->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testUpdate_inputId2NameFooBar() {
+    /**
+     * testUpdate_inputId2NameFooBar
+     *
+     * @return void
+     */
+    public function testUpdateInputId2NameFooBar()
+    {
         $inputId = 2;
         $inputParams = array('name' => 'Foo Bar');
 
-        $this->repositoryCore->update($inputId, $inputParams);
-        $repositoryCore = $this->repositoryCore->find($inputId);
+        $this->_repositoryCore->update($inputId, $inputParams);
+        $repositoryCore = $this->_repositoryCore->find($inputId);
 
         $expected = 'Foo Bar';
         $actual = $repositoryCore['name'];
         $this->assertEquals($expected, $actual);
     }
 
-    public function testInsert_inputNameFooBar() {
+    /**
+     * testInsert_inputNameFooBar
+     *
+     * @return void
+     */
+    public function testInsertInputNameFooBar()
+    {
         $inputParams = array('name' => 'Foo Bar');
-        $this->repositoryCore->insert($inputParams);
-        $lastInsertId = $this->db->lastInsertId();
-        $repositoryCore = $this->repositoryCore->find($lastInsertId);
+        $this->_repositoryCore->insert($inputParams);
+        $lastInsertId = $this->_db->lastInsertId();
+        $repositoryCore = $this->_repositoryCore->find($lastInsertId);
 
         $expected = 'Foo Bar';
         $actual = $repositoryCore['name'];
@@ -129,3 +225,4 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase {
         $this->assertEquals($expected, $actual);
     }
 }
+/* End of file RepositoryCoreTest.php */

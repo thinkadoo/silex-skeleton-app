@@ -1,21 +1,53 @@
 <?php
-
+/**
+ * File: RepositoryCoreTest.php
+ *
+ * PHP Version 5.5.0
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Todo_Tests_TaskBundle_Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
 namespace Todo\Tests\TaskBundle\Core;
 
 use Silex\WebTestCase;
+/**
+ * Class RepositoryCoreTest
+ *
+ * @category Api_Rest_Implementation
+ * @package  Todo\Tests\TaskBundle\Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class ControllerCoreTest extends WebTestCase
+{
+    /**
+     * @var string
+     */
+    private $_controllerName = 'item';
 
-class ControllerCoreTest extends WebTestCase {
-
-    private $controllerName = 'item';
-
-    public function createApplication() {
-        return require $_SERVER['APP_DIR'] . "/app_test.php";
+    /**
+     * createApplication
+     *
+     * @return mixed|\Symfony\Component\HttpKernel\HttpKernel
+     */
+    public function createApplication()
+    {
+        return include $_SERVER['APP_DIR'] . "/app_test.php";
     }
 
+    /**
+     * testGet
+     *
+     * @return void
+     */
     public function testGet()
     {
         $client = static::createClient();
-        $client->request('GET', "/$this->controllerName/");
+        $client->request('GET', "/$this->_controllerName/");
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
@@ -24,11 +56,16 @@ class ControllerCoreTest extends WebTestCase {
         $this->assertSame($expected, $actual);
     }
 
-    public function testGet_inputId1()
+    /**
+     * testGet_inputId1
+     *
+     * @return void
+     */
+    public function testGetInputId1()
     {
         $inputId = "1";
         $client = static::createClient();
-        $client->request('GET', "/$this->controllerName/$inputId");
+        $client->request('GET', "/$this->_controllerName/$inputId");
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
@@ -37,31 +74,41 @@ class ControllerCoreTest extends WebTestCase {
         $this->assertSame($expected, $actual);
     }
 
-    public function testPost_inputNameFooBar()
+    /**
+     * testPost_inputNameFooBar
+     *
+     * @return void
+     */
+    public function testPostInputNameFooBar()
     {
         $inputName = 'Foo Bar';
 
         $client = static::createClient();
 
-        $client->request('GET', "/$this->controllerName/");
+        $client->request('GET', "/$this->_controllerName/");
         $expected = count(json_decode($client->getResponse()->getContent(), true)) + 1;
 
-        $client->request('POST', "/$this->controllerName/", array('name' => $inputName));
-        $client->request('GET', "/$this->controllerName/");
+        $client->request('POST', "/$this->_controllerName/", array('name' => $inputName));
+        $client->request('GET', "/$this->_controllerName/");
         $actual = count(json_decode($client->getResponse()->getContent(), true));
 
         $this->assertSame($expected, $actual);
     }
 
-    public function testPut_inputId2NameFooBar()
+    /**
+     * testPut_inputId2NameFooBar
+     *
+     * @return void
+     */
+    public function testPutInputId2NameFooBar()
     {
         $inputId = "2";
         $inputName = 'Foo Bar';
 
         $client = static::createClient();
 
-        $client->request('PUT', "/$this->controllerName/$inputId", array('name' => $inputName));
-        $client->request('GET', "/$this->controllerName/$inputId");
+        $client->request('PUT', "/$this->_controllerName/$inputId", array('name' => $inputName));
+        $client->request('GET', "/$this->_controllerName/$inputId");
 
         $expected = array('id' => $inputId, 'name' => $inputName, 'created' => '2013-01-06 19:00:00');
         $actual = json_decode($client->getResponse()->getContent(), true);
@@ -69,19 +116,25 @@ class ControllerCoreTest extends WebTestCase {
         $this->assertSame($expected, $actual);
     }
 
-    public function testDelete_inputId5()
+    /**
+     * testDelete_inputId5
+     *
+     * @return void
+     */
+    public function testDeleteInputId5()
     {
         $inputId = '2';
 
         $client = static::createClient();
 
-        $client->request('GET', "/$this->controllerName/");
+        $client->request('GET', "/$this->_controllerName/");
         $expected = count(json_decode($client->getResponse()->getContent(), true)) - 1;
 
-        $client->request('DELETE', "/$this->controllerName/$inputId");
-        $client->request('GET', "/$this->controllerName/");
+        $client->request('DELETE', "/$this->_controllerName/$inputId");
+        $client->request('GET', "/$this->_controllerName/");
         $actual = count(json_decode($client->getResponse()->getContent(), true));
 
         $this->assertSame($expected, $actual);
     }
 }
+/* End of file ControllerCoreTest.php */

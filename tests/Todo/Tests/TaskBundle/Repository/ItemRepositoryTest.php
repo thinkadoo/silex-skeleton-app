@@ -1,112 +1,202 @@
 <?php
-
+/**
+ * File: ItemRepositoryTest.php
+ *
+ * PHP Version 5.5.0
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Todo_Tests_TaskBundle_Core
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
 namespace Todo\Tests\TaskBundle\Repository;
 
 use Silex\Application;
 use Todo\TaskBundle\Repository\ItemRepository;
+/**
+ * Class ItemRepositoryTest
+ *
+ * @category Api_Rest_Implementation
+ * @package  Todo\Tests\TaskBundle\Repository
+ * @author   Andre Venter <aventer@iteonline.co.za>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class ItemRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
+{
+    /**
+     * @var null
+     */
+    static private $_pdo = null;
+    /**
+     * @var object
+     */
+    private $_conn;
+    /**
+     * @var mixed
+     */
+    private $_db;
+    /**
+     * @var \Todo\TaskBundle\Repository\ItemRepository
+     */
+    private $_itemRepository;
 
-class ItemRepositoryTest extends \PHPUnit_Extensions_Database_TestCase {
-
-    static private $pdo = null;
-
-    private $conn;
-
-    private $db;
-
-    private $itemRepository;
-
-    public function __construct() {
-        $this->db = require __DIR__ . "/../../db.php";
-        $this->itemRepository = new ItemRepository($this->db);
+    /**
+     * constructor
+     *
+     */
+    public function __construct()
+    {
+        $this->_db = include __DIR__ . "/../../db.php";
+        $this->_itemRepository = new ItemRepository($this->_db);
     }
 
+    /**
+     * getConnection
+     *
+     * @return \PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     */
     public function getConnection()
     {
-        if ($this->conn === null) {
-            if (self::$pdo == null) {
-                self::$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        if ($this->_conn === null) {
+            if (self::$_pdo == null) {
+                self::$_pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
             }
-            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+            $this->_conn = $this->createDefaultDBConnection(self::$_pdo, $GLOBALS['DB_DBNAME']);
         }
 
-        return $this->conn;
+        return $this->_conn;
     }
 
+    /**
+     * getDataSet
+     *
+     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet|\PHPUnit_Extensions_Database_DataSet_YamlDataSet
+     */
     public function getDataSet()
     {
-        self::$pdo->exec("set foreign_key_checks=0");
+        self::$_pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
             __DIR__ . "/../../DataSet/Item/seedItem.yml"
         );
     }
 
-    public function testConstructItemRepositoryClass() {
-        $this->itemRepository = new ItemRepository($this->db);
+    /**
+     * testConstructItemRepositoryClass
+     *
+     * @return void
+     */
+    public function testConstructItemRepositoryClass()
+    {
+        $this->_itemRepository = new ItemRepository($this->_db);
     }
 
-    public function testFindAll() {
+    /**
+     * testFindAll
+     *
+     * @return void
+     */
+    public function testFindAll()
+    {
         $expected = $this->getConnection()->getRowCount('item');
-        $actual = count($this->itemRepository->findAll());
+        $actual = count($this->_itemRepository->findAll());
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testFind_inputId1_outputNameDownloadSilexSkeletonRest() {
+    /**
+     * testFind_inputId1_outputNameDownloadSilexSkeletonRest
+     *
+     * @return void
+     */
+    public function testFindInputId1OutputNameDownloadSilexSkeletonRest()
+    {
         $inputId = 1;
 
         $expected = 'Download silex-skeleton-rest.';
-        $item = $this->itemRepository->find($inputId);
+        $item = $this->_itemRepository->find($inputId);
         $actual = $item['name'];
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testFind_inputId10_outputNull() {
+    /**
+     * testFind_inputId10_outputNull
+     *
+     * @return void
+     */
+    public function testFindInputId10OutputNull()
+    {
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->itemRepository->find($inputId);
+        $actual = $this->_itemRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testDelete_inputId1() {
+    /**
+     * testDelete_inputId1
+     *
+     * @return void
+     */
+    public function testDeleteInputId1()
+    {
         $inputId = 1;
 
-        $this->itemRepository->delete($inputId);
+        $this->_itemRepository->delete($inputId);
         $expected = null;
-        $actual = $this->itemRepository->find($inputId);
+        $actual = $this->_itemRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testDelete_inputId10() {
+    /**
+     * testDelete_inputId10
+     *
+     * @return void
+     */
+    public function testDeleteInputId10()
+    {
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->itemRepository->delete($inputId);
+        $actual = $this->_itemRepository->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
-    public function testUpdate_inputId2NameNewTask() {
+    /**
+     * testUpdate_inputId2NameNewTask
+     *
+     * @return void
+     */
+    public function testUpdateInputId2NameNewTask()
+    {
         $inputId = 2;
         $inputParams = array('name' => 'New Task');
 
-        $this->itemRepository->update($inputId, $inputParams);
-        $itemRepository = $this->itemRepository->find($inputId);
+        $this->_itemRepository->update($inputId, $inputParams);
+        $itemRepository = $this->_itemRepository->find($inputId);
 
         $expected = 'New Task';
         $actual = $itemRepository['name'];
         $this->assertEquals($expected, $actual);
     }
 
-    public function testInsert_inputNameNewItem() {
+    /**
+     * testInsert_inputNameNewItem
+     *
+     * @return void
+     */
+    public function testInsertInputNameNewItem()
+    {
         $inputParams = array('name' => 'New Item');
-        $this->itemRepository->insert($inputParams);
-        $lastInsertId = $this->db->lastInsertId();
-        $itemRepository = $this->itemRepository->find($lastInsertId);
+        $this->_itemRepository->insert($inputParams);
+        $lastInsertId = $this->_db->lastInsertId();
+        $itemRepository = $this->_itemRepository->find($lastInsertId);
 
         $expected = 'New Item';
         $actual = $itemRepository['name'];
@@ -114,3 +204,4 @@ class ItemRepositoryTest extends \PHPUnit_Extensions_Database_TestCase {
         $this->assertEquals($expected, $actual);
     }
 }
+/* End of file ItemRepositoryTest.php */
