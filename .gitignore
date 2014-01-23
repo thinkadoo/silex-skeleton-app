@@ -3,3 +3,5 @@ composer.phar
 app/phpunit.xml
 vendor/
 .idea
+logs/development.log
+logs/production.log
