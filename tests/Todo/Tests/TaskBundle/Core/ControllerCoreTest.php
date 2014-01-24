@@ -121,7 +121,7 @@ class ControllerCoreTest extends WebTestCase
      *
      * @return void
      */
-    public function testDeleteInputId5()
+    public function testDeleteInputId2()
     {
         $inputId = '2';
 
