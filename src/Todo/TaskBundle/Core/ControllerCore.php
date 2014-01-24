@@ -6,7 +6,7 @@
  *
  * @category Api_Rest_Implementation
  * @package  Modules_Todo
- * @author   Andre Venter <aventer@iteonline.co.za>
+ * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @category Api_Rest_Implementation
  * @package  Todo\TaskBundle\Core
- * @author   Andre Venter <aventer@iteonline.co.za>
+ * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */

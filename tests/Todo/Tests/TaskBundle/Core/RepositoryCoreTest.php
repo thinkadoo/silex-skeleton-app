@@ -6,7 +6,7 @@
  *
  * @category Api_Rest_Implementation_Tests
  * @package  Todo_Tests_TaskBundle_Core
- * @author   Andre Venter <aventer@iteonline.co.za>
+ * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
@@ -19,7 +19,7 @@ use Todo\TaskBundle\Core\RepositoryCore;
  *
  * @category Api_Rest_Implementation
  * @package  Todo\Tests\TaskBundle\Core
- * @author   Andre Venter <aventer@iteonline.co.za>
+ * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
