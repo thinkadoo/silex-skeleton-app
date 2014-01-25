@@ -10,12 +10,12 @@
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Todo\TaskBundle\Core;
+namespace Todo\TodoBundle\Core;
 /**
  * Class RepositoryCore
  *
  * @category Api_Rest_Implementation
- * @package  Todo\TaskBundle\Core
+ * @package  Todo\TodoBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

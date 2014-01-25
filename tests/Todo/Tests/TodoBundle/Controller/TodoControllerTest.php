@@ -10,11 +10,11 @@
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Todo\Tests\TaskBundle\Controller;
+namespace Todo\Tests\TodoBundle\Controller;
 
 use Silex\WebTestCase;
 /**
- * Class ItemControllerTest
+ * Class TodoControllerTest
  *
  * @category Api_Rest_Implementation
  * @package  Todo\Tests\TaskBundle\Core
@@ -22,7 +22,7 @@ use Silex\WebTestCase;
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class ItemControllerTest extends WebTestCase
+class TodoControllerTest extends WebTestCase
 {
     /**
      * createApplication
@@ -43,4 +43,4 @@ class ItemControllerTest extends WebTestCase
     {
     }
 }
-/* End of file ItemControllerTest.php */
+/* End of file TodoControllerTest.php */

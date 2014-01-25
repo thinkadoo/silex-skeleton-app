@@ -57,29 +57,29 @@ You can add option "--dev" behind if you want to have the controller test workin
 For this test, you need to put this sql command in MySQL.
 
 ``` mysql
-CREATE DATABASE `tododb`;
+CREATE DATABASE `restdb`;
 
-CREATE DATABASE `todotestdb`;
+CREATE DATABASE `resttestdb`;
 
-CREATE TABLE `tododb`.`item` (
+CREATE TABLE `restdb`.`todo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `todotestdb`.`item` (
+CREATE TABLE `resttestdb`.`todo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into `tododb`.`item` values
+insert into `restdb`.`todo` values
 (null, "Download silex-skeleton-rest.", "2013-01-01 00:00:00"),
 (null, "Utilize the skeleton so I can use it for my project.", "2013-01-06 19:00:00");
 
-insert into `todotestdb`.`item` values
+insert into `resttestdb`.`todo` values
 (null, "Download silex-skeleton-rest.", "2013-01-01 00:00:00"),
 (null, "Utilize the skeleton so I can use it for my project.", "2013-01-06 19:00:00");
 ```

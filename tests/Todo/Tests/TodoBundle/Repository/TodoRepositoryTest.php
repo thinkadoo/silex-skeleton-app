@@ -1,6 +1,6 @@
 <?php
 /**
- * File: RepositoryCoreTest.php
+ * File: TodoRepositoryTest.php
  *
  * PHP Version 5.5.0
  *
@@ -10,20 +10,20 @@
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Todo\Tests\TaskBundle\Core;
+namespace Todo\Tests\TodoBundle\Repository;
 
 use Silex\Application;
-use Todo\TaskBundle\Core\RepositoryCore;
+use Todo\TodoBundle\Repository\TodoRepository;
 /**
- * Class RepositoryCoreTest
+ * Class TodoRepositoryTest
  *
  * @category Api_Rest_Implementation
- * @package  Todo\Tests\TaskBundle\Core
+ * @package  Todo\Tests\TaskBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
+class TodoRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
 {
     /**
      * @var null
@@ -38,9 +38,9 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
      */
     private $_db;
     /**
-     * @var \Todo\TaskBundle\Core\RepositoryCore
+     * @var \Todo\TodoBundle\Repository\TodoRepository
      */
-    private $_repositoryCore;
+    private $_todoRepository;
 
     /**
      * constructor
@@ -48,17 +48,14 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function __construct()
     {
-        $tableName = 'item';
-
         $this->_db = include __DIR__ . "/../../db.php";
-        $this->_repositoryCore = new RepositoryCore($this->_db);
-        $this->_repositoryCore->setTable($tableName);
+        $this->_todoRepository = new TodoRepository($this->_db);
     }
 
     /**
      * getConnection
      *
-     * @return object|\PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     * @return \PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
      */
     public function getConnection()
     {
@@ -75,27 +72,25 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     /**
      * getDataSet
      *
-     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet
+     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet|\PHPUnit_Extensions_Database_DataSet_YamlDataSet
      */
     public function getDataSet()
     {
         self::$_pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
-            __DIR__ . "/../../DataSet/Item/seedItem.yml"
+            __DIR__ . "/../../DataSet/Todo/seedTodo.yml"
         );
     }
 
     /**
-     * testConstructRepositoryCoreClass
+     * testConstructTodoRepositoryClass
      *
      * @return void
      */
-    public function testConstructRepositoryCoreClass()
+    public function testConstructTodoRepositoryClass()
     {
-        $inputTableName = 'item';
-        $this->_repositoryCore = new RepositoryCore($this->_db);
-        $this->_repositoryCore->setTable($inputTableName);
+        $this->_todoRepository = new TodoRepository($this->_db);
     }
 
     /**
@@ -105,8 +100,8 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('item');
-        $actual = count($this->_repositoryCore->findAll());
+        $expected = $this->getConnection()->getRowCount('todo');
+        $actual = count($this->_todoRepository->findAll());
 
         $this->assertEquals($expected, $actual);
     }
@@ -121,24 +116,8 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 1;
 
         $expected = 'Download silex-skeleton-rest.';
-        $item = $this->_repositoryCore->find($inputId);
-        $actual = $item['name'];
-
-        $this->assertEquals($expected, $actual);
-    }
-
-    /**
-     * testFind_inputId2_outputNameUtilizeTheSkeletonSoICanUseItForMyProject
-     *
-     * @return void
-     */
-    public function testFindInputId2OutputNameUtilizeTheSkeletonSoICanUseItForMyProject()
-    {
-        $inputId = 2;
-
-        $expected = 'Utilize the skeleton so I can use it for my project.';
-        $item = $this->_repositoryCore->find($inputId);
-        $actual = $item['name'];
+        $todo = $this->_todoRepository->find($inputId);
+        $actual = $todo['name'];
 
         $this->assertEquals($expected, $actual);
     }
@@ -153,7 +132,7 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->_repositoryCore->find($inputId);
+        $actual = $this->_todoRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -167,9 +146,9 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $this->_repositoryCore->delete($inputId);
+        $this->_todoRepository->delete($inputId);
         $expected = null;
-        $actual = $this->_repositoryCore->find($inputId);
+        $actual = $this->_todoRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -184,45 +163,45 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->_repositoryCore->delete($inputId);
+        $actual = $this->_todoRepository->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testUpdate_inputId2NameFooBar
+     * testUpdate_inputId2NameNewTask
      *
      * @return void
      */
-    public function testUpdateInputId2NameFooBar()
+    public function testUpdateInputId2NameNewTask()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'Foo Bar');
+        $inputParams = array('name' => 'New Task');
 
-        $this->_repositoryCore->update($inputId, $inputParams);
-        $repositoryCore = $this->_repositoryCore->find($inputId);
+        $this->_todoRepository->update($inputId, $inputParams);
+        $todoRepository = $this->_todoRepository->find($inputId);
 
-        $expected = 'Foo Bar';
-        $actual = $repositoryCore['name'];
+        $expected = 'New Task';
+        $actual = $todoRepository['name'];
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testInsert_inputNameFooBar
+     * testInsert_inputNameNewTodo
      *
      * @return void
      */
-    public function testInsertInputNameFooBar()
+    public function testInsertInputNameNewTodo()
     {
-        $inputParams = array('name' => 'Foo Bar');
-        $this->_repositoryCore->insert($inputParams);
+        $inputParams = array('name' => 'New Todo');
+        $this->_todoRepository->insert($inputParams);
         $lastInsertId = $this->_db->lastInsertId();
-        $repositoryCore = $this->_repositoryCore->find($lastInsertId);
+        $todoRepository = $this->_todoRepository->find($lastInsertId);
 
-        $expected = 'Foo Bar';
-        $actual = $repositoryCore['name'];
+        $expected = 'New Todo';
+        $actual = $todoRepository['name'];
 
         $this->assertEquals($expected, $actual);
     }
 }
-/* End of file RepositoryCoreTest.php */
+/* End of file TodoRepositoryTest.php */

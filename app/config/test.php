@@ -6,7 +6,7 @@ $app['exception_handler']->disable();
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',
-        'dbname'   => 'todotestdb',
+        'dbname'   => 'resttestdb',
         'host'     => 'localhost',
         'user'     => 'root',
         'password' => ''

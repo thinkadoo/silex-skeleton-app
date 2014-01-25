@@ -10,7 +10,7 @@
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Todo\TaskBundle\Core;
+namespace Todo\TodoBundle\Core;
 
 use Silex\Application;
 use Silex\Route;
@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class ControllerCore
  *
  * @category Api_Rest_Implementation
- * @package  Todo\TaskBundle\Core
+ * @package  Todo\TodoBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
@@ -93,7 +93,7 @@ class ControllerCore implements ControllerProviderInterface
 
         $controller = $this->controller;
 
-        $targetRepository = "Todo\\TaskBundle\\Repository\\" . $this->repository . "Repository";
+        $targetRepository = "Todo\\TodoBundle\\Repository\\" . $this->repository . "Repository";
 
         /**
          * get

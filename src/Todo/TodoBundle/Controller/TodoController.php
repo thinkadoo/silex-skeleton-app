@@ -10,22 +10,22 @@
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Todo\TaskBundle\Controller;
+namespace Todo\TodoBundle\Controller;
 
 use Silex\Application;
 
-use Todo\TaskBundle\Core\ControllerCore;
-use Todo\TaskBundle\Repository;
+use Todo\TodoBundle\Core\ControllerCore;
+use Todo\TodoBundle\Repository;
 /**
  * Class ItemController
  *
  * @category Api_Rest_Implementation
- * @package  Todo\TaskBundle\Core
+ * @package  Todo\TodoBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class ItemController extends ControllerCore
+class TodoController extends ControllerCore
 {
     /**
      * connect

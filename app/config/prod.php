@@ -9,7 +9,7 @@ $app['monolog']->addDebug('Testing the Monolog logging from /config/prod.php ');
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',
-        'dbname'   => 'tododb',
+        'dbname'   => 'restdb',
         'host'     => 'localhost',
         'user'     => 'root',
         'password' => ''

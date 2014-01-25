@@ -10,7 +10,7 @@
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Todo\Tests\TaskBundle\Core;
+namespace Todo\Tests\TodoBundle\Core;
 
 use Silex\WebTestCase;
 /**
@@ -27,7 +27,7 @@ class ControllerCoreTest extends WebTestCase
     /**
      * @var string
      */
-    private $_controllerName = 'item';
+    private $_controllerName = 'todo';
 
     /**
      * createApplication
