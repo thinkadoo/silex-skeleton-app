@@ -5,7 +5,7 @@
  * PHP Version 5.5.0
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Todo_Tests_TaskBundle_Core
+ * @package  Todo_Tests_TodoBundle_Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
@@ -18,7 +18,7 @@ use Todo\TodoBundle\Repository\TodoRepository;
  * Class TodoRepositoryTest
  *
  * @category Api_Rest_Implementation
- * @package  Todo\Tests\TaskBundle\Repository
+ * @package  Todo\Tests\TodoBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
@@ -169,19 +169,19 @@ class TodoRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testUpdate_inputId2NameNewTask
+     * testUpdate_inputId2NameNewTodo
      *
      * @return void
      */
-    public function testUpdateInputId2NameNewTask()
+    public function testUpdateInputId2NameNewTodo()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'New Task');
+        $inputParams = array('name' => 'New Todo');
 
         $this->_todoRepository->update($inputId, $inputParams);
         $todoRepository = $this->_todoRepository->find($inputId);
 
-        $expected = 'New Task';
+        $expected = 'New Todo';
         $actual = $todoRepository['name'];
         $this->assertEquals($expected, $actual);
     }

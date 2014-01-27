@@ -5,7 +5,7 @@
  * PHP Version 5.5.0
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Todo_Tests_TaskBundle_Core
+ * @package  Todo_Tests_TodoBundle_Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
@@ -18,7 +18,7 @@ use Todo\TodoBundle\Core\RepositoryCore;
  * Class RepositoryCoreTest
  *
  * @category Api_Rest_Implementation
- * @package  Todo\Tests\TaskBundle\Core
+ * @package  Todo\Tests\TodoBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
