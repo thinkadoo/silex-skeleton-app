@@ -13,5 +13,6 @@
 $loader = include_once __DIR__.'/../app/bootstrap.php';
 
 $loader->registerNamespace('Todo\Tests', __DIR__);
+$loader->registerNamespace('User\Tests', __DIR__);
 
 /* End of file bootstrap.php */
