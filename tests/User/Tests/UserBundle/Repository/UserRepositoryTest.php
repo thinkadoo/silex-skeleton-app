@@ -115,7 +115,7 @@ class UserRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $expected = 'Download silex-skeleton-rest.';
+        $expected = 'test_user_name';
         $user = $this->_userRepository->find($inputId);
         $actual = $user['name'];
 

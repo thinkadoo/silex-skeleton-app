@@ -82,6 +82,42 @@ insert into `restdb`.`todo` values
 insert into `resttestdb`.`todo` values
 (null, "Download silex-skeleton-rest.", "2013-01-01 00:00:00"),
 (null, "Utilize the skeleton so I can use it for my project.", "2013-01-06 19:00:00");
+
+CREATE TABLE `restdb`.`user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `employee_nr` varchar(255) DEFAULT NULL,
+  `role` tinyint(4) NOT NULL DEFAULT '0',
+  `password` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL,
+  `locked` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_at` char(20) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `updated_at` char(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `resttestdb`.`user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `surname` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `employee_nr` varchar(255) DEFAULT NULL,
+  `role` tinyint(4) NOT NULL DEFAULT '0',
+  `password` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL,
+  `locked` tinyint(4) NOT NULL DEFAULT '0',
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  `created_by` varchar(255) DEFAULT NULL,
+  `created_at` char(20) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `updated_at` char(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 Why do we need to have 2 same database?

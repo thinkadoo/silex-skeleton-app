@@ -51,7 +51,23 @@ class ControllerCoreTest extends WebTestCase
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array('id' => '2', 'name' => 'Utilize the skeleton so I can use it for my project.', 'created' => '2013-01-06 19:00:00');
+        $expected = array(
+            'id' => '2',
+            'name' => 'test_user_name_2',
+            'surname' => 'test_user_surname_2',
+            'email' => 'test_user_name_2@email.com',
+            'employee_nr' => 'test_user_employee_nr_2',
+            'role' => '0',
+            'password' => 'test_user_password_2',
+            'salt' => 'test_user_salt_2',
+            'locked' => '0',
+            'deleted' => '0',
+            'created_by' => 'test_user_created_by',
+            'created_at' => '2013-01-01 00:00:00',
+            'updated_by' => 'test_user_updated_by',
+            'updated_at' => '2013-01-01 00:00:00'
+        );
+
         $actual = $data[1];
         $this->assertSame($expected, $actual);
     }
@@ -69,7 +85,23 @@ class ControllerCoreTest extends WebTestCase
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array('id' => '1', 'name' => 'Download silex-skeleton-rest.', 'created' => '2013-01-01 00:00:00');
+        $expected = array(
+            'id' => '1',
+            'name' => 'test_user_name',
+            'surname' => 'test_user_surname',
+            'email' => 'test_user_name@email.com',
+            'employee_nr' => 'test_user_employee_nr',
+            'role' => '0',
+            'password' => 'test_user_password',
+            'salt' => 'test_user_salt',
+            'locked' => '0',
+            'deleted' => '0',
+            'created_by' => 'test_user_created_by',
+            'created_at' => '2013-01-01 00:00:00',
+            'updated_by' => 'test_user_updated_by',
+            'updated_at' => '2013-01-01 00:00:00'
+        );
+
         $actual = $data;
         $this->assertSame($expected, $actual);
     }
@@ -81,7 +113,7 @@ class ControllerCoreTest extends WebTestCase
      */
     public function testPostInputNameFooBar()
     {
-        $inputName = 'Foo Bar';
+        $inputName = 'test_user_name_Foo_Bar';
 
         $client = static::createClient();
 
@@ -103,14 +135,30 @@ class ControllerCoreTest extends WebTestCase
     public function testPutInputId2NameFooBar()
     {
         $inputId = "2";
-        $inputName = 'Foo Bar';
+        $inputName = 'test_user_name_Foo_Bar';
 
         $client = static::createClient();
 
         $client->request('PUT', "/$this->_controllerName/$inputId", array('name' => $inputName));
         $client->request('GET', "/$this->_controllerName/$inputId");
 
-        $expected = array('id' => $inputId, 'name' => $inputName, 'created' => '2013-01-06 19:00:00');
+        $expected = array(
+            'id' => '2',
+            'name' => 'test_user_name_Foo_Bar',
+            'surname' => 'test_user_surname_2',
+            'email' => 'test_user_name_2@email.com',
+            'employee_nr' => 'test_user_employee_nr_2',
+            'role' => '0',
+            'password' => 'test_user_password_2',
+            'salt' => 'test_user_salt_2',
+            'locked' => '0',
+            'deleted' => '0',
+            'created_by' => 'test_user_created_by',
+            'created_at' => '2013-01-01 00:00:00',
+            'updated_by' => 'test_user_updated_by',
+            'updated_at' => '2013-01-01 00:00:00'
+        );
+
         $actual = json_decode($client->getResponse()->getContent(), true);
 
         $this->assertSame($expected, $actual);

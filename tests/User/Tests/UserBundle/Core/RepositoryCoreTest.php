@@ -120,7 +120,7 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $expected = 'Download silex-skeleton-rest.';
+        $expected = 'test_user_name';
         $user = $this->_repositoryCore->find($inputId);
         $actual = $user['name'];
 
@@ -136,7 +136,7 @@ class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 2;
 
-        $expected = 'Utilize the skeleton so I can use it for my project.';
+        $expected = 'test_user_name_2';
         $user = $this->_repositoryCore->find($inputId);
         $actual = $user['name'];
 
