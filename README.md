@@ -118,6 +118,15 @@ CREATE TABLE `resttestdb`.`user` (
   `updated_at` char(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into `restdb`.`user` values
+(null, 'test_user_name', 'test_user_surname', 'test_user_name@email.com', 'test_user_employee_nr', '0', 'test_user_password', 'test_user_salt', '0', '0', 'test_user_created_by', '2013-01-01 00:00:00', 'test_user_updated_by', '2013-01-01 00:00:00'),
+(null, 'test_user_name_2', 'test_user_surname_2', 'test_user_name_2@email.com', 'test_user_employee_nr_2', '0', 'test_user_password_2', 'test_user_salt_2', '0', '0', 'test_user_created_by', '2013-01-01 00:00:00', 'test_user_updated_by', '2013-01-01 00:00:00');
+
+insert into `resttestdb`.`user` values
+(null, 'test_user_name', 'test_user_surname', 'test_user_name@email.com', 'test_user_employee_nr', '0', 'test_user_password', 'test_user_salt', '0', '0', 'test_user_created_by', '2013-01-01 00:00:00', 'test_user_updated_by', '2013-01-01 00:00:00'),
+(null, 'test_user_name_2', 'test_user_surname_2', 'test_user_name_2@email.com', 'test_user_employee_nr_2', '0', 'test_user_password_2', 'test_user_salt_2', '0', '0', 'test_user_created_by', '2013-01-01 00:00:00', 'test_user_updated_by', '2013-01-01 00:00:00');
+
 ```
 
 Why do we need to have 2 same database?
