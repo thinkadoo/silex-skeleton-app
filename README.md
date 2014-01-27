@@ -57,18 +57,18 @@ You can add option "--dev" behind if you want to have the controller test workin
 For this test, you need to put this sql command in MySQL.
 
 ``` mysql
-CREATE DATABASE `restdb`;
+CREATE DATABASE IF NOT EXISTS `restdb`;
 
-CREATE DATABASE `resttestdb`;
+CREATE DATABASE IF NOT EXISTS `resttestdb`;
 
-CREATE TABLE `restdb`.`todo` (
+CREATE TABLE IF NOT EXISTS `restdb`.`todo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `resttestdb`.`todo` (
+CREATE TABLE IF NOT EXISTS `resttestdb`.`todo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `created` datetime NOT NULL,
@@ -83,7 +83,7 @@ insert into `resttestdb`.`todo` values
 (null, "Download silex-skeleton-rest.", "2013-01-01 00:00:00"),
 (null, "Utilize the skeleton so I can use it for my project.", "2013-01-06 19:00:00");
 
-CREATE TABLE `restdb`.`user` (
+CREATE TABLE IF NOT EXISTS `restdb`.`user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `surname` varchar(255) DEFAULT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE `restdb`.`user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `resttestdb`.`user` (
+CREATE TABLE IF NOT EXISTS `resttestdb`.`user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `surname` varchar(255) DEFAULT NULL,
