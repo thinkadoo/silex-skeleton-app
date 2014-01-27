@@ -33,7 +33,7 @@ class UserRepository extends RepositoryCore
      */
     public function insert($params)
     {
-        $params['created_at'] = date("Y-m-d H:i:s");
+        
         $params['updated_at'] = date("Y-m-d H:i:s");
 
         return $this->db->insert($this->table, $params);
