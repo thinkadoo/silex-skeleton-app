@@ -5,7 +5,7 @@
  * PHP Version 5.5.0
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Todo_Tests
+ * @package  Tests
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
