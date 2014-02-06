@@ -25,7 +25,7 @@ $entityList = $rawArguments;
 print_r($entityList);
 
 $config = array(
-    'phpVersion' => "5.3.18",
+    'phpVersion' => "5.3.21",
     'category' => 'Api_Rest_Implementation',
     'organisation' => 'Thinkadoo',
     'author' => 'Andre Venter',
