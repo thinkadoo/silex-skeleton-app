@@ -21,7 +21,8 @@
         "phpunit/phpunit": "3.8.*@dev",
         "phpunit/dbunit": "1.3.0",
         "raveren/kint": "v0.9",
-        "instaclick/php-code-sniffer": "dev-patch-3"
+        "instaclick/php-code-sniffer": "dev-patch-3",
+        "cedriclombardot/twig-generator": "dev-master"
     },
     "minimum-stability": "dev",
     "version": "1.0.0"
