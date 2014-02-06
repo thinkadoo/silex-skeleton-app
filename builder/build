@@ -83,7 +83,7 @@ switch ($command) {
 
         foreach($entityList as $className)
         {
-            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Controller';
+            $nameSpace = $className. '\\' . $className . 'Bundle\\Core';
             $moduleName = $className;
 
             $bobCoreController = new ControllerCoreBuilder();
