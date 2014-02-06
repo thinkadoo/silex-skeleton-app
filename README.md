@@ -191,4 +191,5 @@ You're ready to go! Enjoy!
 [3]: http://www.doctrine-project.org/
 [4]: http://getcomposer.org/
 [5]: http://www.phpunit.de/
-[6]: http://en.wikipedia.org/wiki/Representational_state_transfer
+[6]: http://pear.php.net/manual/en/package.php.php-codesniffer.intro.php
+[7]: http://en.wikipedia.org/wiki/Representational_state_transfer
