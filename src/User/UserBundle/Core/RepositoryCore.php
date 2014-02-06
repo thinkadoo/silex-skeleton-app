@@ -138,4 +138,4 @@ class RepositoryCore
         return $this->db->update($this->table, $params, array('id' => $id));
     }
 }
-/* End of file RepositoryCore.php */
+/* End of file User.php */

@@ -11,15 +11,8 @@
  * @link     {{ repository }}
  */
 {{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
-
-use Silex\Application;
-use Silex\Route;
-use Silex\ControllerCollection;
-use Silex\ControllerProviderInterface;
-use Symfony\Component\HttpFoundation\Request;
-
 /**
- * Class {{ className }}Controller
+ * Class RepositoryCore
  *
  * @category {{ category }}
  * @package  {{ className }}\{{ className }}Bundle\Core
@@ -27,9 +20,9 @@ use Symfony\Component\HttpFoundation\Request;
  * @license  {{ organisation }} {{ organisationWebSite }}
  * @link     {{ repository }}
  */
-class ControllerCore {{ implements is defined ? "implements " ~ implements : "" }}
+class RepositoryCore
 {
     {% block functions %}
     {% endblock %}
 }
-/* End of file {{ className }}Controller.php */
+/* End of file {{ className }}.php */

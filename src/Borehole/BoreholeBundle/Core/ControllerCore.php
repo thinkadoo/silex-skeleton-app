@@ -19,7 +19,7 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class BoreholeController
+ * Class ControllerCore
  *
  * @category Api_Rest_Implementation
  * @package  Borehole\BoreholeBundle\Core
@@ -148,4 +148,4 @@ class ControllerCore implements ControllerProviderInterface
         // @codingStandardsIgnoreEnd
     }
 }
-/* End of file BoreholeController.php */
+/* End of file ControllerCore.php */

@@ -19,7 +19,7 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class UserController
+ * Class ControllerCore
  *
  * @category Api_Rest_Implementation
  * @package  User\UserBundle\Core
@@ -148,4 +148,4 @@ class ControllerCore implements ControllerProviderInterface
         // @codingStandardsIgnoreEnd
     }
 }
-/* End of file UserController.php */
+/* End of file ControllerCore.php */

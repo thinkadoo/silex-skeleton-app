@@ -1,6 +1,3 @@
-{% extends "base/common.php.twig" %}
-
-{% block functions %}
 /**
      * @var object $db
      */
@@ -116,4 +113,3 @@
     {
         return $this->db->update($this->table, $params, array('id' => $id));
     }
-{% endblock %}

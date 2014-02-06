@@ -5,11 +5,13 @@
 require_once __DIR__.'/../vendor/autoload.php';
 require_once 'Bob/ControllerBuilder.php';
 require_once 'Bob/ControllerCoreBuilder.php';
+require_once 'Bob/RepositoryCoreBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use TwigGenerator\Builder\Generator;
 use \Bob\ControllerBuilder;
 use \Bob\ControllerCoreBuilder;
+use \Bob\RepositoryCoreBuilder;
 
 $loader = new UniversalClassLoader();
 
@@ -20,9 +22,26 @@ $throwAway = array_shift($rawArguments);
 $entityList = $rawArguments;
 print_r($entityList);
 
+
+
 switch ($command) {
 
+    case "bundle":
+        makeControllers($entityList);
+        makeRepositories($entityList);
+    break;
+
     case "controller":
+        makeControllers($entityList);
+    break;
+
+    case "repository":
+        makeRepositories($entityList);
+    break;
+
+}
+
+    function makeControllers($entityList){
 
         $phpVersion = "5.5.0";
         $category = 'Api_Rest_Implementation';
@@ -69,8 +88,8 @@ switch ($command) {
 
         // ControllerCore
 
-        foreach($entityList as $className){
-
+        foreach($entityList as $className)
+        {
             $nameSpace = $className. '\\' . $className . 'Bundle\\Core';
             $moduleName = $className;
 
@@ -102,6 +121,49 @@ switch ($command) {
 
         }
 
-    break;
+    }
 
-}
+    function makeRepositories($entityList)
+    {
+        $phpVersion = "5.5.0";
+        $category = 'Api_Rest_Implementation';
+        $organisation = 'Thinkadoo';
+        $author = 'Andre Venter';
+        $authorEmail = 'andre.n.venter@gmail.com';
+        $corganisationWebSite = 'http://think-a-doo.net';
+        $repository = 'https://github.com/thinkadoo/silex-skeleton-rest.git';
+
+        // RepositoryCore
+
+        foreach($entityList as $className){
+
+            $nameSpace = $className. '\\' . $className . 'Bundle\\Core';
+            $moduleName = $className;
+
+            $bobCoreRepository = new RepositoryCoreBuilder();
+            $bobCoreRepository->setOutputName('RepositoryCore.php');
+
+            $bobCoreRepository->setVariable('phpVersion', $phpVersion);
+            $bobCoreRepository->setVariable('category', $category);
+            $bobCoreRepository->setVariable('author', $author);
+            $bobCoreRepository->setVariable('organisation', $organisation);
+            $bobCoreRepository->setVariable('organisationWebSite', $corganisationWebSite);
+            $bobCoreRepository->setVariable('repository', $repository);
+
+            $bobCoreRepository->setVariable('className', $className);
+            $bobCoreRepository->setVariable('moduleName', $moduleName);
+            $bobCoreRepository->setVariable('author', $author);
+            $bobCoreRepository->setVariable('authorEmail', $authorEmail);
+
+            $generateCoreRepository = new Generator();
+            $generateCoreRepository->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryCoreTemplate/',));
+            $generateCoreRepository->setMustOverwriteIfExists(true);
+            $generateCoreRepository->setVariables(array('namespace' => $nameSpace,));
+
+            $generateCoreRepository->addBuilder($bobCoreRepository);
+
+            $generateCoreRepository->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Core');
+            print_r('Done Generating Repository Core '.$className.' ;) ');
+
+        }
+    }
