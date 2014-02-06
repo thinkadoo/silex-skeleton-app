@@ -2,7 +2,7 @@
 /**
  * File: UserController.php
  *
- * PHP Version 5.5.0
+ * PHP Version 5.3.18
  *
  * @category Api_Rest_Implementation
  * @package  Modules_User

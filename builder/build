@@ -22,69 +22,58 @@ $throwAway = array_shift($rawArguments);
 $entityList = $rawArguments;
 print_r($entityList);
 
-
+$config = array(
+    'phpVersion' => "5.3.18",
+    'category' => 'Api_Rest_Implementation',
+    'organisation' => 'Thinkadoo',
+    'author' => 'Andre Venter',
+    'authorEmail' => 'andre.n.venter@gmail.com',
+    'corganisationWebSite' => 'http://think-a-doo.net',
+    'repository' => 'https://github.com/thinkadoo/silex-skeleton-rest.git'
+    );
 
 switch ($command) {
 
     case "bundle":
-        makeControllers($entityList);
-        makeRepositories($entityList);
-    break;
+        makeControllers($entityList, $config);
+        makeCoreControllers($entityList, $config);
+        makeCoreRepositories($entityList, $config);
+        break;
+
+    case "core":
+        makeCoreControllers($entityList, $config);
+        makeCoreRepositories($entityList, $config);
+        break;
 
     case "controller":
-        makeControllers($entityList);
-    break;
+        makeControllers($entityList, $config);
+        makeCoreControllers($entityList, $config);
+        break;
 
     case "repository":
-        makeRepositories($entityList);
-    break;
+        makeCoreRepositories($entityList, $config);
+        break;
+
+    case "corecontroller":
+        makeCoreControllers($entityList, $config);
+        break;
+
+    case "corerepository":
+        makeCoreRepositories($entityList, $config);
+        break;
 
 }
 
-    function makeControllers($entityList){
+    function makeCoreControllers($entityList, $config)
+    {
 
-        $phpVersion = "5.5.0";
-        $category = 'Api_Rest_Implementation';
-        $organisation = 'Thinkadoo';
-        $author = 'Andre Venter';
-        $authorEmail = 'andre.n.venter@gmail.com';
-        $corganisationWebSite = 'http://think-a-doo.net';
-        $repository = 'https://github.com/thinkadoo/silex-skeleton-rest.git';
-
-        // Controller
-
-        foreach($entityList as $className){
-
-            $nameSpace = $className. '\\' . $className . 'Bundle\\Controller';
-            $moduleName = $className;
-
-            $bobController = new ControllerBuilder();
-            $bobController->setOutputName($className.'Controller.php');
-
-            $bobController->setVariable('phpVersion', $phpVersion);
-            $bobController->setVariable('category', $category);
-            $bobController->setVariable('author', $author);
-            $bobController->setVariable('organisation', $organisation);
-            $bobController->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobController->setVariable('repository', $repository);
-
-            $bobController->setVariable('className', $className);
-            $bobController->setVariable('extends', 'ControllerCore');
-            $bobController->setVariable('moduleName', $moduleName);
-            $bobController->setVariable('author', $author);
-            $bobController->setVariable('authorEmail', $authorEmail);
-
-            $generateController = new Generator();
-            $generateController->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerTemplate/',));
-            $generateController->setMustOverwriteIfExists(true);
-            $generateController->setVariables(array('namespace' => $nameSpace,));
-
-            $generateController->addBuilder($bobController);
-
-            $generateController->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Controller');
-            print_r('Done Generating Controller '.$className.' ;) ');
-
-        }
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
 
         // ControllerCore
 
@@ -120,18 +109,63 @@ switch ($command) {
             print_r('Done Generating Controller Core '.$className.' ;) ');
 
         }
-
     }
 
-    function makeRepositories($entityList)
+    function makeControllers($entityList, $config){
+
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
+
+        // Controller
+
+        foreach($entityList as $className){
+
+            $nameSpace = $className. '\\' . $className . 'Bundle\\Controller';
+            $moduleName = $className;
+
+            $bobController = new ControllerBuilder();
+            $bobController->setOutputName($className.'Controller.php');
+
+            $bobController->setVariable('phpVersion', $phpVersion);
+            $bobController->setVariable('category', $category);
+            $bobController->setVariable('author', $author);
+            $bobController->setVariable('organisation', $organisation);
+            $bobController->setVariable('organisationWebSite', $corganisationWebSite);
+            $bobController->setVariable('repository', $repository);
+
+            $bobController->setVariable('className', $className);
+            $bobController->setVariable('extends', 'ControllerCore');
+            $bobController->setVariable('moduleName', $moduleName);
+            $bobController->setVariable('author', $author);
+            $bobController->setVariable('authorEmail', $authorEmail);
+
+            $generateController = new Generator();
+            $generateController->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerTemplate/',));
+            $generateController->setMustOverwriteIfExists(true);
+            $generateController->setVariables(array('namespace' => $nameSpace,));
+
+            $generateController->addBuilder($bobController);
+
+            $generateController->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Controller');
+            print_r('Done Generating Controller '.$className.' ;) ');
+
+        }
+    }
+
+    function makeCoreRepositories($entityList, $config)
     {
-        $phpVersion = "5.5.0";
-        $category = 'Api_Rest_Implementation';
-        $organisation = 'Thinkadoo';
-        $author = 'Andre Venter';
-        $authorEmail = 'andre.n.venter@gmail.com';
-        $corganisationWebSite = 'http://think-a-doo.net';
-        $repository = 'https://github.com/thinkadoo/silex-skeleton-rest.git';
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
 
         // RepositoryCore
 
