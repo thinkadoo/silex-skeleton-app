@@ -6,12 +6,14 @@ require_once __DIR__.'/../vendor/autoload.php';
 require_once 'Bob/ControllerBuilder.php';
 require_once 'Bob/ControllerCoreBuilder.php';
 require_once 'Bob/RepositoryCoreBuilder.php';
+require_once 'Bob/RepositoryBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use TwigGenerator\Builder\Generator;
 use \Bob\ControllerBuilder;
 use \Bob\ControllerCoreBuilder;
 use \Bob\RepositoryCoreBuilder;
+use \Bob\RepositoryBuilder;
 
 $loader = new UniversalClassLoader();
 
@@ -38,6 +40,7 @@ switch ($command) {
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
+        makeRepositories($entityList, $config);
         break;
 
     case "core":
@@ -52,6 +55,7 @@ switch ($command) {
 
     case "repository":
         makeCoreRepositories($entityList, $config);
+        makeRepositories($entityList, $config);
         break;
 
     case "corecontroller":
@@ -198,6 +202,52 @@ switch ($command) {
 
             $generateCoreRepository->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Core');
             print_r('Done Generating Repository Core '.$className.' ;) ');
+
+        }
+    }
+
+    function makeRepositories($entityList, $config)
+    {
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
+
+        // RepositoryCore
+
+        foreach($entityList as $className){
+
+            $nameSpace = $className. '\\' . $className . 'Bundle\\Repository';
+            $moduleName = $className;
+
+            $bobCoreRepository = new RepositoryBuilder();
+            $bobCoreRepository->setOutputName($className.'Repository.php');
+
+            $bobCoreRepository->setVariable('phpVersion', $phpVersion);
+            $bobCoreRepository->setVariable('category', $category);
+            $bobCoreRepository->setVariable('author', $author);
+            $bobCoreRepository->setVariable('organisation', $organisation);
+            $bobCoreRepository->setVariable('organisationWebSite', $corganisationWebSite);
+            $bobCoreRepository->setVariable('repository', $repository);
+
+            $bobCoreRepository->setVariable('className', $className);
+            $bobCoreRepository->setVariable('extends', 'RepositoryCore');
+            $bobCoreRepository->setVariable('moduleName', $moduleName);
+            $bobCoreRepository->setVariable('author', $author);
+            $bobCoreRepository->setVariable('authorEmail', $authorEmail);
+
+            $generateCoreRepository = new Generator();
+            $generateCoreRepository->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryTemplate/',));
+            $generateCoreRepository->setMustOverwriteIfExists(true);
+            $generateCoreRepository->setVariables(array('namespace' => $nameSpace,));
+
+            $generateCoreRepository->addBuilder($bobCoreRepository);
+
+            $generateCoreRepository->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Repository');
+            print_r('Done Generating Repository '.$className.' ;) ');
 
         }
     }

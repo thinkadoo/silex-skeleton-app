@@ -1,28 +1,28 @@
 <?php
 /**
- * File: UserRepository.php
+ * File: BoreholeRepository.php
  *
  * PHP Version 5.3.18
  *
  * @category Api_Rest_Implementation
- * @package  Modules_User
+ * @package  Modules_Borehole
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace User\UserBundle\Repository;
+namespace Borehole\BoreholeBundle\Repository;
 
-use User\UserBundle\Core\RepositoryCore;
+use Borehole\BoreholeBundle\Core\RepositoryCore;
 /**
- * Class UserRepository
+ * Class BoreholeRepository
  *
  * @category Api_Rest_Implementation
- * @package  User\UserBundle\Core
+ * @package  Borehole\BoreholeBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class UserRepository extends RepositoryCore
+class BoreholeRepository extends RepositoryCore
 {
 /**
      * insert
@@ -39,4 +39,4 @@ class UserRepository extends RepositoryCore
     return $this->db->insert($this->table, $params);
     }
 }
-/* End of file UserRepository.php */
+/* End of file BoreholeRepository.php */

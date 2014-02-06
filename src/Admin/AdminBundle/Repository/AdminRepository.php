@@ -1,28 +1,28 @@
 <?php
 /**
- * File: UserRepository.php
+ * File: AdminRepository.php
  *
  * PHP Version 5.3.18
  *
  * @category Api_Rest_Implementation
- * @package  Modules_User
+ * @package  Modules_Admin
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace User\UserBundle\Repository;
+namespace Admin\AdminBundle\Repository;
 
-use User\UserBundle\Core\RepositoryCore;
+use Admin\AdminBundle\Core\RepositoryCore;
 /**
- * Class UserRepository
+ * Class AdminRepository
  *
  * @category Api_Rest_Implementation
- * @package  User\UserBundle\Core
+ * @package  Admin\AdminBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class UserRepository extends RepositoryCore
+class AdminRepository extends RepositoryCore
 {
 /**
      * insert
@@ -39,4 +39,4 @@ class UserRepository extends RepositoryCore
     return $this->db->insert($this->table, $params);
     }
 }
-/* End of file UserRepository.php */
+/* End of file AdminRepository.php */
