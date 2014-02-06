@@ -1,4 +1,28 @@
+<?php
 /**
+ * File: RepositoryCore.php
+ *
+ * PHP Version 5.5.0
+ *
+ * @category Api_Rest_Implementation
+ * @package  Modules_Borehole
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+namespace Borehole\BoreholeBundle\Core;
+/**
+ * Class RepositoryCore
+ *
+ * @category Api_Rest_Implementation
+ * @package  Borehole\BoreholeBundle\Core
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class RepositoryCore
+{
+    /**
      * @var object $db
      */
     protected $db;
@@ -113,3 +137,5 @@
     {
         return $this->db->update($this->table, $params, array('id' => $id));
     }
+}
+/* End of file Borehole.php */
