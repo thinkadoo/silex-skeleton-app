@@ -1,35 +1,7 @@
-<?php
-/**
- * File: ControllerCore.php
- *
- * PHP Version 5.5.0
- *
- * @category Api_Rest_Implementation
- * @package  Modules_Todo
- * @author   Andre Venter <andre.n.venter@gmail.com>
- * @license  Thinkadoo http://think-a-doo.net
- * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
- */
-namespace Todo\TodoBundle\Core;
+{% extends "base/common.php.twig" %}
 
-use Silex\Application;
-use Silex\Route;
-use Silex\ControllerCollection;
-use Silex\ControllerProviderInterface;
-use Symfony\Component\HttpFoundation\Request;
-
+{% block functions %}
 /**
- * Class ControllerCore
- *
- * @category Api_Rest_Implementation
- * @package  Todo\TodoBundle\Core
- * @author   Andre Venter <andre.n.venter@gmail.com>
- * @license  Thinkadoo http://think-a-doo.net
- * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
- */
-class ControllerCore implements ControllerProviderInterface
-{
-    /**
      * @var object $repository
      */
     protected $repository;
@@ -45,7 +17,6 @@ class ControllerCore implements ControllerProviderInterface
      *
      * @return void
      */
-
     public function setRepository($repository)
     {
         $this->repository = $repository;
@@ -58,7 +29,6 @@ class ControllerCore implements ControllerProviderInterface
      *
      * @return void
      */
-
     public function setController($controller)
     {
         $this->controller = $controller;
@@ -69,7 +39,6 @@ class ControllerCore implements ControllerProviderInterface
      *
      * @return void
      */
-
     public function __construct()
     {
         $calledClass = explode('\\', get_called_class());
@@ -86,14 +55,13 @@ class ControllerCore implements ControllerProviderInterface
      *
      * @return ControllerCollection
      */
-
     public function connect(Application $app)
     {
         // @codingStandardsIgnoreStart
 
         $controller = $this->controller;
 
-        $targetRepository = "Todo\\TodoBundle\\Repository\\" . $this->repository . "Repository";
+        $targetRepository = "User\\UserBundle\\Repository\\" . $this->repository . "Repository";
 
         /**
          * get
@@ -120,10 +88,10 @@ class ControllerCore implements ControllerProviderInterface
          * post
          */
         $controller->post("/", function(Request $request) use ($app, $targetRepository) {
-            $repository = new $targetRepository($app['db']);
-            $params = $request->request->all();
+        $repository = new $targetRepository($app['db']);
+        $params = $request->request->all();
 
-            return $app->json($repository->insert($params));
+        return $app->json($repository->insert($params));
         });
 
         /**
@@ -151,5 +119,4 @@ class ControllerCore implements ControllerProviderInterface
 
         // @codingStandardsIgnoreEnd
     }
-}
-/* End of file ControllerCore.php */
+{% endblock %}

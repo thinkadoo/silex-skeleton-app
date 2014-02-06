@@ -24,6 +24,7 @@ switch ($command) {
 
     case "controller":
 
+        $phpVersion = "5.5.0";
         $category = 'Api_Rest_Implementation';
         $organisation = 'Thinkadoo';
         $author = 'Andre Venter';
@@ -41,6 +42,7 @@ switch ($command) {
             $bobController = new ControllerBuilder();
             $bobController->setOutputName($className.'Controller.php');
 
+            $bobController->setVariable('phpVersion', $phpVersion);
             $bobController->setVariable('category', $category);
             $bobController->setVariable('author', $author);
             $bobController->setVariable('organisation', $organisation);
@@ -75,6 +77,7 @@ switch ($command) {
             $bobCoreController = new ControllerCoreBuilder();
             $bobCoreController->setOutputName('ControllerCore.php');
 
+            $bobCoreController->setVariable('phpVersion', $phpVersion);
             $bobCoreController->setVariable('category', $category);
             $bobCoreController->setVariable('author', $author);
             $bobCoreController->setVariable('organisation', $organisation);

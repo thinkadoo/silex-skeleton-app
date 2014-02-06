@@ -1,6 +1,6 @@
 <?php
 /**
- * File: user_password.php
+ * File: UserRepository.php
  *
  * PHP Version 5.5.0
  *
