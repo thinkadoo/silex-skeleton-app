@@ -2,20 +2,21 @@
 
 {% block functions %}
 /**
-     * connect
+     * createApplication
      *
-     * @param Application $app framework injected
-     *
-     * @return Object|\Silex\ControllerCollection
+     * @return mixed|\Symfony\Component\HttpKernel\HttpKernel
      */
-    public function connect(Application $app)
+    public function createApplication()
     {
-        $controller = $this->controller;
+        return include $_SERVER['APP_DIR'] . "/app_test.php";
+    }
 
-        // In here, you can write additional controller
-        // or overwrite existing controller in ControllerCore
-
-        parent::connect($app);
-        return $controller;
+    /**
+     * testInitialPage
+     *
+     * @return void
+     */
+    public function testInitialPage()
+    {
     }
 {% endblock %}

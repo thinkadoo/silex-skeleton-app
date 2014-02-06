@@ -1,6 +1,6 @@
 <?php
 /**
- * File: RepositoryCoreTest.php
+ * File: UserControllerTest.php
  *
  * PHP Version 5.5.0
  *
@@ -13,6 +13,7 @@
 namespace User\Tests\UserBundle\Controller;
 
 use Silex\WebTestCase;
+
 /**
  * Class UserControllerTest
  *
