@@ -1,0 +1,115 @@
+#!/usr/bin/env php
+
+<?php
+
+require_once __DIR__.'/../vendor/autoload.php';
+require_once 'Bob/ControllerTestBuilder.php';
+require_once 'Bob/ControllerCoreTestBuilder.php';
+require_once 'Bob/RepositoryCoreTestBuilder.php';
+require_once 'Bob/RepositoryTestBuilder.php';
+require_once 'Bob/DbBuilder.php';
+require_once 'Bob/BootstrapBuilder.php';
+require_once 'Bob/SeedBuilder.php';
+
+use Symfony\Component\ClassLoader\UniversalClassLoader;
+use TwigGenerator\Builder\Generator;
+use \Bob\ControllerTestBuilder;
+use \Bob\ControllerCoreTestBuilder;
+use \Bob\RepositoryCoreTestBuilder;
+use \Bob\RepositoryTestBuilder;
+use \Bob\BootstrapBuilder;
+use \Bob\DbBuilder;
+use \Bob\SeedBuilder;
+
+$loader = new UniversalClassLoader();
+
+$command = $argv[1];
+$rawArguments = $argv;
+$throwAway = array_shift($rawArguments);
+$throwAway = array_shift($rawArguments);
+$entityList = $rawArguments;
+print_r($entityList);
+
+$config = array(
+    'phpVersion' => "5.3.21",
+    'category' => 'Api_Rest_Implementation',
+    'organisation' => 'Thinkadoo',
+    'author' => 'Andre Venter',
+    'authorEmail' => 'andre.n.venter@gmail.com',
+    'corganisationWebSite' => 'http://think-a-doo.net',
+    'repository' => 'https://github.com/thinkadoo/silex-skeleton-rest.git'
+    );
+
+switch ($command) {
+
+
+    case "test":
+        makeTests($entityList, $config);
+        break;
+
+}
+
+
+
+    function makeTests($entityList, $config)
+    {
+        makeSupportFilesForTests($entityList, $config);
+    }
+
+    function makeSupportFilesForTests($entityList, $config)
+    {
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
+
+        // seed.yml
+
+        foreach($entityList as $className)
+        {
+            $bobSeedFile = new SeedBuilder();
+            $bobSeedFile->setOutputName('seed'.$className.'.yml');
+
+            $generateYmlFile = new Generator();
+            $generateYmlFile->setTemplateDirs(array(__DIR__.'/Bob/Work/DataSetTemplate/',));
+            $generateYmlFile->setMustOverwriteIfExists(true);
+
+            $generateYmlFile->addBuilder($bobSeedFile);
+            $generateYmlFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/DataSet/'.$className.'/');
+            print_r('Done Generating YML Seed Data file '.$className.' ;) ');
+
+        }
+
+        foreach($entityList as $className)
+        {
+            $moduleName = $className;
+
+            $bobDBFile = new DbBuilder();
+            $bobDBFile->setOutputName('db.php');
+
+            $bobDBFile->setVariable('phpVersion', $phpVersion);
+            $bobDBFile->setVariable('category', $category);
+            $bobDBFile->setVariable('author', $author);
+            $bobDBFile->setVariable('organisation', $organisation);
+            $bobDBFile->setVariable('organisationWebSite', $corganisationWebSite);
+            $bobDBFile->setVariable('repository', $repository);
+
+            $bobDBFile->setVariable('className', $className);
+            $bobDBFile->setVariable('moduleName', $moduleName);
+            $bobDBFile->setVariable('author', $author);
+            $bobDBFile->setVariable('authorEmail', $authorEmail);
+
+            $generateDbFile = new Generator();
+            $generateDbFile->setTemplateDirs(array(__DIR__.'/Bob/Work/DbClassTemplate/',));
+            $generateDbFile->setMustOverwriteIfExists(true);
+
+            $generateDbFile->addBuilder($bobDBFile);
+            $generateDbFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/');
+            print_r('Done Generating db.php file '.$className.' ;) ');
+
+        }
+
+    }

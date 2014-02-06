@@ -1,0 +1,35 @@
+<?php
+/**
+ * File: ControllerCore.php
+ *
+ * PHP Version {{ phpVersion }}
+ *
+ * @category {{ category }}
+ * @package  Modules_{{ moduleName }}
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+{{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
+
+use Silex\Application;
+use Silex\Route;
+use Silex\ControllerCollection;
+use Silex\ControllerProviderInterface;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Class ControllerCore
+ *
+ * @category {{ category }}
+ * @package  {{ className }}\{{ className }}Bundle\Core
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+class ControllerCore {{ implements is defined ? "implements " ~ implements : "" }}
+{
+    {% block functions %}
+    {% endblock %}
+}
+/* End of file ControllerCore.php */

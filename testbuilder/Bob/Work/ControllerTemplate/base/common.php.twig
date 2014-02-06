@@ -1,0 +1,34 @@
+<?php
+/**
+ * File: {{ className }}Controller.php
+ *
+ * PHP Version {{ phpVersion }}
+ *
+ * @category {{ category }}
+ * @package  Modules_{{ moduleName }}
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+{{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
+
+use Silex\Application;
+
+use {{ className }}\{{ className }}Bundle\Core\ControllerCore;
+use {{ className }}\{{ className }}Bundle\Repository;
+
+/**
+ * Class {{ className }}Controller
+ *
+ * @category {{ category }}
+ * @package  {{ className }}\{{ className }}Bundle\Core
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+class {{ className }}Controller {{ extends is defined ? "extends " ~ extends : "" }}
+{
+    {% block functions %}
+    {% endblock %}
+}
+/* End of file {{ className }}Controller.php */
