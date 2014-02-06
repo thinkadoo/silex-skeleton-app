@@ -183,13 +183,22 @@ $ ./vendor/bin/phpcs ./src/ --standard=PSR2
 To generate some code:
 
 ``` sh
-$ ./builder/build bundle User Admin
-$ ./builder/build core User Admin
-$ ./builder/build controller User Admin
-$ ./builder/build repository User Admin
-$ ./builder/build corecontroller User Admin
-$ ./builder/build corerepository User Admin
+$ ./builder/build bundle Yum Yam Yoo
+$ ./builder/build core Yum Yam Yoo
+$ ./builder/build controller Yum Yam Yoo
+$ ./builder/build repository Yum Yam Yoo
+$ ./builder/build corecontroller Yum Yam Yoo
+$ ./builder/build corerepository Yum Yam Yoo
 ```
+
+To generate some code:
+
+``` sh
+$ ./testbuilder/buildtest testbundle Yum Yam Yoo
+$ ./testbuilder/buildtest testcontroller Yum Yam Yoo
+```
+
+
 
 Final
 -----

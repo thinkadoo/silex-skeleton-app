@@ -41,7 +41,11 @@ $config = array(
 switch ($command) {
 
 
-    case "test":
+    case "testbundle":
+        makeTests($entityList, $config);
+        break;
+
+    case "testcontroller":
         makeTests($entityList, $config);
         break;
 
@@ -50,6 +54,12 @@ switch ($command) {
 
 
     function makeTests($entityList, $config)
+    {
+        makeSupportFilesForTests($entityList, $config);
+        makeControllerTest($entityList, $config);
+    }
+
+    function testController($entityList, $config)
     {
         makeSupportFilesForTests($entityList, $config);
         makeControllerTest($entityList, $config);
