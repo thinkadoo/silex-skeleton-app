@@ -180,6 +180,17 @@ Finally for code standards:
 $ ./vendor/bin/phpcs ./src/ --standard=PSR2
 ```
 
+To generate some code:
+
+``` sh
+$ ./builder/build bundle User Admin
+$ ./builder/build core User Admin
+$ ./builder/build controller User Admin
+$ ./builder/build repository User Admin
+$ ./builder/build corecontroller User Admin
+$ ./builder/build corerepository User Admin
+```
+
 Final
 -----
 Take your time and look around the code to understand more and do not hesitate to let me know if you have an idea how to improve this.
