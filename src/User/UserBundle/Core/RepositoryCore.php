@@ -11,6 +11,7 @@
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 namespace User\UserBundle\Core;
+
 /**
  * Class RepositoryCore
  *

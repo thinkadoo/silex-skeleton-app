@@ -13,6 +13,7 @@
 namespace User\UserBundle\Repository;
 
 use User\UserBundle\Core\RepositoryCore;
+
 /**
  * Class UserRepository
  *
@@ -24,7 +25,7 @@ use User\UserBundle\Core\RepositoryCore;
  */
 class UserRepository extends RepositoryCore
 {
-/**
+    /**
      * insert
      *
      * @param array $params parameters passed to rest api
@@ -34,9 +35,9 @@ class UserRepository extends RepositoryCore
     public function insert($params)
     {
 
-    $params['updated_at'] = date("Y-m-d H:i:s");
+        $params['updated_at'] = date("Y-m-d H:i:s");
 
-    return $this->db->insert($this->table, $params);
+        return $this->db->insert($this->table, $params);
     }
 }
 /* End of file UserRepository.php */
