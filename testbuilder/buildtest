@@ -8,7 +8,6 @@ require_once 'Bob/ControllerCoreTestBuilder.php';
 require_once 'Bob/RepositoryCoreTestBuilder.php';
 require_once 'Bob/RepositoryTestBuilder.php';
 require_once 'Bob/DbBuilder.php';
-require_once 'Bob/BootstrapBuilder.php';
 require_once 'Bob/SeedBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
@@ -17,7 +16,6 @@ use \Bob\ControllerTestBuilder;
 use \Bob\ControllerCoreTestBuilder;
 use \Bob\RepositoryCoreTestBuilder;
 use \Bob\RepositoryTestBuilder;
-use \Bob\BootstrapBuilder;
 use \Bob\DbBuilder;
 use \Bob\SeedBuilder;
 
