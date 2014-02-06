@@ -5,12 +5,12 @@
  * PHP Version 5.5.0
  *
  * @category Api_Rest_Implementation
- * @package  Modules_User
+ * @package  Modules_Borehole
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace User\UserBundle\Core;
+namespace Borehole\BoreholeBundle\Core;
 
 use Silex\Application;
 use Silex\Route;
@@ -19,10 +19,10 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class UserController
+ * Class BoreholeController
  *
  * @category Api_Rest_Implementation
- * @package  User\UserBundle\Core
+ * @package  Borehole\BoreholeBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
@@ -148,4 +148,4 @@ class ControllerCore implements ControllerProviderInterface
         // @codingStandardsIgnoreEnd
     }
 }
-/* End of file UserController.php */
+/* End of file BoreholeController.php */

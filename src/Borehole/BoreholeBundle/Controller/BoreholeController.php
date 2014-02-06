@@ -1,32 +1,32 @@
 <?php
 /**
- * File: UserController.php
+ * File: BoreholeController.php
  *
  * PHP Version 5.5.0
  *
  * @category Api_Rest_Implementation
- * @package  Modules_User
+ * @package  Modules_Borehole
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace User\UserBundle\Controller;
+namespace Borehole\BoreholeBundle\Controller;
 
 use Silex\Application;
 
-use User\UserBundle\Core\ControllerCore;
-use User\UserBundle\Repository;
+use Borehole\BoreholeBundle\Core\ControllerCore;
+use Borehole\BoreholeBundle\Repository;
 
 /**
- * Class UserController
+ * Class BoreholeController
  *
  * @category Api_Rest_Implementation
- * @package  User\UserBundle\Core
+ * @package  Borehole\BoreholeBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class UserController extends ControllerCore
+class BoreholeController extends ControllerCore
 {
     /**
      * connect
@@ -46,4 +46,4 @@ class UserController extends ControllerCore
         return $controller;
     }
 }
-/* End of file UserController.php */
+/* End of file BoreholeController.php */
