@@ -216,7 +216,7 @@ switch ($command) {
         $corganisationWebSite = $config['corganisationWebSite'];
         $repository = $config['repository'];
 
-        // RepositoryCore
+        // Repository
 
         foreach($entityList as $className){
 
