@@ -67,6 +67,7 @@ switch ($command) {
         makeControllerTest($entityList, $config);
         makeRepositoryTest($entityList, $config);
         makeRepositoryCoreTest($entityList, $config);
+        makeControllerCoreTest($entityList, $config);
     }
 
     function testController($entityList, $config)
@@ -127,6 +128,50 @@ switch ($command) {
             $generateControllerTestFile->addBuilder($bobControllerTestFile);
             $generateControllerTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Controller/');
             print_r('Done Generating Test file '.$className.'ControllerTest ;) ');
+
+        }
+    };
+
+    function makeControllerCoreTest($entityList, $config)
+    {
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
+
+        foreach($entityList as $className)
+        {
+            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Core';
+            $moduleName = $className;
+
+            $bobControllerCoreTestFile = new ControllerCoreTestBuilder();
+            $bobControllerCoreTestFile->setOutputName($className.'ControllerCoreTest.php');
+
+            $bobControllerCoreTestFile->setVariable('phpVersion', $phpVersion);
+            $bobControllerCoreTestFile->setVariable('category', $category);
+            $bobControllerCoreTestFile->setVariable('author', $author);
+            $bobControllerCoreTestFile->setVariable('organisation', $organisation);
+            $bobControllerCoreTestFile->setVariable('organisationWebSite', $corganisationWebSite);
+            $bobControllerCoreTestFile->setVariable('repository', $repository);
+
+            $bobControllerCoreTestFile->setVariable('className', $className);
+            $bobControllerCoreTestFile->setVariable('tableName', strtolower($className));
+            $bobControllerCoreTestFile->setVariable('extends', 'WebTestCase');
+            $bobControllerCoreTestFile->setVariable('moduleName', $moduleName);
+            $bobControllerCoreTestFile->setVariable('author', $author);
+            $bobControllerCoreTestFile->setVariable('authorEmail', $authorEmail);
+
+            $generateControllerCoreTestFile = new Generator();
+            $generateControllerCoreTestFile->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerCoreTemplate/',));
+            $generateControllerCoreTestFile->setMustOverwriteIfExists(true);
+            $generateControllerCoreTestFile->setVariables(array('namespace' => $nameSpace,));
+
+            $generateControllerCoreTestFile->addBuilder($bobControllerCoreTestFile);
+            $generateControllerCoreTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Core/');
+            print_r('Done Generating Test file '.$className.'RepositoryCoreTest ;) ');
 
         }
     };

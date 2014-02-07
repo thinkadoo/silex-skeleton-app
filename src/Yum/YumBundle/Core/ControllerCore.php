@@ -89,7 +89,7 @@ class ControllerCore implements ControllerProviderInterface
 
         $controller = $this->controller;
 
-        $targetRepository = "User\\UserBundle\\Repository\\" . $this->repository . "Repository";
+        $targetRepository = "Yum\\YumBundle\\Repository\\" . $this->repository . "Repository";
 
         /**
          * get

@@ -61,7 +61,7 @@
 
         $controller = $this->controller;
 
-        $targetRepository = "User\\UserBundle\\Repository\\" . $this->repository . "Repository";
+        $targetRepository = "{{ className }}\\{{ className }}Bundle\\Repository\\" . $this->repository . "Repository";
 
         /**
          * get

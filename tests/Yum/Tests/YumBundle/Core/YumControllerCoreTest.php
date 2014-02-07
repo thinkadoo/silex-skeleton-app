@@ -1,11 +1,35 @@
-{% extends "base/common.php.twig" %}
+<?php
+/**
+ * File: ControllerCoreTest.php
+ *
+ * PHP Version 5.3.21
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Modules_Yum
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+namespace Yum\Tests\YumBundle\Core;
 
-{% block functions %}
+use Silex\WebTestCase;
 
+/**
+ * Class ControllerCoreTest
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Yum\YumBundle\Core
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class ControllerCoreTest extends WebTestCase
+{
+    
     /**
      * @var string
      */
-    private $controllerName = '{{ tableName }}';
+    private $controllerName = 'yum';
 
     /**
      * createApplication
@@ -31,18 +55,18 @@
 
         $expected = array(
             'id' => '2',
-            'name' => 'test_{{ tableName }}_name_2',
-            'surname' => 'test_{{ tableName }}_surname_2',
-            'email' => 'test_{{ tableName }}_name_2@email.com',
-            'employee_nr' => 'test_{{ tableName }}_employee_nr_2',
+            'name' => 'test_yum_name_2',
+            'surname' => 'test_yum_surname_2',
+            'email' => 'test_yum_name_2@email.com',
+            'employee_nr' => 'test_yum_employee_nr_2',
             'role' => '0',
-            'password' => 'test_{{ tableName }}_password_2',
-            'salt' => 'test_{{ tableName }}_salt_2',
+            'password' => 'test_yum_password_2',
+            'salt' => 'test_yum_salt_2',
             'locked' => '0',
             'deleted' => '0',
-            'created_by' => 'test_{{ tableName }}_created_by',
+            'created_by' => 'test_yum_created_by',
             'created_at' => '2013-01-01 00:00:00',
-            'updated_by' => 'test_{{ tableName }}_updated_by',
+            'updated_by' => 'test_yum_updated_by',
             'updated_at' => '2013-01-01 00:00:00'
         );
 
@@ -65,18 +89,18 @@
 
         $expected = array(
             'id' => '1',
-            'name' => 'test_{{ tableName }}_name',
-            'surname' => 'test_{{ tableName }}_surname',
-            'email' => 'test_{{ tableName }}_name@email.com',
-            'employee_nr' => 'test_{{ tableName }}_employee_nr',
+            'name' => 'test_yum_name',
+            'surname' => 'test_yum_surname',
+            'email' => 'test_yum_name@email.com',
+            'employee_nr' => 'test_yum_employee_nr',
             'role' => '0',
-            'password' => 'test_{{ tableName }}_password',
-            'salt' => 'test_{{ tableName }}_salt',
+            'password' => 'test_yum_password',
+            'salt' => 'test_yum_salt',
             'locked' => '0',
             'deleted' => '0',
-            'created_by' => 'test_{{ tableName }}_created_by',
+            'created_by' => 'test_yum_created_by',
             'created_at' => '2013-01-01 00:00:00',
-            'updated_by' => 'test_{{ tableName }}_updated_by',
+            'updated_by' => 'test_yum_updated_by',
             'updated_at' => '2013-01-01 00:00:00'
             );
 
@@ -91,7 +115,7 @@
      */
     public function testPostInputNameFooBar()
     {
-        $inputName = 'test_{{ tableName }}_name_Foo_Bar';
+        $inputName = 'test_yum_name_Foo_Bar';
 
         $client = static::createClient();
 
@@ -113,7 +137,7 @@
     public function testPutInputId2NameFooBar()
     {
         $inputId = "2";
-        $inputName = 'test_{{ tableName }}_name_Foo_Bar';
+        $inputName = 'test_yum_name_Foo_Bar';
 
         $client = static::createClient();
 
@@ -122,18 +146,18 @@
 
         $expected = array(
             'id' => '2',
-            'name' => 'test_{{ tableName }}_name_Foo_Bar',
-            'surname' => 'test_{{ tableName }}_surname_2',
-            'email' => 'test_{{ tableName }}_name_2@email.com',
-            'employee_nr' => 'test_{{ tableName }}_employee_nr_2',
+            'name' => 'test_yum_name_Foo_Bar',
+            'surname' => 'test_yum_surname_2',
+            'email' => 'test_yum_name_2@email.com',
+            'employee_nr' => 'test_yum_employee_nr_2',
             'role' => '0',
-            'password' => 'test_{{ tableName }}_password_2',
-            'salt' => 'test_{{ tableName }}_salt_2',
+            'password' => 'test_yum_password_2',
+            'salt' => 'test_yum_salt_2',
             'locked' => '0',
             'deleted' => '0',
-            'created_by' => 'test_{{ tableName }}_created_by',
+            'created_by' => 'test_yum_created_by',
             'created_at' => '2013-01-01 00:00:00',
-            'updated_by' => 'test_{{ tableName }}_updated_by',
+            'updated_by' => 'test_yum_updated_by',
             'updated_at' => '2013-01-01 00:00:00'
             );
 
@@ -162,4 +186,5 @@
 
         $this->assertSame($expected, $actual);
     }
-{% endblock %}
+}
+/* End of file ControllerCoreTest.php */

@@ -1,6 +1,6 @@
 <?php
 /**
- * File: ControllerCore.php
+ * File: ControllerCoreTest.php
  *
  * PHP Version {{ phpVersion }}
  *
@@ -12,14 +12,10 @@
  */
 {{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
 
-use Silex\Application;
-use Silex\Route;
-use Silex\ControllerCollection;
-use Silex\ControllerProviderInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Silex\WebTestCase;
 
 /**
- * Class ControllerCore
+ * Class ControllerCoreTest
  *
  * @category {{ category }}
  * @package  {{ className }}\{{ className }}Bundle\Core
@@ -27,9 +23,9 @@ use Symfony\Component\HttpFoundation\Request;
  * @license  {{ organisation }} {{ organisationWebSite }}
  * @link     {{ repository }}
  */
-class ControllerCore {{ implements is defined ? "implements " ~ implements : "" }}
+class ControllerCoreTest {{ extends is defined ? "extends " ~ extends : "" }}
 {
     {% block functions %}
     {% endblock %}
 }
-/* End of file ControllerCore.php */
+/* End of file ControllerCoreTest.php */
