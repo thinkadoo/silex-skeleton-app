@@ -1,6 +1,31 @@
-{% extends "base/common.php.twig" %}
+<?php
+/**
+ * File: YumRepository.php
+ *
+ * PHP Version 5.3.21
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Modules_Yum
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+namespace Yum\Tests\YumBundle\Repository;
 
-{% block functions %}
+use Yum\YumBundle\Repository\YumRepository;
+use Silex\Application;
+
+/**
+ * Class YumRepository
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Yum\YumBundle\Core
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
+{
 
     /**
      * @var null
@@ -15,9 +40,9 @@
      */
     private $_db;
     /**
-     * @var \{{ className }}\{{ className }}Bundle\Repository\{{ className }}Repository
+     * @var \Yum\YumBundle\Repository\YumRepository
      */
-    private $_{{ tableName }}Repository;
+    private $_yumRepository;
 
     /**
      * constructor
@@ -26,7 +51,7 @@
     public function __construct()
     {
         $this->_db = include __DIR__ . "/../../db.php";
-        $this->_{{ tableName }}Repository = new {{ className }}Repository($this->_db);
+        $this->_yumRepository = new YumRepository($this->_db);
     }
 
     /**
@@ -56,18 +81,18 @@
         self::$_pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
-            __DIR__ . "/../../DataSet/{{ className }}/seed{{ className }}.yml"
+            __DIR__ . "/../../DataSet/Yum/seedYum.yml"
         );
     }
 
     /**
-     * testConstruct{{ className }}RepositoryClass
+     * testConstructYumRepositoryClass
      *
      * @return void
      */
-    public function testConstruct{{ className }}RepositoryClass()
+    public function testConstructYumRepositoryClass()
     {
-        $this->_{{ tableName }}Repository = new {{ className }}Repository($this->_db);
+        $this->_yumRepository = new YumRepository($this->_db);
     }
 
     /**
@@ -77,8 +102,8 @@
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('{{ className }}');
-        $actual = count($this->_{{ tableName }}Repository->findAll());
+        $expected = $this->getConnection()->getRowCount('Yum');
+        $actual = count($this->_yumRepository->findAll());
 
         $this->assertEquals($expected, $actual);
     }
@@ -92,9 +117,9 @@
     {
         $inputId = 1;
 
-        $expected = 'test_{{ tableName }}_name';
-        ${{ className }} = $this->_{{ tableName }}Repository->find($inputId);
-        $actual = ${{ className }}['name'];
+        $expected = 'test_yum_name';
+        $Yum = $this->_yumRepository->find($inputId);
+        $actual = $Yum['name'];
 
         $this->assertEquals($expected, $actual);
     }
@@ -109,7 +134,7 @@
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->_{{ tableName }}Repository->find($inputId);
+        $actual = $this->_yumRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -123,9 +148,9 @@
     {
         $inputId = 1;
 
-        $this->_{{ tableName }}Repository->delete($inputId);
+        $this->_yumRepository->delete($inputId);
         $expected = null;
-        $actual = $this->_{{ tableName }}Repository->find($inputId);
+        $actual = $this->_yumRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -140,44 +165,45 @@
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->_{{ tableName }}Repository->delete($inputId);
+        $actual = $this->_yumRepository->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testUpdate_inputId2NameNew{{ className }}
+     * testUpdate_inputId2NameNewYum
      *
      * @return void
      */
-    public function testUpdateInputId2NameNew{{ className }}()
+    public function testUpdateInputId2NameNewYum()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'New {{ className }}');
+        $inputParams = array('name' => 'New Yum');
 
-        $this->_{{ tableName }}Repository->update($inputId, $inputParams);
-        ${{ className }}Repository = $this->_{{ tableName }}Repository->find($inputId);
+        $this->_yumRepository->update($inputId, $inputParams);
+        $YumRepository = $this->_yumRepository->find($inputId);
 
-        $expected = 'New {{ className }}';
-        $actual = ${{ className }}Repository['name'];
+        $expected = 'New Yum';
+        $actual = $YumRepository['name'];
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testInsert_inputNameNew{{ className }}
+     * testInsert_inputNameNewYum
      *
      * @return void
      */
-    public function testInsertInputNameNew{{ className }}()
+    public function testInsertInputNameNewYum()
     {
-        $inputParams = array('name' => 'New {{ className }}');
-        $this->_{{ tableName }}Repository->insert($inputParams);
+        $inputParams = array('name' => 'New Yum');
+        $this->_yumRepository->insert($inputParams);
         $lastInsertId = $this->_db->lastInsertId();
-        ${{ className }}Repository = $this->_{{ tableName }}Repository->find($lastInsertId);
+        $YumRepository = $this->_yumRepository->find($lastInsertId);
 
-        $expected = 'New {{ className }}';
-        $actual = ${{ className }}Repository['name'];
+        $expected = 'New Yum';
+        $actual = $YumRepository['name'];
 
         $this->assertEquals($expected, $actual);
     }
-{% endblock %}
+}
+/* End of file YumRepository.php */

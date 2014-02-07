@@ -12,7 +12,8 @@
  */
 {{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
 
-use {{ className }}\{{ className }}Bundle\Core\RepositoryCore;
+use {{ className }}\{{ className }}Bundle\Repository\{{ className }}Repository;
+use Silex\Application;
 
 /**
  * Class {{ className }}Repository
@@ -23,7 +24,7 @@ use {{ className }}\{{ className }}Bundle\Core\RepositoryCore;
  * @license  {{ organisation }} {{ organisationWebSite }}
  * @link     {{ repository }}
  */
-class {{ className }}Repository {{ extends is defined ? "extends " ~ extends : "" }}
+class {{ className }}RepositoryTest {{ extends is defined ? "extends " ~ extends : "" }}
 {
 {% block functions %}
 {% endblock %}

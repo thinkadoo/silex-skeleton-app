@@ -1,6 +1,31 @@
-{% extends "base/common.php.twig" %}
+<?php
+/**
+ * File: YooRepository.php
+ *
+ * PHP Version 5.3.21
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Modules_Yoo
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+namespace Yoo\Tests\YooBundle\Repository;
 
-{% block functions %}
+use Yoo\YooBundle\Repository\YooRepository;
+use Silex\Application;
+
+/**
+ * Class YooRepository
+ *
+ * @category Api_Rest_Implementation_Tests
+ * @package  Yoo\YooBundle\Core
+ * @author   Andre Venter <andre.n.venter@gmail.com>
+ * @license  Thinkadoo http://think-a-doo.net
+ * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
+ */
+class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
+{
 
     /**
      * @var null
@@ -15,9 +40,9 @@
      */
     private $_db;
     /**
-     * @var \{{ className }}\{{ className }}Bundle\Repository\{{ className }}Repository
+     * @var \Yoo\YooBundle\Repository\YooRepository
      */
-    private $_{{ tableName }}Repository;
+    private $_yooRepository;
 
     /**
      * constructor
@@ -26,7 +51,7 @@
     public function __construct()
     {
         $this->_db = include __DIR__ . "/../../db.php";
-        $this->_{{ tableName }}Repository = new {{ className }}Repository($this->_db);
+        $this->_yooRepository = new YooRepository($this->_db);
     }
 
     /**
@@ -56,18 +81,18 @@
         self::$_pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
-            __DIR__ . "/../../DataSet/{{ className }}/seed{{ className }}.yml"
+            __DIR__ . "/../../DataSet/Yoo/seedYoo.yml"
         );
     }
 
     /**
-     * testConstruct{{ className }}RepositoryClass
+     * testConstructYooRepositoryClass
      *
      * @return void
      */
-    public function testConstruct{{ className }}RepositoryClass()
+    public function testConstructYooRepositoryClass()
     {
-        $this->_{{ tableName }}Repository = new {{ className }}Repository($this->_db);
+        $this->_yooRepository = new YooRepository($this->_db);
     }
 
     /**
@@ -77,8 +102,8 @@
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('{{ className }}');
-        $actual = count($this->_{{ tableName }}Repository->findAll());
+        $expected = $this->getConnection()->getRowCount('Yoo');
+        $actual = count($this->_yooRepository->findAll());
 
         $this->assertEquals($expected, $actual);
     }
@@ -92,9 +117,9 @@
     {
         $inputId = 1;
 
-        $expected = 'test_{{ tableName }}_name';
-        ${{ className }} = $this->_{{ tableName }}Repository->find($inputId);
-        $actual = ${{ className }}['name'];
+        $expected = 'test_yoo_name';
+        $Yoo = $this->_yooRepository->find($inputId);
+        $actual = $Yoo['name'];
 
         $this->assertEquals($expected, $actual);
     }
@@ -109,7 +134,7 @@
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->_{{ tableName }}Repository->find($inputId);
+        $actual = $this->_yooRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -123,9 +148,9 @@
     {
         $inputId = 1;
 
-        $this->_{{ tableName }}Repository->delete($inputId);
+        $this->_yooRepository->delete($inputId);
         $expected = null;
-        $actual = $this->_{{ tableName }}Repository->find($inputId);
+        $actual = $this->_yooRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -140,44 +165,45 @@
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->_{{ tableName }}Repository->delete($inputId);
+        $actual = $this->_yooRepository->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testUpdate_inputId2NameNew{{ className }}
+     * testUpdate_inputId2NameNewYoo
      *
      * @return void
      */
-    public function testUpdateInputId2NameNew{{ className }}()
+    public function testUpdateInputId2NameNewYoo()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'New {{ className }}');
+        $inputParams = array('name' => 'New Yoo');
 
-        $this->_{{ tableName }}Repository->update($inputId, $inputParams);
-        ${{ className }}Repository = $this->_{{ tableName }}Repository->find($inputId);
+        $this->_yooRepository->update($inputId, $inputParams);
+        $YooRepository = $this->_yooRepository->find($inputId);
 
-        $expected = 'New {{ className }}';
-        $actual = ${{ className }}Repository['name'];
+        $expected = 'New Yoo';
+        $actual = $YooRepository['name'];
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testInsert_inputNameNew{{ className }}
+     * testInsert_inputNameNewYoo
      *
      * @return void
      */
-    public function testInsertInputNameNew{{ className }}()
+    public function testInsertInputNameNewYoo()
     {
-        $inputParams = array('name' => 'New {{ className }}');
-        $this->_{{ tableName }}Repository->insert($inputParams);
+        $inputParams = array('name' => 'New Yoo');
+        $this->_yooRepository->insert($inputParams);
         $lastInsertId = $this->_db->lastInsertId();
-        ${{ className }}Repository = $this->_{{ tableName }}Repository->find($lastInsertId);
+        $YooRepository = $this->_yooRepository->find($lastInsertId);
 
-        $expected = 'New {{ className }}';
-        $actual = ${{ className }}Repository['name'];
+        $expected = 'New Yoo';
+        $actual = $YooRepository['name'];
 
         $this->assertEquals($expected, $actual);
     }
-{% endblock %}
+}
+/* End of file YooRepository.php */
