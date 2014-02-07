@@ -53,6 +53,10 @@ switch ($command) {
         testRepository($entityList, $config);
         break;
 
+    case "testrepositorycore":
+        testRepository($entityList, $config);
+        break;
+
 }
 
 
@@ -62,6 +66,7 @@ switch ($command) {
         makeSupportFilesForTests($entityList, $config);
         makeControllerTest($entityList, $config);
         makeRepositoryTest($entityList, $config);
+        makeRepositoryCoreTest($entityList, $config);
     }
 
     function testController($entityList, $config)
@@ -74,6 +79,13 @@ switch ($command) {
     {
         makeSupportFilesForTests($entityList, $config);
         makeRepositoryTest($entityList, $config);
+        makeRepositoryCoreTest($entityList, $config);
+    }
+
+    function testRepositoryCore($entityList, $config)
+    {
+        makeSupportFilesForTests($entityList, $config);
+        makeRepositoryCoreTest($entityList, $config);
     }
 
     function makeControllerTest($entityList, $config)
@@ -120,6 +132,50 @@ switch ($command) {
     };
 
     function makeRepositoryTest($entityList, $config)
+    {
+        $phpVersion = $config['phpVersion'];
+        $category = $config['category'];
+        $organisation = $config['organisation'];
+        $author = $config['author'];
+        $authorEmail = $config['authorEmail'];
+        $corganisationWebSite = $config['corganisationWebSite'];
+        $repository = $config['repository'];
+
+        foreach($entityList as $className)
+        {
+            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Core';
+            $moduleName = $className;
+
+            $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder();
+            $bobRepositoryCoreTestFile->setOutputName($className.'RepositoryCoreTest.php');
+
+            $bobRepositoryCoreTestFile->setVariable('phpVersion', $phpVersion);
+            $bobRepositoryCoreTestFile->setVariable('category', $category);
+            $bobRepositoryCoreTestFile->setVariable('author', $author);
+            $bobRepositoryCoreTestFile->setVariable('organisation', $organisation);
+            $bobRepositoryCoreTestFile->setVariable('organisationWebSite', $corganisationWebSite);
+            $bobRepositoryCoreTestFile->setVariable('repository', $repository);
+
+            $bobRepositoryCoreTestFile->setVariable('className', $className);
+            $bobRepositoryCoreTestFile->setVariable('tableName', strtolower($className));
+            $bobRepositoryCoreTestFile->setVariable('extends', '\\PHPUnit_Extensions_Database_TestCase');
+            $bobRepositoryCoreTestFile->setVariable('moduleName', $moduleName);
+            $bobRepositoryCoreTestFile->setVariable('author', $author);
+            $bobRepositoryCoreTestFile->setVariable('authorEmail', $authorEmail);
+
+            $generateRepositoryCoreTestFile = new Generator();
+            $generateRepositoryCoreTestFile->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryCoreTemplate/',));
+            $generateRepositoryCoreTestFile->setMustOverwriteIfExists(true);
+            $generateRepositoryCoreTestFile->setVariables(array('namespace' => $nameSpace,));
+
+            $generateRepositoryCoreTestFile->addBuilder($bobRepositoryCoreTestFile);
+            $generateRepositoryCoreTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Core/');
+            print_r('Done Generating Test file '.$className.'RepositoryCoreTest ;) ');
+
+        }
+    };
+
+    function makeRepositoryCoreTest($entityList, $config)
     {
         $phpVersion = $config['phpVersion'];
         $category = $config['category'];

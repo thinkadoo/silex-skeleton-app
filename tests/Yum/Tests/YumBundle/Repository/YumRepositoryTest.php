@@ -108,7 +108,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testFind_inputId1_outputNameDownloadSilexSkeletonRest
+     * testFindinputId1outputNameDownloadSilexSkeletonRest
      *
      * @return void
      */
@@ -124,7 +124,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testFind_inputId10_outputNull
+     * testFindinputId10outputNull
      *
      * @return void
      */
@@ -139,7 +139,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testDelete_inputId1
+     * testDeleteinputId1
      *
      * @return void
      */
@@ -155,7 +155,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testDelete_inputId10
+     * testDeleteinputId10
      *
      * @return void
      */
@@ -170,7 +170,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testUpdate_inputId2NameNewYum
+     * testUpdateinputId2NameNewYum
      *
      * @return void
      */
@@ -188,7 +188,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     }
 
     /**
-     * testInsert_inputNameNewYum
+     * testInsertinputNameNewYum
      *
      * @return void
      */

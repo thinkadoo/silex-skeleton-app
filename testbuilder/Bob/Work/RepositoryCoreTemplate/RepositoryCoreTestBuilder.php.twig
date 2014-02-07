@@ -1,119 +1,204 @@
 {% extends "base/common.php.twig" %}
 
 {% block functions %}
-/**
-     * @var object $db
-     */
-    protected $db;
-    /**
-     * @var String $table
-     */
-    protected $table;
 
     /**
-     * setDB
-     *
-     * @param object $db database injected
-     *
-     * @return void
+     * @var null
      */
-    public function setDB($db)
-    {
-        $this->db = $db;
-    }
-
+    static private $pdo = null;
     /**
-     * setTable
-     *
-     * @param String $table table to manipulate
-     *
-     * @return void
+     * @var object
      */
-    public function setTable($table)
-    {
-        $this->table = $table;
-    }
+    private $conn;
+    /**
+     * @var mixed
+     */
+    private $db;
+    /**
+     * @var \{{ className }}\{{ className }}Bundle\Core\RepositoryCore
+     */
+    private $repositoryCore;
 
     /**
      * constructor
      *
-     * @param object $db database injected
+     */
+    public function __construct()
+    {
+        $tableName = '{{ tableName }}';
+
+        $this->db = include __DIR__ . "/../../db.php";
+        $this->repositoryCore = new RepositoryCore($this->db);
+        $this->repositoryCore->setTable($tableName);
+    }
+
+    /**
+     * getConnection
+     *
+     * @return object|\PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     */
+    public function getConnection()
+    {
+        if ($this->conn === null) {
+            if (self::$pdo == null) {
+                self::$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+            }
+            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
+        }
+
+        return $this->conn;
+    }
+
+    /**
+     * getDataSet
+     *
+     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet
+     */
+    public function getDataSet()
+    {
+        self::$pdo->exec("set foreign_key_checks=0");
+
+        return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
+            __DIR__ . "/../../DataSet/{{ className }}/seed{{ className }}.yml"
+        );
+    }
+
+    /**
+     * testConstructRepositoryCoreClass
      *
      * @return void
      */
-    public function __construct($db)
+    public function testConstructRepositoryCoreClass()
     {
-        $this->setDB($db);
-
-        $calledClass = explode('\\', get_called_class());
-        $class = end($calledClass);
-
-        $table = strtolower(substr($class, 0, -10));
-        $this->setTable($table);
+        $inputTableName = '{{ tableName }}';
+        $this->repositoryCore = new RepositoryCore($this->db);
+        $this->repositoryCore->setTable($inputTableName);
     }
 
     /**
-     * findAll
+     * testFindAll
      *
-     * @return mixed
+     * @return void
      */
-    public function findAll()
+    public function testFindAll()
     {
-        $sql = "SELECT * FROM `$this->table`";
-        $items = $this->db->fetchAll($sql);
+        $expected = $this->getConnection()->getRowCount('{{ tableName }}');
+        $actual = count($this->repositoryCore->findAll());
 
-        return $items;
+        $this->assertEquals($expected, $actual);
     }
 
     /**
-     * find
+     * testFindinputId1_outputNameDownloadSilexSkeletonRest
      *
-     * @param string $id the record id in the table
-     *
-     * @return mixed
+     * @return void
      */
-    public function find($id)
+    public function testFindInputId1OutputNameDownloadSilexSkeletonRest()
     {
-        $sql = "SELECT * FROM `$this->table` WHERE `id` = $id";
-        $item = $this->db->fetchAssoc($sql);
+        $inputId = 1;
 
-        return $item;
+        $expected = 'test_{{ tableName }}_name';
+        ${{ tableName }} = $this->repositoryCore->find($inputId);
+        $actual = ${{ tableName }}['name'];
+
+        $this->assertEquals($expected, $actual);
     }
 
     /**
-     * delete
+     * testFindinputId2_outputNameUtilizeTheSkeletonSoICanUseItForMyProject
      *
-     * @param string $id the record id in the table
-     *
-     * @return mixed
+     * @return void
      */
-    public function delete($id)
+    public function testFindInputId2OutputNameUtilizeTheSkeletonSoICanUseItForMyProject()
     {
-        return $this->db->delete($this->table, array('id' => $id));
+        $inputId = 2;
+
+        $expected = 'test_{{ tableName }}_name_2';
+        ${{ tableName }} = $this->repositoryCore->find($inputId);
+        $actual = ${{ tableName }}['name'];
+
+        $this->assertEquals($expected, $actual);
     }
 
     /**
-     * insert
+     * testFindinputId10_outputNull
      *
-     * @param array $params the parameters sent to rest api
-     *
-     * @return mixed
+     * @return void
      */
-    public function insert($params)
+    public function testFindInputId10OutputNull()
     {
-        return $this->db->insert($this->table, $params);
+        $inputId = 10;
+
+        $expected = null;
+        $actual = $this->repositoryCore->find($inputId);
+
+        $this->assertEquals($expected, $actual);
     }
 
     /**
-     * update
+     * testDeleteinputId1
      *
-     * @param string $id     the record id in the table
-     * @param array  $params the parameters sent to rest api
-     *
-     * @return mixed
+     * @return void
      */
-    public function update($id, $params)
+    public function testDeleteInputId1()
     {
-        return $this->db->update($this->table, $params, array('id' => $id));
+        $inputId = 1;
+
+        $this->repositoryCore->delete($inputId);
+        $expected = null;
+        $actual = $this->repositoryCore->find($inputId);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * testDeleteinputId10
+     *
+     * @return void
+     */
+    public function testDeleteInputId10()
+    {
+        $inputId = 10;
+
+        $expected = 0;
+        $actual = $this->repositoryCore->delete($inputId);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * testUpdateinputId2NameFooBar
+     *
+     * @return void
+     */
+    public function testUpdateInputId2NameFooBar()
+    {
+        $inputId = 2;
+        $inputParams = array('name' => 'Foo Bar');
+
+        $this->repositoryCore->update($inputId, $inputParams);
+        $repositoryCore = $this->repositoryCore->find($inputId);
+
+        $expected = 'Foo Bar';
+        $actual = $repositoryCore['name'];
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * testInsertinputNameFooBar
+     *
+     * @return void
+     */
+    public function testInsertInputNameFooBar()
+    {
+        $inputParams = array('name' => 'Foo Bar');
+        $this->repositoryCore->insert($inputParams);
+        $lastInsertId = $this->db->lastInsertId();
+        $repositoryCore = $this->repositoryCore->find($lastInsertId);
+
+        $expected = 'Foo Bar';
+        $actual = $repositoryCore['name'];
+
+        $this->assertEquals($expected, $actual);
     }
 {% endblock %}

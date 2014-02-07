@@ -1,31 +1,32 @@
 <?php
 /**
- * File: YooRepositoryTest.php
+ * File: YamRepositoryCoreTest.php
  *
  * PHP Version 5.3.21
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Modules_Yoo
+ * @package  Modules_Yam
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-namespace Yoo\Tests\YooBundle\Repository;
+namespace Yam\Tests\YamBundle\Core;
 
-use Yoo\YooBundle\Repository\YooRepository;
 use Silex\Application;
+use User\UserBundle\Core\RepositoryCore;
 
 /**
- * Class YooRepositoryTest
+ * Class RepositoryCoreTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yoo\Tests\YooBundle\Core
+ * @package  Yam\Tests\YamBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
-class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
+class RepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
 {
+    
     /**
      * @var null
      */
@@ -39,9 +40,9 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     private $db;
     /**
-     * @var \Yoo\YooBundle\Repository\YooRepository
+     * @var \Yam\YamBundle\Core\RepositoryCore
      */
-    private $yooRepository;
+    private $repositoryCore;
 
     /**
      * constructor
@@ -49,14 +50,17 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function __construct()
     {
+        $tableName = 'yam';
+
         $this->db = include __DIR__ . "/../../db.php";
-        $this->yooRepository = new YooRepository($this->db);
+        $this->repositoryCore = new RepositoryCore($this->db);
+        $this->repositoryCore->setTable($tableName);
     }
 
     /**
      * getConnection
      *
-     * @return \PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
+     * @return object|\PHPUnit_Extensions_Database_DB_DefaultDatabaseConnection
      */
     public function getConnection()
     {
@@ -73,25 +77,27 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     /**
      * getDataSet
      *
-     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet|\PHPUnit_Extensions_Database_DataSet_YamlDataSet
+     * @return \PHPUnit_Extensions_Database_DataSet_IDataSet
      */
     public function getDataSet()
     {
         self::$pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
-            __DIR__ . "/../../DataSet/Yoo/seedYoo.yml"
+            __DIR__ . "/../../DataSet/Yam/seedYam.yml"
         );
     }
 
     /**
-     * testConstructYooRepositoryClass
+     * testConstructRepositoryCoreClass
      *
      * @return void
      */
-    public function testConstructYooRepositoryClass()
+    public function testConstructRepositoryCoreClass()
     {
-        $this->yooRepository = new YooRepository($this->db);
+        $inputTableName = 'yam';
+        $this->repositoryCore = new RepositoryCore($this->db);
+        $this->repositoryCore->setTable($inputTableName);
     }
 
     /**
@@ -101,14 +107,14 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('yoo');
-        $actual = count($this->yooRepository->findAll());
+        $expected = $this->getConnection()->getRowCount('yam');
+        $actual = count($this->repositoryCore->findAll());
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testFindinputId1outputNameDownloadSilexSkeletonRest
+     * testFindinputId1_outputNameDownloadSilexSkeletonRest
      *
      * @return void
      */
@@ -116,15 +122,31 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $expected = 'test_yoo_name';
-        $Yoo = $this->yooRepository->find($inputId);
-        $actual = $Yoo['name'];
+        $expected = 'test_yam_name';
+        $yam = $this->repositoryCore->find($inputId);
+        $actual = $yam['name'];
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testFindinputId10outputNull
+     * testFindinputId2_outputNameUtilizeTheSkeletonSoICanUseItForMyProject
+     *
+     * @return void
+     */
+    public function testFindInputId2OutputNameUtilizeTheSkeletonSoICanUseItForMyProject()
+    {
+        $inputId = 2;
+
+        $expected = 'test_yam_name_2';
+        $yam = $this->repositoryCore->find($inputId);
+        $actual = $yam['name'];
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * testFindinputId10_outputNull
      *
      * @return void
      */
@@ -133,7 +155,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->yooRepository->find($inputId);
+        $actual = $this->repositoryCore->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -147,9 +169,9 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $this->yooRepository->delete($inputId);
+        $this->repositoryCore->delete($inputId);
         $expected = null;
-        $actual = $this->yooRepository->find($inputId);
+        $actual = $this->repositoryCore->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -164,45 +186,45 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->yooRepository->delete($inputId);
+        $actual = $this->repositoryCore->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testUpdateinputId2NameNewYoo
+     * testUpdateinputId2NameFooBar
      *
      * @return void
      */
-    public function testUpdateInputId2NameNewYoo()
+    public function testUpdateInputId2NameFooBar()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'New Yoo');
+        $inputParams = array('name' => 'Foo Bar');
 
-        $this->yooRepository->update($inputId, $inputParams);
-        $YooRepository = $this->yooRepository->find($inputId);
+        $this->repositoryCore->update($inputId, $inputParams);
+        $repositoryCore = $this->repositoryCore->find($inputId);
 
-        $expected = 'New Yoo';
-        $actual = $YooRepository['name'];
+        $expected = 'Foo Bar';
+        $actual = $repositoryCore['name'];
         $this->assertEquals($expected, $actual);
     }
 
     /**
-     * testInsertinputNameNewYoo
+     * testInsertinputNameFooBar
      *
      * @return void
      */
-    public function testInsertInputNameNewYoo()
+    public function testInsertInputNameFooBar()
     {
-        $inputParams = array('name' => 'New Yoo');
-        $this->yooRepository->insert($inputParams);
+        $inputParams = array('name' => 'Foo Bar');
+        $this->repositoryCore->insert($inputParams);
         $lastInsertId = $this->db->lastInsertId();
-        $YooRepository = $this->yooRepository->find($lastInsertId);
+        $repositoryCore = $this->repositoryCore->find($lastInsertId);
 
-        $expected = 'New Yoo';
-        $actual = $YooRepository['name'];
+        $expected = 'Foo Bar';
+        $actual = $repositoryCore['name'];
 
         $this->assertEquals($expected, $actual);
     }
 }
-/* End of file YooRepositoryTest.php */
+/* End of file YamRepositoryCoreTest.php */

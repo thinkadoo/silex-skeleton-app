@@ -329,6 +329,7 @@ To generate some tests:
 $ ./testbuilder/buildtest testbundle Yum Yam Yoo
 $ ./testbuilder/buildtest testcontroller Yum Yam Yoo
 $ ./testbuilder/buildtest testrepository Yum Yam Yoo
+$ ./testbuilder/buildtest testrepositorycore Yum Yam Yoo
 ```
 
 
