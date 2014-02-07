@@ -23,6 +23,7 @@ namespace Yum\YumBundle\Core;
  */
 class RepositoryCore
 {
+    
     /**
      * @var object $db
      */

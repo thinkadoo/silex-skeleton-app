@@ -23,6 +23,7 @@ namespace Yoo\YooBundle\Core;
  */
 class RepositoryCore
 {
+    
     /**
      * @var object $db
      */

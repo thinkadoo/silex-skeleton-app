@@ -25,6 +25,7 @@ use Silex\WebTestCase;
  */
 class YumControllerTest extends WebTestCase
 {
+    
     /**
      * createApplication
      *

@@ -25,6 +25,7 @@ use Silex\WebTestCase;
  */
 class YamControllerTest extends WebTestCase
 {
+    
     /**
      * createApplication
      *

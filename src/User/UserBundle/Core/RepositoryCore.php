@@ -23,6 +23,7 @@ namespace User\UserBundle\Core;
  */
 class RepositoryCore
 {
+    
     /**
      * @var object $db
      */

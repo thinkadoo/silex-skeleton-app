@@ -18,13 +18,14 @@ use Yoo\YooBundle\Core\RepositoryCore;
  * Class YooRepository
  *
  * @category Api_Rest_Implementation
- * @package  Yoo\YooBundle\Core
+ * @package  Yoo\YooBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class YooRepository extends RepositoryCore
 {
+
     /**
      * insert
      *

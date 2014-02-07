@@ -28,6 +28,7 @@ use Yam\YamBundle\Repository;
  */
 class YamController extends ControllerCore
 {
+    
     /**
      * connect
      *

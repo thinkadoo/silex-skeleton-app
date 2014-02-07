@@ -28,6 +28,7 @@ use Yoo\YooBundle\Repository;
  */
 class YooController extends ControllerCore
 {
+    
     /**
      * connect
      *

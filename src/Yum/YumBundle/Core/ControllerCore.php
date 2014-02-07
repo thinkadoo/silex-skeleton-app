@@ -29,6 +29,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class ControllerCore implements ControllerProviderInterface
 {
+    
     /**
      * @var object $repository
      */

@@ -25,6 +25,7 @@ use Silex\WebTestCase;
  */
 class YooControllerTest extends WebTestCase
 {
+    
     /**
      * createApplication
      *

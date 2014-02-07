@@ -18,13 +18,14 @@ use Yam\YamBundle\Core\RepositoryCore;
  * Class YamRepository
  *
  * @category Api_Rest_Implementation
- * @package  Yam\YamBundle\Core
+ * @package  Yam\YamBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class YamRepository extends RepositoryCore
 {
+
     /**
      * insert
      *

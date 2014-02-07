@@ -26,6 +26,7 @@ use Silex\Application;
  */
 class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
 {
+
     /**
      * @var null
      */

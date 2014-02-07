@@ -28,6 +28,7 @@ use User\UserBundle\Repository;
  */
 class UserController extends ControllerCore
 {
+    
     /**
      * connect
      *

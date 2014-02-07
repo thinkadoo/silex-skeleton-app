@@ -23,6 +23,7 @@ namespace Yam\YamBundle\Core;
  */
 class RepositoryCore
 {
+    
     /**
      * @var object $db
      */

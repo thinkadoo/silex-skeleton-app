@@ -18,13 +18,14 @@ use Yum\YumBundle\Core\RepositoryCore;
  * Class YumRepository
  *
  * @category Api_Rest_Implementation
- * @package  Yum\YumBundle\Core
+ * @package  Yum\YumBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class YumRepository extends RepositoryCore
 {
+
     /**
      * insert
      *

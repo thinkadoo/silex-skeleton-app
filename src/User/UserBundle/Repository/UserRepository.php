@@ -18,13 +18,14 @@ use User\UserBundle\Core\RepositoryCore;
  * Class UserRepository
  *
  * @category Api_Rest_Implementation
- * @package  User\UserBundle\Core
+ * @package  User\UserBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class UserRepository extends RepositoryCore
 {
+
     /**
      * insert
      *

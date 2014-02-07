@@ -25,6 +25,7 @@ use Silex\WebTestCase;
  */
 class UserControllerTest extends WebTestCase
 {
+    
     /**
      * createApplication
      *
