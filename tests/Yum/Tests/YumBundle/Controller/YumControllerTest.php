@@ -42,7 +42,7 @@ class YumControllerTest extends WebTestCase
      */
     public function testInitialPage()
     {
-        $this->assertEquals(1,1);
+        $this->assertEquals(1, 1);
     }
 }
 /* End of file YumControllerTest.php */

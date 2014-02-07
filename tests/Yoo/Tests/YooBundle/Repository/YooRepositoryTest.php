@@ -29,19 +29,19 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     /**
      * @var null
      */
-    static private $_pdo = null;
+    static private $pdo = null;
     /**
      * @var object
      */
-    private $_conn;
+    private $conn;
     /**
      * @var mixed
      */
-    private $_db;
+    private $db;
     /**
      * @var \Yoo\YooBundle\Repository\YooRepository
      */
-    private $_yooRepository;
+    private $yooRepository;
 
     /**
      * constructor
@@ -49,8 +49,8 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function __construct()
     {
-        $this->_db = include __DIR__ . "/../../db.php";
-        $this->_yooRepository = new YooRepository($this->_db);
+        $this->db = include __DIR__ . "/../../db.php";
+        $this->yooRepository = new YooRepository($this->db);
     }
 
     /**
@@ -60,14 +60,14 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function getConnection()
     {
-        if ($this->_conn === null) {
-            if (self::$_pdo == null) {
-                self::$_pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        if ($this->conn === null) {
+            if (self::$pdo == null) {
+                self::$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
             }
-            $this->_conn = $this->createDefaultDBConnection(self::$_pdo, $GLOBALS['DB_DBNAME']);
+            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
         }
 
-        return $this->_conn;
+        return $this->conn;
     }
 
     /**
@@ -77,7 +77,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function getDataSet()
     {
-        self::$_pdo->exec("set foreign_key_checks=0");
+        self::$pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
             __DIR__ . "/../../DataSet/Yoo/seedYoo.yml"
@@ -91,7 +91,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testConstructYooRepositoryClass()
     {
-        $this->_yooRepository = new YooRepository($this->_db);
+        $this->yooRepository = new YooRepository($this->db);
     }
 
     /**
@@ -102,7 +102,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     public function testFindAll()
     {
         $expected = $this->getConnection()->getRowCount('yoo');
-        $actual = count($this->_yooRepository->findAll());
+        $actual = count($this->yooRepository->findAll());
 
         $this->assertEquals($expected, $actual);
     }
@@ -117,7 +117,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 1;
 
         $expected = 'test_yoo_name';
-        $Yoo = $this->_yooRepository->find($inputId);
+        $Yoo = $this->yooRepository->find($inputId);
         $actual = $Yoo['name'];
 
         $this->assertEquals($expected, $actual);
@@ -133,7 +133,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->_yooRepository->find($inputId);
+        $actual = $this->yooRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -147,9 +147,9 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $this->_yooRepository->delete($inputId);
+        $this->yooRepository->delete($inputId);
         $expected = null;
-        $actual = $this->_yooRepository->find($inputId);
+        $actual = $this->yooRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -164,7 +164,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->_yooRepository->delete($inputId);
+        $actual = $this->yooRepository->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -179,8 +179,8 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 2;
         $inputParams = array('name' => 'New Yoo');
 
-        $this->_yooRepository->update($inputId, $inputParams);
-        $YooRepository = $this->_yooRepository->find($inputId);
+        $this->yooRepository->update($inputId, $inputParams);
+        $YooRepository = $this->yooRepository->find($inputId);
 
         $expected = 'New Yoo';
         $actual = $YooRepository['name'];
@@ -195,9 +195,9 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     public function testInsertInputNameNewYoo()
     {
         $inputParams = array('name' => 'New Yoo');
-        $this->_yooRepository->insert($inputParams);
-        $lastInsertId = $this->_db->lastInsertId();
-        $YooRepository = $this->_yooRepository->find($lastInsertId);
+        $this->yooRepository->insert($inputParams);
+        $lastInsertId = $this->db->lastInsertId();
+        $YooRepository = $this->yooRepository->find($lastInsertId);
 
         $expected = 'New Yoo';
         $actual = $YooRepository['name'];

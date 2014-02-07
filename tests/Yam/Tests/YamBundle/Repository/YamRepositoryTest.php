@@ -29,19 +29,19 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     /**
      * @var null
      */
-    static private $_pdo = null;
+    static private $pdo = null;
     /**
      * @var object
      */
-    private $_conn;
+    private $conn;
     /**
      * @var mixed
      */
-    private $_db;
+    private $db;
     /**
      * @var \Yam\YamBundle\Repository\YamRepository
      */
-    private $_yamRepository;
+    private $yamRepository;
 
     /**
      * constructor
@@ -49,8 +49,8 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function __construct()
     {
-        $this->_db = include __DIR__ . "/../../db.php";
-        $this->_yamRepository = new YamRepository($this->_db);
+        $this->db = include __DIR__ . "/../../db.php";
+        $this->yamRepository = new YamRepository($this->db);
     }
 
     /**
@@ -60,14 +60,14 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function getConnection()
     {
-        if ($this->_conn === null) {
-            if (self::$_pdo == null) {
-                self::$_pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
+        if ($this->conn === null) {
+            if (self::$pdo == null) {
+                self::$pdo = new \PDO($GLOBALS['DB_DSN'], $GLOBALS['DB_USER'], $GLOBALS['DB_PASSWD']);
             }
-            $this->_conn = $this->createDefaultDBConnection(self::$_pdo, $GLOBALS['DB_DBNAME']);
+            $this->conn = $this->createDefaultDBConnection(self::$pdo, $GLOBALS['DB_DBNAME']);
         }
 
-        return $this->_conn;
+        return $this->conn;
     }
 
     /**
@@ -77,7 +77,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function getDataSet()
     {
-        self::$_pdo->exec("set foreign_key_checks=0");
+        self::$pdo->exec("set foreign_key_checks=0");
 
         return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(
             __DIR__ . "/../../DataSet/Yam/seedYam.yml"
@@ -91,7 +91,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testConstructYamRepositoryClass()
     {
-        $this->_yamRepository = new YamRepository($this->_db);
+        $this->yamRepository = new YamRepository($this->db);
     }
 
     /**
@@ -102,7 +102,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     public function testFindAll()
     {
         $expected = $this->getConnection()->getRowCount('yam');
-        $actual = count($this->_yamRepository->findAll());
+        $actual = count($this->yamRepository->findAll());
 
         $this->assertEquals($expected, $actual);
     }
@@ -117,7 +117,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 1;
 
         $expected = 'test_yam_name';
-        $Yam = $this->_yamRepository->find($inputId);
+        $Yam = $this->yamRepository->find($inputId);
         $actual = $Yam['name'];
 
         $this->assertEquals($expected, $actual);
@@ -133,7 +133,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = null;
-        $actual = $this->_yamRepository->find($inputId);
+        $actual = $this->yamRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -147,9 +147,9 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $this->_yamRepository->delete($inputId);
+        $this->yamRepository->delete($inputId);
         $expected = null;
-        $actual = $this->_yamRepository->find($inputId);
+        $actual = $this->yamRepository->find($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -164,7 +164,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 10;
 
         $expected = 0;
-        $actual = $this->_yamRepository->delete($inputId);
+        $actual = $this->yamRepository->delete($inputId);
 
         $this->assertEquals($expected, $actual);
     }
@@ -179,8 +179,8 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $inputId = 2;
         $inputParams = array('name' => 'New Yam');
 
-        $this->_yamRepository->update($inputId, $inputParams);
-        $YamRepository = $this->_yamRepository->find($inputId);
+        $this->yamRepository->update($inputId, $inputParams);
+        $YamRepository = $this->yamRepository->find($inputId);
 
         $expected = 'New Yam';
         $actual = $YamRepository['name'];
@@ -195,9 +195,9 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     public function testInsertInputNameNewYam()
     {
         $inputParams = array('name' => 'New Yam');
-        $this->_yamRepository->insert($inputParams);
-        $lastInsertId = $this->_db->lastInsertId();
-        $YamRepository = $this->_yamRepository->find($lastInsertId);
+        $this->yamRepository->insert($inputParams);
+        $lastInsertId = $this->db->lastInsertId();
+        $YamRepository = $this->yamRepository->find($lastInsertId);
 
         $expected = 'New Yam';
         $actual = $YamRepository['name'];
