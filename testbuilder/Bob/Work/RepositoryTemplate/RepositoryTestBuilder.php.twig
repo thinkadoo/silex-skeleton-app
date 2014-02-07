@@ -76,7 +76,7 @@
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('{{ className }}');
+        $expected = $this->getConnection()->getRowCount('{{ tableName }}');
         $actual = count($this->_{{ tableName }}Repository->findAll());
 
         $this->assertEquals($expected, $actual);

@@ -101,7 +101,7 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('Yum');
+        $expected = $this->getConnection()->getRowCount('yum');
         $actual = count($this->_yumRepository->findAll());
 
         $this->assertEquals($expected, $actual);

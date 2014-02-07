@@ -101,7 +101,7 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('Yam');
+        $expected = $this->getConnection()->getRowCount('yam');
         $actual = count($this->_yamRepository->findAll());
 
         $this->assertEquals($expected, $actual);

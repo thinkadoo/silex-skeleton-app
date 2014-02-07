@@ -101,7 +101,7 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testFindAll()
     {
-        $expected = $this->getConnection()->getRowCount('Yoo');
+        $expected = $this->getConnection()->getRowCount('yoo');
         $actual = count($this->_yooRepository->findAll());
 
         $this->assertEquals($expected, $actual);
