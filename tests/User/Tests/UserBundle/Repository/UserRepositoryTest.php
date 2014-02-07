@@ -19,7 +19,7 @@ use Silex\Application;
  * Class UserRepositoryTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  User\Tests\UserBundle\Core
+ * @package  User\Tests\UserBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

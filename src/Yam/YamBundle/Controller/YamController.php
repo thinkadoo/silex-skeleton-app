@@ -21,7 +21,7 @@ use Yam\YamBundle\Repository;
  * Class YamController
  *
  * @category Api_Rest_Implementation
- * @package  Yam\YamBundle\Core
+ * @package  Yam\YamBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

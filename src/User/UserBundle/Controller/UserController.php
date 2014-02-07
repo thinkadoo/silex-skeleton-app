@@ -21,7 +21,7 @@ use User\UserBundle\Repository;
  * Class UserController
  *
  * @category Api_Rest_Implementation
- * @package  User\UserBundle\Core
+ * @package  User\UserBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

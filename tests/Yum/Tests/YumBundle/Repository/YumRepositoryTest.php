@@ -19,7 +19,7 @@ use Silex\Application;
  * Class YumRepositoryTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yum\Tests\YumBundle\Core
+ * @package  Yum\Tests\YumBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

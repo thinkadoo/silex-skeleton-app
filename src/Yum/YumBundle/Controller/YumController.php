@@ -21,7 +21,7 @@ use Yum\YumBundle\Repository;
  * Class YumController
  *
  * @category Api_Rest_Implementation
- * @package  Yum\YumBundle\Core
+ * @package  Yum\YumBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

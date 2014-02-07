@@ -19,7 +19,7 @@ use Silex\Application;
  * Class YamRepositoryTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yam\Tests\YamBundle\Core
+ * @package  Yam\Tests\YamBundle\Repository
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

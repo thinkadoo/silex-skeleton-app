@@ -21,7 +21,7 @@ use Yoo\YooBundle\Repository;
  * Class YooController
  *
  * @category Api_Rest_Implementation
- * @package  Yoo\YooBundle\Core
+ * @package  Yoo\YooBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
