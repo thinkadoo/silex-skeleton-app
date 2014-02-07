@@ -57,6 +57,10 @@ switch ($command) {
         testRepository($entityList, $config);
         break;
 
+    case "testcontrollercore":
+        testController($entityList, $config);
+        break;
+
 }
 
 
@@ -87,6 +91,12 @@ switch ($command) {
     {
         makeSupportFilesForTests($entityList, $config);
         makeRepositoryCoreTest($entityList, $config);
+    }
+
+    function testControllerCore($entityList, $config)
+    {
+        makeSupportFilesForTests($entityList, $config);
+        makeControllerCoreTest($entityList, $config);
     }
 
     function makeControllerTest($entityList, $config)

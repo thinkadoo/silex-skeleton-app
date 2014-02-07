@@ -54,7 +54,7 @@ $ php composer.phar create-project makusu/silex-skeleton-rest
 
 You can add option "--dev" behind if you want to have the controller test working properly.
 
-For this test, you need to put the content of /db/db.sql into the sql command in MySQL.
+You need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases.
 
 Why do we need to have 2 same database?
 It's not compulsory. The idea is just to differentiate between our development and our test database environment.
@@ -66,34 +66,6 @@ Change the configurations to suit your environment. Don't worry, it's **simple**
  * app/config/test.php
  * Copy app/phpunit.xml.dist into app/phpunit.xml, and take a look at the <php> environment at the bottom of the file
  * Your server configuration must be pointing to: web/index.php (prod) and web/index_dev.php (dev)
-
-If everything has been installed & configured properly, try to put this url in your browser:
-
-    http://silex-skeleton-rest/item
-
-You should see this result:
-
-``` json
-[
-    {
-        id: "1",
-        name: "Download silex-skeleton-rest.",
-        created: "2013-01-01 00:00:00"
-    },
-    {
-        id: "2",
-        name: "Utilize the skeleton so I can use it for my project.",
-        created: "2013-01-06 19:00:00"
-    }
-]
-```
-
-Try also put this in your url:
-
-    http://silex-skeleton-rest/item/1
-    http://silex-skeleton-rest/item/2
-
-If you can see a nice json result out of it, you can try to use http method POST, PUT and DELETE to manipulate the database using your api.
 
 For testing purposes, you can just run this command at your main directory:
 
@@ -125,6 +97,7 @@ $ ./testbuilder/buildtest testbundle Yum Yam Yoo
 $ ./testbuilder/buildtest testcontroller Yum Yam Yoo
 $ ./testbuilder/buildtest testrepository Yum Yam Yoo
 $ ./testbuilder/buildtest testrepositorycore Yum Yam Yoo
+$ ./testbuilder/buildtest testcontrollercore Yum Yam Yoo
 ```
 
 
