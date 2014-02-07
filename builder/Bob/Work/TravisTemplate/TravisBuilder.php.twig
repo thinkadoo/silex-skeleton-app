@@ -1,0 +1,23 @@
+language: php
+
+php:
+- 5.5
+
+env:
+- DB=mysql
+
+before_script:
+- composer install --dev
+- composer selfupdate
+- pyrus install --force phpunit/DbUnit
+- phpenv rehash
+
+- mysql -e "CREATE DATABASE IF NOT EXISTS resttestdb;" -uroot;
+- mysql -e "CREATE TABLE IF NOT EXISTS resttestdb.todo (id int(11) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, created datetime NOT NULL, PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;" -uroot;
+
+{% for item in items %}
+- mysql -e "CREATE TABLE IF NOT EXISTS resttestdb.{{ item|lower }} (id int(11) NOT NULL AUTO_INCREMENT, name varchar(255) DEFAULT NULL, surname varchar(255) DEFAULT NULL, email varchar(255) DEFAULT NULL, employee_nr varchar(255) DEFAULT NULL, role tinyint(4) NOT NULL DEFAULT '0', password varchar(255) DEFAULT NULL, salt varchar(255) DEFAULT NULL, locked tinyint(4) NOT NULL DEFAULT '0', deleted tinyint(4) NOT NULL DEFAULT '0', created_by varchar(255) DEFAULT NULL, created_at char(20) DEFAULT NULL, updated_by varchar(255) DEFAULT NULL, updated_at char(20) DEFAULT NULL, PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;" -uroot;
+- mysql -e "INSERT INTO resttestdb.{{ item|lower }} VALUES(null, 'test_{{ item|lower }}_name', 'test_{{ item|lower }}_surname', 'test_{{ item|lower }}_name@email.com', 'test_{{ item|lower }}_employee_nr', '0', 'test_{{ item|lower }}_password', 'test_{{ item|lower }}_salt', '0', '0', 'test_{{ item|lower }}_created_by', '2013-01-01 00:00:00', 'test_{{ item|lower }}_updated_by', '2013-01-01 00:00:00'), (null, 'test_{{ item|lower }}_name_2', 'test_{{ item|lower }}_surname_2', 'test_{{ item|lower }}_name_2@email.com', 'test_{{ item|lower }}_employee_nr_2', '0', 'test_{{ item|lower }}_password_2', 'test_{{ item|lower }}_salt_2', '0', '0', 'test_{{ item|lower }}_created_by', '2013-01-01 00:00:00', 'test_{{ item|lower }}_updated_by', '2013-01-01 00:00:00');" -uroot;
+{% endfor %}
+
+script: phpunit -c app/

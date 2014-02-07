@@ -8,6 +8,7 @@ require_once 'Bob/ControllerCoreBuilder.php';
 require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/RepositoryBuilder.php';
 require_once 'Bob/DbBuilder.php';
+require_once 'Bob/TravisBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use TwigGenerator\Builder\Generator;
@@ -16,6 +17,7 @@ use \Bob\ControllerCoreBuilder;
 use \Bob\RepositoryCoreBuilder;
 use \Bob\RepositoryBuilder;
 use \Bob\DbBuilder;
+use \Bob\TravisBuilder;
 
 $loader = new UniversalClassLoader();
 
@@ -39,7 +41,8 @@ $config = array(
 switch ($command) {
 
     case "bundle":
-        makeDbFile($entityList, $config);
+        makeDbFile($entityList);
+        makeTravisFile($entityList);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
@@ -47,30 +50,35 @@ switch ($command) {
         break;
 
     case "core":
-        makeDbFile($entityList, $config);
+        makeDbFile($entityList);
+        makeTravisFile($entityList);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
         break;
 
     case "controller":
-        makeDbFile($entityList, $config);
+        makeDbFile($entityList);
+        makeTravisFile($entityList);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         break;
 
     case "repository":
-        makeDbFile($entityList, $config);
+        makeDbFile($entityList);
+        makeTravisFile($entityList);
         makeCoreRepositories($entityList, $config);
         makeRepositories($entityList, $config);
         break;
 
     case "corecontroller":
-        makeDbFile($entityList, $config);
+        makeDbFile($entityList);
+        makeTravisFile($entityList);
         makeCoreControllers($entityList, $config);
         break;
 
     case "corerepository":
-        makeDbFile($entityList, $config);
+        makeDbFile($entityList);
+        makeTravisFile($entityList);
         makeCoreRepositories($entityList, $config);
         break;
 
@@ -274,5 +282,22 @@ switch ($command) {
 
         $generateDb->writeOnDisk(__DIR__.'/../db/');
         print_r('Done Generating Database ;) ');
+
+    }
+
+        function makeTravisFile($entityList)
+    {
+        $bobTravisFile = new TravisBuilder();
+        $bobTravisFile->setOutputName('.travis.yml');
+        $bobTravisFile->setVariable('items', array_combine($entityList, $entityList));
+
+        $generateTravis = new Generator();
+        $generateTravis->setTemplateDirs(array(__DIR__.'/Bob/Work/TravisTemplate/',));
+        $generateTravis->setMustOverwriteIfExists(true);
+
+        $generateTravis->addBuilder($bobTravisFile);
+
+        $generateTravis->writeOnDisk(__DIR__.'/../');
+        print_r('Done Generating Travis File ;) ');
 
     }
