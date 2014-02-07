@@ -13,7 +13,7 @@
 namespace Yam\Tests\YamBundle\Core;
 
 use Silex\Application;
-use User\UserBundle\Core\RepositoryCore;
+use Yam\YamBundle\Core\RepositoryCore;
 
 /**
  * Class RepositoryCoreTest

@@ -13,7 +13,7 @@
 namespace Yum\Tests\YumBundle\Core;
 
 use Silex\Application;
-use User\UserBundle\Core\RepositoryCore;
+use Yum\YumBundle\Core\RepositoryCore;
 
 /**
  * Class RepositoryCoreTest

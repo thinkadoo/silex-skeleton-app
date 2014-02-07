@@ -13,7 +13,7 @@
 namespace Yoo\Tests\YooBundle\Core;
 
 use Silex\Application;
-use User\UserBundle\Core\RepositoryCore;
+use Yoo\YooBundle\Core\RepositoryCore;
 
 /**
  * Class RepositoryCoreTest
