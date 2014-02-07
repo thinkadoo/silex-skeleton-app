@@ -7,6 +7,7 @@ require_once 'Bob/ControllerBuilder.php';
 require_once 'Bob/ControllerCoreBuilder.php';
 require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/RepositoryBuilder.php';
+require_once 'Bob/DbBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use TwigGenerator\Builder\Generator;
@@ -14,6 +15,7 @@ use \Bob\ControllerBuilder;
 use \Bob\ControllerCoreBuilder;
 use \Bob\RepositoryCoreBuilder;
 use \Bob\RepositoryBuilder;
+use \Bob\DbBuilder;
 
 $loader = new UniversalClassLoader();
 
@@ -37,6 +39,7 @@ $config = array(
 switch ($command) {
 
     case "bundle":
+        makeDbFile($entityList, $config);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
@@ -44,25 +47,30 @@ switch ($command) {
         break;
 
     case "core":
+        makeDbFile($entityList, $config);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
         break;
 
     case "controller":
+        makeDbFile($entityList, $config);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         break;
 
     case "repository":
+        makeDbFile($entityList, $config);
         makeCoreRepositories($entityList, $config);
         makeRepositories($entityList, $config);
         break;
 
     case "corecontroller":
+        makeDbFile($entityList, $config);
         makeCoreControllers($entityList, $config);
         break;
 
     case "corerepository":
+        makeDbFile($entityList, $config);
         makeCoreRepositories($entityList, $config);
         break;
 
@@ -250,4 +258,21 @@ switch ($command) {
             print_r('Done Generating Repository '.$className.' ;) ');
 
         }
+    }
+
+    function makeDbFile($entityList)
+    {
+        $bobDbFile = new DbBuilder();
+        $bobDbFile->setOutputName('db.sql');
+        $bobDbFile->setVariable('items', array_combine($entityList, $entityList));
+
+        $generateDb = new Generator();
+        $generateDb->setTemplateDirs(array(__DIR__.'/Bob/Work/DbTemplate/',));
+        $generateDb->setMustOverwriteIfExists(true);
+
+        $generateDb->addBuilder($bobDbFile);
+
+        $generateDb->writeOnDisk(__DIR__.'/../db/');
+        print_r('Done Generating Database ;) ');
+
     }

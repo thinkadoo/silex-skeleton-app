@@ -9,6 +9,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'dbname'   => 'resttestdb',
         'host'     => 'localhost',
         'user'     => 'root',
-        'password' => ''
+        'password' => 'root'
     ),
 ));
