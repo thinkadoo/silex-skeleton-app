@@ -1,6 +1,6 @@
 <?php
 /**
- * File: YamRepository.php
+ * File: YamRepositoryTest.php
  *
  * PHP Version 5.3.21
  *
@@ -16,17 +16,16 @@ use Yam\YamBundle\Repository\YamRepository;
 use Silex\Application;
 
 /**
- * Class YamRepository
+ * Class YamRepositoryTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yam\YamBundle\Core
+ * @package  Yam\Tests\YamBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
 {
-
     /**
      * @var null
      */
@@ -206,4 +205,4 @@ class YamRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $this->assertEquals($expected, $actual);
     }
 }
-/* End of file YamRepository.php */
+/* End of file YamRepositoryTest.php */

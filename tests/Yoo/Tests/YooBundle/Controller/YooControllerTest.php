@@ -18,7 +18,7 @@ use Silex\WebTestCase;
  * Class YooController
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yoo\YooBundle\Controller
+ * @package  Yoo\Tests\YooBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

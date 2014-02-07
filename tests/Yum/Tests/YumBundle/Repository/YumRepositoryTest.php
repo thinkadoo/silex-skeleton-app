@@ -1,6 +1,6 @@
 <?php
 /**
- * File: YumRepository.php
+ * File: YumRepositoryTest.php
  *
  * PHP Version 5.3.21
  *
@@ -16,17 +16,16 @@ use Yum\YumBundle\Repository\YumRepository;
 use Silex\Application;
 
 /**
- * Class YumRepository
+ * Class YumRepositoryTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yum\YumBundle\Core
+ * @package  Yum\Tests\YumBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
 {
-
     /**
      * @var null
      */
@@ -206,4 +205,4 @@ class YumRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $this->assertEquals($expected, $actual);
     }
 }
-/* End of file YumRepository.php */
+/* End of file YumRepositoryTest.php */

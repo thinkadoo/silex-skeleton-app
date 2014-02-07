@@ -1,6 +1,6 @@
 <?php
 /**
- * File: YooRepository.php
+ * File: YooRepositoryTest.php
  *
  * PHP Version 5.3.21
  *
@@ -16,17 +16,16 @@ use Yoo\YooBundle\Repository\YooRepository;
 use Silex\Application;
 
 /**
- * Class YooRepository
+ * Class YooRepositoryTest
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yoo\YooBundle\Core
+ * @package  Yoo\Tests\YooBundle\Core
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
  */
 class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
 {
-
     /**
      * @var null
      */
@@ -206,4 +205,4 @@ class YooRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
         $this->assertEquals($expected, $actual);
     }
 }
-/* End of file YooRepository.php */
+/* End of file YooRepositoryTest.php */

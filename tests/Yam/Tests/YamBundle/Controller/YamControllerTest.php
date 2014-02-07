@@ -18,7 +18,7 @@ use Silex\WebTestCase;
  * Class YamController
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yam\YamBundle\Controller
+ * @package  Yam\Tests\YamBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git

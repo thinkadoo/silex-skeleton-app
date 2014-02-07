@@ -18,7 +18,7 @@ use Silex\WebTestCase;
  * Class YumController
  *
  * @category Api_Rest_Implementation_Tests
- * @package  Yum\YumBundle\Controller
+ * @package  Yum\Tests\YumBundle\Controller
  * @author   Andre Venter <andre.n.venter@gmail.com>
  * @license  Thinkadoo http://think-a-doo.net
  * @link     https://github.com/thinkadoo/silex-skeleton-rest.git
