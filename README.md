@@ -191,7 +191,7 @@ $ ./builder/build corecontroller Yum Yam Yoo
 $ ./builder/build corerepository Yum Yam Yoo
 ```
 
-To generate some code:
+To generate some tests:
 
 ``` sh
 $ ./testbuilder/buildtest testbundle Yum Yam Yoo
