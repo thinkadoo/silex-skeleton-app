@@ -9,6 +9,8 @@ env:
 before_script:
   - composer install --dev
   - pyrus install --force phpunit/DbUnit
+  - composer selfupdate
+  - composer install
   - phpenv rehash
 
   - mysql -e "CREATE DATABASE IF NOT EXISTS resttestdb;" -uroot;
