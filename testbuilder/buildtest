@@ -9,6 +9,7 @@ require_once 'Bob/RepositoryCoreTestBuilder.php';
 require_once 'Bob/RepositoryTestBuilder.php';
 require_once 'Bob/DbBuilder.php';
 require_once 'Bob/SeedBuilder.php';
+require_once 'Bob/TestsBootstrapBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use TwigGenerator\Builder\Generator;
@@ -18,6 +19,7 @@ use \Bob\RepositoryCoreTestBuilder;
 use \Bob\RepositoryTestBuilder;
 use \Bob\DbBuilder;
 use \Bob\SeedBuilder;
+use \Bob\TestsBootstrapBuilder;
 
 $loader = new UniversalClassLoader();
 
@@ -70,6 +72,7 @@ switch ($command) {
 
     function makeTests($entityList, $config)
     {
+        makeTestsBootstrapFile($entityList);
         makeSupportFilesForTests($entityList, $config);
         makeControllerTest($entityList, $config);
         makeRepositoryTest($entityList, $config);
@@ -342,5 +345,23 @@ switch ($command) {
             print_r('Done Generating db.php file '.$className.' ;) ');
 
         }
+
+    }
+
+
+    function makeTestsBootstrapFile($entityList)
+    {
+        $bobTestsBootstrapFile = new TestsBootstrapBuilder();
+        $bobTestsBootstrapFile->setOutputName('bootstrap.php');
+        $bobTestsBootstrapFile->setVariable('items', array_combine($entityList, $entityList));
+
+        $generateTestsBootstrap = new Generator();
+        $generateTestsBootstrap->setTemplateDirs(array(__DIR__.'/Bob/Work/BootstrapTemplate/',));
+        $generateTestsBootstrap->setMustOverwriteIfExists(true);
+
+        $generateTestsBootstrap->addBuilder($bobTestsBootstrapFile);
+
+        $generateTestsBootstrap->writeOnDisk(__DIR__.'/../tests/');
+        print_r('Done Generating Tests Bootstrap File ;) ');
 
     }

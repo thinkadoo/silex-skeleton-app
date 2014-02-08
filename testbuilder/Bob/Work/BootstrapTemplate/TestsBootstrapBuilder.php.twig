@@ -13,4 +13,8 @@
 
 $loader = include_once __DIR__.'/../app/bootstrap.php';
 
+{% for item in items %}
+    $loader->registerNamespace('{{ item }}\Tests', __DIR__);
+{% endfor %}
+
 /* End of file bootstrap.php */

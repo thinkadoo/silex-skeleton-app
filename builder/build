@@ -9,6 +9,8 @@ require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/RepositoryBuilder.php';
 require_once 'Bob/DbBuilder.php';
 require_once 'Bob/TravisBuilder.php';
+require_once 'Bob/AppControllerBuilder.php';
+require_once 'Bob/AppBootstrapBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use TwigGenerator\Builder\Generator;
@@ -18,6 +20,8 @@ use \Bob\RepositoryCoreBuilder;
 use \Bob\RepositoryBuilder;
 use \Bob\DbBuilder;
 use \Bob\TravisBuilder;
+use \Bob\AppControllerBuilder;
+use \Bob\AppBootstrapBuilder;
 
 $loader = new UniversalClassLoader();
 
@@ -41,6 +45,8 @@ $config = array(
 switch ($command) {
 
     case "bundle":
+        makeAppControllerFile($entityList);
+        makeAppBootstrapFile($entityList);
         makeDbFile($entityList);
         makeTravisFile($entityList);
         makeControllers($entityList, $config);
@@ -299,5 +305,40 @@ switch ($command) {
 
         $generateTravis->writeOnDisk(__DIR__.'/../');
         print_r('Done Generating Travis File ;) ');
+
+    }
+
+
+    function makeAppControllerFile($entityList)
+    {
+        $bobAppControllerFile = new AppControllerBuilder();
+        $bobAppControllerFile->setOutputName('controller.php');
+        $bobAppControllerFile->setVariable('items', array_combine($entityList, $entityList));
+
+        $generateAppController = new Generator();
+        $generateAppController->setTemplateDirs(array(__DIR__.'/Bob/Work/AppControllerBuilder/',));
+        $generateAppController->setMustOverwriteIfExists(true);
+
+        $generateAppController->addBuilder($bobAppControllerFile);
+
+        $generateAppController->writeOnDisk(__DIR__.'/../app/');
+        print_r('Done Generating App Controller File ;) ');
+
+    }
+
+    function makeAppBootstrapFile($entityList)
+    {
+        $bobAppBootstrapFile = new AppBootstrapBuilder();
+        $bobAppBootstrapFile->setOutputName('bootstrap.php');
+        $bobAppBootstrapFile->setVariable('items', array_combine($entityList, $entityList));
+
+        $generateAppBootstrap = new Generator();
+        $generateAppBootstrap->setTemplateDirs(array(__DIR__.'/Bob/Work/AppBootstrapBuilder/',));
+        $generateAppBootstrap->setMustOverwriteIfExists(true);
+
+        $generateAppBootstrap->addBuilder($bobAppBootstrapFile);
+
+        $generateAppBootstrap->writeOnDisk(__DIR__.'/../app/');
+        print_r('Done Generating App Bootstrap File ;) ');
 
     }

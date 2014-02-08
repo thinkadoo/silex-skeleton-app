@@ -1,0 +1,9 @@
+<?php
+
+{% for item in items %}
+$app->mount('/{{ item|lower }}', new {{ item }}\{{ item }}Bundle\Controller\{{ item }}Controller());
+{% endfor %}
+
+$app->get('/', function () {
+return "Welcome To ReSTful API";
+});
