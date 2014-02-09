@@ -92,253 +92,52 @@ switch ($command) {
 
     function makeCoreControllers($entityList, $config)
     {
-
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
-        // ControllerCore
-
         foreach($entityList as $className)
         {
-            $nameSpace = $className. '\\' . $className . 'Bundle\\Core';
-            $moduleName = $className;
-
-            $bobCoreController = new ControllerCoreBuilder();
-            $bobCoreController->setOutputName('ControllerCore.php');
-
-            $bobCoreController->setVariable('phpVersion', $phpVersion);
-            $bobCoreController->setVariable('category', $category);
-            $bobCoreController->setVariable('author', $author);
-            $bobCoreController->setVariable('organisation', $organisation);
-            $bobCoreController->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobCoreController->setVariable('repository', $repository);
-
-            $bobCoreController->setVariable('className', $className);
-            $bobCoreController->setVariable('implements', 'ControllerProviderInterface');
-            $bobCoreController->setVariable('moduleName', $moduleName);
-            $bobCoreController->setVariable('author', $author);
-            $bobCoreController->setVariable('authorEmail', $authorEmail);
-
-            $generateCoreController = new Generator();
-            $generateCoreController->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerCoreTemplate/',));
-            $generateCoreController->setMustOverwriteIfExists(true);
-            $generateCoreController->setVariables(array('namespace' => $nameSpace,));
-
-            $generateCoreController->addBuilder($bobCoreController);
-
-            $generateCoreController->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Core');
-            print_r('Done Generating Controller Core '.$className.' ;) ');
-
+            $bobCoreController = new ControllerCoreBuilder($entityList, $config, $className);
         }
     }
 
-    function makeControllers($entityList, $config){
-
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
-        // Controller
-
-        foreach($entityList as $className){
-
-            $nameSpace = $className. '\\' . $className . 'Bundle\\Controller';
-            $moduleName = $className;
-
-            $bobController = new ControllerBuilder();
-            $bobController->setOutputName($className.'Controller.php');
-
-            $bobController->setVariable('phpVersion', $phpVersion);
-            $bobController->setVariable('category', $category);
-            $bobController->setVariable('author', $author);
-            $bobController->setVariable('organisation', $organisation);
-            $bobController->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobController->setVariable('repository', $repository);
-
-            $bobController->setVariable('className', $className);
-            $bobController->setVariable('extends', 'ControllerCore');
-            $bobController->setVariable('moduleName', $moduleName);
-            $bobController->setVariable('author', $author);
-            $bobController->setVariable('authorEmail', $authorEmail);
-
-            $generateController = new Generator();
-            $generateController->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerTemplate/',));
-            $generateController->setMustOverwriteIfExists(true);
-            $generateController->setVariables(array('namespace' => $nameSpace,));
-
-            $generateController->addBuilder($bobController);
-
-            $generateController->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Controller');
-            print_r('Done Generating Controller '.$className.' ;) ');
-
+    function makeControllers($entityList, $config)
+    {
+        foreach($entityList as $className)
+        {
+            $bobController = new ControllerBuilder($entityList, $config, $className);
         }
     }
 
     function makeCoreRepositories($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
-        // RepositoryCore
-
-        foreach($entityList as $className){
-
-            $nameSpace = $className. '\\' . $className . 'Bundle\\Core';
-            $moduleName = $className;
-
-            $bobCoreRepository = new RepositoryCoreBuilder();
-            $bobCoreRepository->setOutputName('RepositoryCore.php');
-
-            $bobCoreRepository->setVariable('phpVersion', $phpVersion);
-            $bobCoreRepository->setVariable('category', $category);
-            $bobCoreRepository->setVariable('author', $author);
-            $bobCoreRepository->setVariable('organisation', $organisation);
-            $bobCoreRepository->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobCoreRepository->setVariable('repository', $repository);
-
-            $bobCoreRepository->setVariable('className', $className);
-            $bobCoreRepository->setVariable('moduleName', $moduleName);
-            $bobCoreRepository->setVariable('author', $author);
-            $bobCoreRepository->setVariable('authorEmail', $authorEmail);
-
-            $generateCoreRepository = new Generator();
-            $generateCoreRepository->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryCoreTemplate/',));
-            $generateCoreRepository->setMustOverwriteIfExists(true);
-            $generateCoreRepository->setVariables(array('namespace' => $nameSpace,));
-
-            $generateCoreRepository->addBuilder($bobCoreRepository);
-
-            $generateCoreRepository->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Core');
-            print_r('Done Generating Repository Core '.$className.' ;) ');
-
+        foreach($entityList as $className)
+        {
+            $bobCoreRepository = new RepositoryCoreBuilder($entityList, $config, $className);
         }
     }
 
     function makeRepositories($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
-        // Repository
-
-        foreach($entityList as $className){
-
-            $nameSpace = $className. '\\' . $className . 'Bundle\\Repository';
-            $moduleName = $className;
-
-            $bobCoreRepository = new RepositoryBuilder();
-            $bobCoreRepository->setOutputName($className.'Repository.php');
-
-            $bobCoreRepository->setVariable('phpVersion', $phpVersion);
-            $bobCoreRepository->setVariable('category', $category);
-            $bobCoreRepository->setVariable('author', $author);
-            $bobCoreRepository->setVariable('organisation', $organisation);
-            $bobCoreRepository->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobCoreRepository->setVariable('repository', $repository);
-
-            $bobCoreRepository->setVariable('className', $className);
-            $bobCoreRepository->setVariable('extends', 'RepositoryCore');
-            $bobCoreRepository->setVariable('moduleName', $moduleName);
-            $bobCoreRepository->setVariable('author', $author);
-            $bobCoreRepository->setVariable('authorEmail', $authorEmail);
-
-            $generateCoreRepository = new Generator();
-            $generateCoreRepository->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryTemplate/',));
-            $generateCoreRepository->setMustOverwriteIfExists(true);
-            $generateCoreRepository->setVariables(array('namespace' => $nameSpace,));
-
-            $generateCoreRepository->addBuilder($bobCoreRepository);
-
-            $generateCoreRepository->writeOnDisk(__DIR__.'/../src/'.$className.'/'.$className.'Bundle/Repository');
-            print_r('Done Generating Repository '.$className.' ;) ');
-
+        foreach($entityList as $className)
+        {
+            $bobCoreRepository = new RepositoryBuilder($entityList, $config, $className);
         }
     }
 
     function makeDbFile($entityList)
     {
-        $bobDbFile = new DbBuilder();
-        $bobDbFile->setOutputName('db.sql');
-        $bobDbFile->setVariable('items', array_combine($entityList, $entityList));
-
-        $generateDb = new Generator();
-        $generateDb->setTemplateDirs(array(__DIR__.'/Bob/Work/DbTemplate/',));
-        $generateDb->setMustOverwriteIfExists(true);
-
-        $generateDb->addBuilder($bobDbFile);
-
-        $generateDb->writeOnDisk(__DIR__.'/../db/');
-        print_r('Done Generating Database ;) ');
-
+        $bobDbFile = new DbBuilder($entityList);
     }
 
-        function makeTravisFile($entityList)
+    function makeTravisFile($entityList)
     {
-        $bobTravisFile = new TravisBuilder();
-        $bobTravisFile->setOutputName('.travis.yml');
-        $bobTravisFile->setVariable('items', array_combine($entityList, $entityList));
-
-        $generateTravis = new Generator();
-        $generateTravis->setTemplateDirs(array(__DIR__.'/Bob/Work/TravisTemplate/',));
-        $generateTravis->setMustOverwriteIfExists(true);
-
-        $generateTravis->addBuilder($bobTravisFile);
-
-        $generateTravis->writeOnDisk(__DIR__.'/../');
-        print_r('Done Generating Travis File ;) ');
-
+        $bobTravisFile = new TravisBuilder($entityList);
     }
-
 
     function makeAppControllerFile($entityList)
     {
-        $bobAppControllerFile = new AppControllerBuilder();
-        $bobAppControllerFile->setOutputName('controller.php');
-        $bobAppControllerFile->setVariable('items', array_combine($entityList, $entityList));
-
-        $generateAppController = new Generator();
-        $generateAppController->setTemplateDirs(array(__DIR__.'/Bob/Work/AppControllerBuilder/',));
-        $generateAppController->setMustOverwriteIfExists(true);
-
-        $generateAppController->addBuilder($bobAppControllerFile);
-
-        $generateAppController->writeOnDisk(__DIR__.'/../app/');
-        print_r('Done Generating App Controller File ;) ');
-
+        $bobAppControllerFile = new AppControllerBuilder($entityList);
     }
 
     function makeAppBootstrapFile($entityList)
     {
-        $bobAppBootstrapFile = new AppBootstrapBuilder();
-        $bobAppBootstrapFile->setOutputName('bootstrap.php');
-        $bobAppBootstrapFile->setVariable('items', array_combine($entityList, $entityList));
-
-        $generateAppBootstrap = new Generator();
-        $generateAppBootstrap->setTemplateDirs(array(__DIR__.'/Bob/Work/AppBootstrapBuilder/',));
-        $generateAppBootstrap->setMustOverwriteIfExists(true);
-
-        $generateAppBootstrap->addBuilder($bobAppBootstrapFile);
-
-        $generateAppBootstrap->writeOnDisk(__DIR__.'/../app/');
-        print_r('Done Generating App Bootstrap File ;) ');
-
+        $bobAppBootstrapFile = new AppBootstrapBuilder($entityList);
     }
