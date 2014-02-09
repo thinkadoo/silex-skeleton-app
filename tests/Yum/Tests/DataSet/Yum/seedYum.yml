@@ -1,0 +1,33 @@
+yum:
+  -
+    id: 1
+    name: "test_yum_name"
+    surname: "test_yum_surname"
+    email: "test_yum_name@email.com"
+    employee_nr: "test_yum_employee_nr"
+    role: 0
+    password: "test_yum_password"
+    role: "test_yum_role"
+    salt: "test_yum_salt"
+    locked: 0
+    deleted: 0
+    created_by: "test_yum_created_by"
+    created_at: "2013-01-01 00:00:00"
+    updated_by: "test_yum_updated_by"
+    updated_at: "2013-01-01 00:00:00"
+  -
+    id: 2
+    name: "test_yum_name_2"
+    surname: "test_yum_surname_2"
+    email: "test_yum_name_2@email.com"
+    employee_nr: "test_yum_employee_nr_2"
+    role: 0
+    password: "test_yum_password_2"
+    role: "test_yum_role_2"
+    salt: "test_yum_salt_2"
+    locked: 0
+    deleted: 0
+    created_by: "test_yum_created_by"
+    created_at: "2013-01-01 00:00:00"
+    updated_by: "test_yum_updated_by"
+    updated_at: "2013-01-01 00:00:00"

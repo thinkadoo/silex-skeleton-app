@@ -39,7 +39,7 @@ class RepositoryTestBuilder extends BaseBuilder
         $this->setVariable('authorEmail', $authorEmail);
 
         $generateRepositoryCoreTestFile = new Generator();
-        $generateRepositoryCoreTestFile->setTemplateDirs(array(__DIR__.'/Work/RepositoryCoreTemplate/',));
+        $generateRepositoryCoreTestFile->setTemplateDirs(array(__DIR__.'/Work/RepositoryTemplate/',));
         $generateRepositoryCoreTestFile->setMustOverwriteIfExists(true);
         $generateRepositoryCoreTestFile->setVariables(array('namespace' => $nameSpace,));
 

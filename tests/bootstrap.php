@@ -13,4 +13,8 @@
 
 $loader = include_once __DIR__.'/../app/bootstrap.php';
 
+    $loader->registerNamespace('Yum\Tests', __DIR__);
+    $loader->registerNamespace('Yam\Tests', __DIR__);
+    $loader->registerNamespace('Yoo\Tests', __DIR__);
+
 /* End of file bootstrap.php */

@@ -1,0 +1,33 @@
+yoo:
+  -
+    id: 1
+    name: "test_yoo_name"
+    surname: "test_yoo_surname"
+    email: "test_yoo_name@email.com"
+    employee_nr: "test_yoo_employee_nr"
+    role: 0
+    password: "test_yoo_password"
+    role: "test_yoo_role"
+    salt: "test_yoo_salt"
+    locked: 0
+    deleted: 0
+    created_by: "test_yoo_created_by"
+    created_at: "2013-01-01 00:00:00"
+    updated_by: "test_yoo_updated_by"
+    updated_at: "2013-01-01 00:00:00"
+  -
+    id: 2
+    name: "test_yoo_name_2"
+    surname: "test_yoo_surname_2"
+    email: "test_yoo_name_2@email.com"
+    employee_nr: "test_yoo_employee_nr_2"
+    role: 0
+    password: "test_yoo_password_2"
+    role: "test_yoo_role_2"
+    salt: "test_yoo_salt_2"
+    locked: 0
+    deleted: 0
+    created_by: "test_yoo_created_by"
+    created_at: "2013-01-01 00:00:00"
+    updated_by: "test_yoo_updated_by"
+    updated_at: "2013-01-01 00:00:00"

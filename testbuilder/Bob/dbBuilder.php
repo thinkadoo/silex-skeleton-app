@@ -42,7 +42,7 @@ class DbBuilder extends BaseBuilder
 
         $generateDbFile->addBuilder($this);
         $generateDbFile->writeOnDisk(__DIR__.'/../../tests/'.$className.'/Tests/');
-        print("# Done Generating db.php file ".$className." ;) ");
+        print("# Done Generating db.php file ".$className." ;) \n");
 
     }
 }

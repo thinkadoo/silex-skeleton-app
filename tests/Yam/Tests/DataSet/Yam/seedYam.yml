@@ -1,0 +1,33 @@
+yam:
+  -
+    id: 1
+    name: "test_yam_name"
+    surname: "test_yam_surname"
+    email: "test_yam_name@email.com"
+    employee_nr: "test_yam_employee_nr"
+    role: 0
+    password: "test_yam_password"
+    role: "test_yam_role"
+    salt: "test_yam_salt"
+    locked: 0
+    deleted: 0
+    created_by: "test_yam_created_by"
+    created_at: "2013-01-01 00:00:00"
+    updated_by: "test_yam_updated_by"
+    updated_at: "2013-01-01 00:00:00"
+  -
+    id: 2
+    name: "test_yam_name_2"
+    surname: "test_yam_surname_2"
+    email: "test_yam_name_2@email.com"
+    employee_nr: "test_yam_employee_nr_2"
+    role: 0
+    password: "test_yam_password_2"
+    role: "test_yam_role_2"
+    salt: "test_yam_salt_2"
+    locked: 0
+    deleted: 0
+    created_by: "test_yam_created_by"
+    created_at: "2013-01-01 00:00:00"
+    updated_by: "test_yam_updated_by"
+    updated_at: "2013-01-01 00:00:00"
