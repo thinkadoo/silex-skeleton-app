@@ -54,10 +54,7 @@ $ php composer.phar create-project makusu/silex-skeleton-rest
 
 You can add option "--dev" behind if you want to have the controller test working properly.
 
-You need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases.
-
-Why do we need to have 2 same database?
-It's not compulsory. The idea is just to differentiate between our development and our test database environment.
+You need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases. Why do we need to have 2 same database? It's not compulsory. The idea is just to differentiate between our development and our test database environment.
 
 Change the configurations to suit your environment. Don't worry, it's **simple**.
 
