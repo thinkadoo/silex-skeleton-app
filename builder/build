@@ -13,7 +13,6 @@ require_once 'Bob/AppControllerBuilder.php';
 require_once 'Bob/AppBootstrapBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
-use TwigGenerator\Builder\Generator;
 use \Bob\ControllerBuilder;
 use \Bob\ControllerCoreBuilder;
 use \Bob\RepositoryCoreBuilder;
