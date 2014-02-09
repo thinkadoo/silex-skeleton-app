@@ -12,7 +12,6 @@ require_once 'Bob/SeedBuilder.php';
 require_once 'Bob/TestsBootstrapBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
-use TwigGenerator\Builder\Generator;
 use \Bob\ControllerTestBuilder;
 use \Bob\ControllerCoreTestBuilder;
 use \Bob\RepositoryCoreTestBuilder;
