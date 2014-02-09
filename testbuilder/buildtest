@@ -114,254 +114,51 @@ switch ($command) {
 
     function makeControllerTest($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
         foreach($entityList as $className)
         {
-            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Controller';
-            $moduleName = $className;
-
-            $bobControllerTestFile = new ControllerTestBuilder();
-            $bobControllerTestFile->setOutputName($className.'ControllerTest.php');
-
-            $bobControllerTestFile->setVariable('phpVersion', $phpVersion);
-            $bobControllerTestFile->setVariable('category', $category);
-            $bobControllerTestFile->setVariable('author', $author);
-            $bobControllerTestFile->setVariable('organisation', $organisation);
-            $bobControllerTestFile->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobControllerTestFile->setVariable('repository', $repository);
-
-            $bobControllerTestFile->setVariable('className', $className);
-            $bobControllerTestFile->setVariable('extends', 'WebTestCase');
-            $bobControllerTestFile->setVariable('moduleName', $moduleName);
-            $bobControllerTestFile->setVariable('author', $author);
-            $bobControllerTestFile->setVariable('authorEmail', $authorEmail);
-
-            $generateControllerTestFile = new Generator();
-            $generateControllerTestFile->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerTemplate/',));
-            $generateControllerTestFile->setMustOverwriteIfExists(true);
-            $generateControllerTestFile->setVariables(array('namespace' => $nameSpace,));
-
-            $generateControllerTestFile->addBuilder($bobControllerTestFile);
-            $generateControllerTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Controller/');
-            print_r('Done Generating Test file '.$className.'ControllerTest ;) ');
-
+            $bobControllerTestFile = new ControllerTestBuilder($entityList, $config, $className);
         }
     };
 
     function makeControllerCoreTest($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
         foreach($entityList as $className)
         {
-            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Core';
-            $moduleName = $className;
-
-            $bobControllerCoreTestFile = new ControllerCoreTestBuilder();
-            $bobControllerCoreTestFile->setOutputName($className.'ControllerCoreTest.php');
-
-            $bobControllerCoreTestFile->setVariable('phpVersion', $phpVersion);
-            $bobControllerCoreTestFile->setVariable('category', $category);
-            $bobControllerCoreTestFile->setVariable('author', $author);
-            $bobControllerCoreTestFile->setVariable('organisation', $organisation);
-            $bobControllerCoreTestFile->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobControllerCoreTestFile->setVariable('repository', $repository);
-
-            $bobControllerCoreTestFile->setVariable('className', $className);
-            $bobControllerCoreTestFile->setVariable('tableName', strtolower($className));
-            $bobControllerCoreTestFile->setVariable('extends', 'WebTestCase');
-            $bobControllerCoreTestFile->setVariable('moduleName', $moduleName);
-            $bobControllerCoreTestFile->setVariable('author', $author);
-            $bobControllerCoreTestFile->setVariable('authorEmail', $authorEmail);
-
-            $generateControllerCoreTestFile = new Generator();
-            $generateControllerCoreTestFile->setTemplateDirs(array(__DIR__.'/Bob/Work/ControllerCoreTemplate/',));
-            $generateControllerCoreTestFile->setMustOverwriteIfExists(true);
-            $generateControllerCoreTestFile->setVariables(array('namespace' => $nameSpace,));
-
-            $generateControllerCoreTestFile->addBuilder($bobControllerCoreTestFile);
-            $generateControllerCoreTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Core/');
-            print_r('Done Generating Test file '.$className.'RepositoryCoreTest ;) ');
-
+            $bobControllerCoreTestFile = new ControllerCoreTestBuilder($entityList, $config, $className);
         }
     };
 
     function makeRepositoryTest($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
         foreach($entityList as $className)
         {
-            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Core';
-            $moduleName = $className;
-
-            $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder();
-            $bobRepositoryCoreTestFile->setOutputName($className.'RepositoryCoreTest.php');
-
-            $bobRepositoryCoreTestFile->setVariable('phpVersion', $phpVersion);
-            $bobRepositoryCoreTestFile->setVariable('category', $category);
-            $bobRepositoryCoreTestFile->setVariable('author', $author);
-            $bobRepositoryCoreTestFile->setVariable('organisation', $organisation);
-            $bobRepositoryCoreTestFile->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobRepositoryCoreTestFile->setVariable('repository', $repository);
-
-            $bobRepositoryCoreTestFile->setVariable('className', $className);
-            $bobRepositoryCoreTestFile->setVariable('tableName', strtolower($className));
-            $bobRepositoryCoreTestFile->setVariable('extends', '\\PHPUnit_Extensions_Database_TestCase');
-            $bobRepositoryCoreTestFile->setVariable('moduleName', $moduleName);
-            $bobRepositoryCoreTestFile->setVariable('author', $author);
-            $bobRepositoryCoreTestFile->setVariable('authorEmail', $authorEmail);
-
-            $generateRepositoryCoreTestFile = new Generator();
-            $generateRepositoryCoreTestFile->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryCoreTemplate/',));
-            $generateRepositoryCoreTestFile->setMustOverwriteIfExists(true);
-            $generateRepositoryCoreTestFile->setVariables(array('namespace' => $nameSpace,));
-
-            $generateRepositoryCoreTestFile->addBuilder($bobRepositoryCoreTestFile);
-            $generateRepositoryCoreTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Core/');
-            print_r('Done Generating Test file '.$className.'RepositoryCoreTest ;) ');
-
+            $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder($entityList, $config, $className);
         }
     };
 
     function makeRepositoryCoreTest($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
         foreach($entityList as $className)
         {
-            $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Repository';
-            $moduleName = $className;
-
-            $bobRepositoryTestFile = new RepositoryTestBuilder();
-            $bobRepositoryTestFile->setOutputName($className.'RepositoryTest.php');
-
-            $bobRepositoryTestFile->setVariable('phpVersion', $phpVersion);
-            $bobRepositoryTestFile->setVariable('category', $category);
-            $bobRepositoryTestFile->setVariable('author', $author);
-            $bobRepositoryTestFile->setVariable('organisation', $organisation);
-            $bobRepositoryTestFile->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobRepositoryTestFile->setVariable('repository', $repository);
-
-            $bobRepositoryTestFile->setVariable('className', $className);
-            $bobRepositoryTestFile->setVariable('tableName', strtolower($className));
-            $bobRepositoryTestFile->setVariable('extends', '\\PHPUnit_Extensions_Database_TestCase');
-            $bobRepositoryTestFile->setVariable('moduleName', $moduleName);
-            $bobRepositoryTestFile->setVariable('author', $author);
-            $bobRepositoryTestFile->setVariable('authorEmail', $authorEmail);
-
-            $generateRepositoryTestFile = new Generator();
-            $generateRepositoryTestFile->setTemplateDirs(array(__DIR__.'/Bob/Work/RepositoryTemplate/',));
-            $generateRepositoryTestFile->setMustOverwriteIfExists(true);
-            $generateRepositoryTestFile->setVariables(array('namespace' => $nameSpace,));
-
-            $generateRepositoryTestFile->addBuilder($bobRepositoryTestFile);
-            $generateRepositoryTestFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/'.$className.'Bundle/Repository/');
-            print_r('Done Generating Test file '.$className.'RepositoryTest ;) ');
-
+            $bobRepositoryTestFile = new RepositoryTestBuilder($entityList, $config, $className);
         }
     };
 
     function makeSupportFilesForTests($entityList, $config)
     {
-        $phpVersion = $config['phpVersion'];
-        $category = $config['category'];
-        $organisation = $config['organisation'];
-        $author = $config['author'];
-        $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
-        $repository = $config['repository'];
-
-        // seed.yml
-
         foreach($entityList as $className)
         {
-            $bobSeedFile = new SeedBuilder();
-            $bobSeedFile->setOutputName('seed'.$className.'.yml');
-            $bobSeedFile->setVariable('className', $className);
-            $bobSeedFile->setVariable('tableName', strtolower($className));
-
-            $generateYmlFile = new Generator();
-            $generateYmlFile->setTemplateDirs(array(__DIR__.'/Bob/Work/DataSetTemplate/',));
-            $generateYmlFile->setMustOverwriteIfExists(true);
-
-            $generateYmlFile->addBuilder($bobSeedFile);
-            $generateYmlFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/DataSet/'.$className.'/');
-            print_r('Done Generating YML Seed Data file '.$className.' ;) ');
-
+            $bobSeedFile = new SeedBuilder($entityList, $config, $className);
         }
 
         foreach($entityList as $className)
         {
-            $moduleName = $className;
-
-            $bobDBFile = new DbBuilder();
-            $bobDBFile->setOutputName('db.php');
-
-            $bobDBFile->setVariable('phpVersion', $phpVersion);
-            $bobDBFile->setVariable('category', $category);
-            $bobDBFile->setVariable('author', $author);
-            $bobDBFile->setVariable('organisation', $organisation);
-            $bobDBFile->setVariable('organisationWebSite', $corganisationWebSite);
-            $bobDBFile->setVariable('repository', $repository);
-
-            $bobDBFile->setVariable('className', $className);
-            $bobDBFile->setVariable('tableName', strtolower($className));
-            $bobDBFile->setVariable('moduleName', $moduleName);
-            $bobDBFile->setVariable('author', $author);
-            $bobDBFile->setVariable('authorEmail', $authorEmail);
-
-            $generateDbFile = new Generator();
-            $generateDbFile->setTemplateDirs(array(__DIR__.'/Bob/Work/DbClassTemplate/',));
-            $generateDbFile->setMustOverwriteIfExists(true);
-
-            $generateDbFile->addBuilder($bobDBFile);
-            $generateDbFile->writeOnDisk(__DIR__.'/../tests/'.$className.'/Tests/');
-            print_r('Done Generating db.php file '.$className.' ;) ');
-
+            $bobDBFile = new DbBuilder($entityList, $config, $className);
         }
-
     }
 
 
     function makeTestsBootstrapFile($entityList)
     {
-        $bobTestsBootstrapFile = new TestsBootstrapBuilder();
-        $bobTestsBootstrapFile->setOutputName('bootstrap.php');
-        $bobTestsBootstrapFile->setVariable('items', array_combine($entityList, $entityList));
-
-        $generateTestsBootstrap = new Generator();
-        $generateTestsBootstrap->setTemplateDirs(array(__DIR__.'/Bob/Work/BootstrapTemplate/',));
-        $generateTestsBootstrap->setMustOverwriteIfExists(true);
-
-        $generateTestsBootstrap->addBuilder($bobTestsBootstrapFile);
-
-        $generateTestsBootstrap->writeOnDisk(__DIR__.'/../tests/');
-        print_r('Done Generating Tests Bootstrap File ;) ');
-
+        $bobTestsBootstrapFile = new TestsBootstrapBuilder($entityList);
     }
