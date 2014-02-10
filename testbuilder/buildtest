@@ -22,12 +22,21 @@ use \Bob\TestsBootstrapBuilder;
 
 $loader = new UniversalClassLoader();
 
-$command = $argv[1];
-$rawArguments = $argv;
-$throwAway = array_shift($rawArguments);
-$throwAway = array_shift($rawArguments);
-$entityList = $rawArguments;
-print_r($entityList);
+$loader = new UniversalClassLoader();
+
+$dir            = __DIR__.'/../src/';
+$entitiesExist  = scandir($dir);
+$throwAway      = array_shift($entitiesExist);
+$throwAway      = array_shift($entitiesExist);
+$throwAway      = array_shift($entitiesExist);
+
+$command        = $argv[1];
+$rawArguments   = $argv;
+$throwAway      = array_shift($rawArguments);
+$throwAway      = array_shift($rawArguments);
+$entityList     = $rawArguments;
+
+$allEntities    = array_merge($entitiesExist, $entityList);
 
 $config = array(
     'phpVersion' => "5.3.21",
@@ -43,71 +52,71 @@ switch ($command) {
 
 
     case "testbundle":
-        makeTests($entityList, $config);
+        makeTests($entityList, $allEntities, $config);
         break;
 
     case "testcore":
-        makeCoreTests($entityList, $config);
+        makeCoreTests($entityList, $allEntities, $config);
         break;
 
     case "testcontroller":
-        testController($entityList, $config);
+        testController($entityList, $allEntities, $config);
         break;
 
     case "testrepository":
-        testRepository($entityList, $config);
+        testRepository($entityList, $allEntities, $config);
         break;
 
     case "testrepositorycore":
-        testRepository($entityList, $config);
+        testRepository($entityList, $allEntities, $config);
         break;
 
     case "testcontrollercore":
-        testController($entityList, $config);
+        testController($entityList, $allEntities, $config);
         break;
 
 }
 
 
-    function makeTests($entityList, $config)
+    function makeTests($entityList, $allEntities, $config)
     {
-        makeTestsBootstrapFile($entityList);
-        makeSupportFilesForTests($entityList, $config);
+        makeTestsBootstrapFile($allEntities);
+        makeSupportFilesForTests($allEntities, $config);
         makeControllerTest($entityList, $config);
         makeRepositoryTest($entityList, $config);
         makeRepositoryCoreTest($entityList, $config);
         makeControllerCoreTest($entityList, $config);
     }
 
-    function makeCoreTests($entityList, $config)
+    function makeCoreTests($entityList, $allEntities, $config)
     {
-        makeSupportFilesForTests($entityList, $config);
+        makeSupportFilesForTests($allEntities, $config);
         makeRepositoryCoreTest($entityList, $config);
         makeControllerCoreTest($entityList, $config);
     }
 
-    function testController($entityList, $config)
+    function testController($entityList, $allEntities, $config)
     {
-        makeSupportFilesForTests($entityList, $config);
+        makeSupportFilesForTests($allEntities, $config);
         makeControllerTest($entityList, $config);
     }
 
-    function testRepository($entityList, $config)
+    function testRepository($entityList, $allEntities, $config)
     {
-        makeSupportFilesForTests($entityList, $config);
+        makeSupportFilesForTests($allEntities, $config);
         makeRepositoryTest($entityList, $config);
         makeRepositoryCoreTest($entityList, $config);
     }
 
-    function testRepositoryCore($entityList, $config)
+    function testRepositoryCore($entityList, $allEntities, $config)
     {
-        makeSupportFilesForTests($entityList, $config);
+        makeSupportFilesForTests($allEntities, $config);
         makeRepositoryCoreTest($entityList, $config);
     }
 
-    function testControllerCore($entityList, $config)
+    function testControllerCore($entityList, $allEntities, $config)
     {
-        makeSupportFilesForTests($entityList, $config);
+        makeSupportFilesForTests($allEntities, $config);
         makeControllerCoreTest($entityList, $config);
     }
 
