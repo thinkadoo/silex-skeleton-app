@@ -1,0 +1,23 @@
+<?php
+
+namespace DoctrineMigrations;
+
+use Doctrine\DBAL\Migrations\AbstractMigration,
+    Doctrine\DBAL\Schema\Schema;
+
+class Version{{ className }} extends AbstractMigration
+{
+    public function up(Schema $schema)
+    {
+    {% for item in items %}
+        createTable( {{ item|lower }} );
+    {% endfor %}
+    }
+
+    public function down(Schema $schema)
+    {
+    {% for item in items %}
+        dropTable( {{ item|lower }} );
+    {% endfor %}
+    }
+}

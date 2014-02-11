@@ -1,3 +1,7 @@
+## DBal Schema API
+http://www.doctrine-project.org/api/dbal/2.0/class-Doctrine.DBAL.Schema.Schema.html
+http://www.doctrine-project.org/api/dbal/2.0/class-Doctrine.DBAL.Schema.Table.html
+
 ## Format:
 
 From the restdb or testrestdb folder - execute the following commands:

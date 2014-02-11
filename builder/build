@@ -8,6 +8,7 @@ require_once 'Bob/ControllerCoreBuilder.php';
 require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/RepositoryBuilder.php';
 require_once 'Bob/DbBuilder.php';
+require_once 'Bob/DBMigrationBuilder.php';
 require_once 'Bob/TravisBuilder.php';
 require_once 'Bob/AppControllerBuilder.php';
 require_once 'Bob/AppBootstrapBuilder.php';
@@ -18,6 +19,7 @@ use \Bob\ControllerCoreBuilder;
 use \Bob\RepositoryCoreBuilder;
 use \Bob\RepositoryBuilder;
 use \Bob\DbBuilder;
+use \Bob\DBMigrationBuilder;
 use \Bob\TravisBuilder;
 use \Bob\AppControllerBuilder;
 use \Bob\AppBootstrapBuilder;
@@ -54,6 +56,7 @@ switch ($command) {
         makeAppControllerFile($allEntities);
         makeAppBootstrapFile($allEntities);
         makeDbFile($allEntities);
+        makeDbMigrationFile($entityList);
         makeTravisFile($allEntities);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
@@ -131,6 +134,11 @@ switch ($command) {
     function makeDbFile($entityList)
     {
         $bobDbFile = new DbBuilder($entityList);
+    }
+
+    function makeDbMigrationFile($entityList)
+    {
+        $bobDbMigrationFile = new DBMigrationBuilder($entityList);
     }
 
     function makeTravisFile($entityList)
