@@ -1,6 +1,10 @@
 ## Format:
 
-php ./db/restdb/doctrine-migrations.phar migrations:status
+From the restdb or testrestdb folder - execute the following commands:
+php ./doctrine-migrations.phar migrations:status
+php ./doctrine-migrations.phar migrations:generate
+php ./doctrine-migrations.phar migrations:migrate --dry-run
+php ./doctrine-migrations.phar migrations:migrate
 
 ## Usage:
   [options] command [arguments]
