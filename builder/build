@@ -24,12 +24,19 @@ use \Bob\AppBootstrapBuilder;
 
 $loader = new UniversalClassLoader();
 
-$command = $argv[1];
-$rawArguments = $argv;
-$throwAway = array_shift($rawArguments);
-$throwAway = array_shift($rawArguments);
-$entityList = $rawArguments;
-print_r($entityList);
+$dir            = __DIR__.'/../src/';
+$entitiesExist  = scandir($dir);
+$throwAway      = array_shift($entitiesExist);
+$throwAway      = array_shift($entitiesExist);
+$throwAway      = array_shift($entitiesExist);
+
+$command        = $argv[1];
+$rawArguments   = $argv;
+$throwAway      = array_shift($rawArguments);
+$throwAway      = array_shift($rawArguments);
+$entityList     = $rawArguments;
+
+$allEntities    = array_merge($entitiesExist, $entityList);
 
 $config = array(
     'phpVersion' => "5.3.21",
@@ -44,10 +51,10 @@ $config = array(
 switch ($command) {
 
     case "bundle":
-        makeAppControllerFile($entityList);
-        makeAppBootstrapFile($entityList);
-        makeDbFile($entityList);
-        makeTravisFile($entityList);
+        makeAppControllerFile($allEntities);
+        makeAppBootstrapFile($allEntities);
+        makeDbFile($allEntities);
+        makeTravisFile($allEntities);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
@@ -55,35 +62,35 @@ switch ($command) {
         break;
 
     case "core":
-        makeDbFile($entityList);
-        makeTravisFile($entityList);
+        makeDbFile($allEntities);
+        makeTravisFile($allEntities);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
         break;
 
     case "controller":
-        makeDbFile($entityList);
-        makeTravisFile($entityList);
+        makeDbFile($allEntities);
+        makeTravisFile($allEntities);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         break;
 
     case "repository":
-        makeDbFile($entityList);
-        makeTravisFile($entityList);
+        makeDbFile($allEntities);
+        makeTravisFile($allEntities);
         makeCoreRepositories($entityList, $config);
         makeRepositories($entityList, $config);
         break;
 
     case "corecontroller":
-        makeDbFile($entityList);
-        makeTravisFile($entityList);
+        makeDbFile($allEntities);
+        makeTravisFile($allEntities);
         makeCoreControllers($entityList, $config);
         break;
 
     case "corerepository":
-        makeDbFile($entityList);
-        makeTravisFile($entityList);
+        makeDbFile($allEntities);
+        makeTravisFile($allEntities);
         makeCoreRepositories($entityList, $config);
         break;
 
