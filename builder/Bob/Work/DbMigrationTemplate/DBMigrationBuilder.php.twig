@@ -5,19 +5,21 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Migrations\AbstractMigration,
     Doctrine\DBAL\Schema\Schema;
 
-class Version{{ className }} extends AbstractMigration
+class {{ className }} extends AbstractMigration
 {
     public function up(Schema $schema)
     {
-    {% for item in items %}
-        createTable( {{ item|lower }} );
-    {% endfor %}
+{% for item in items %}
+        $table = $schema->createTable('{{ item|lower }}');
+        $table->addColumn('id', 'bigint');
+        $table->addColumn('field', 'string');
+{% endfor %}
     }
 
     public function down(Schema $schema)
     {
-    {% for item in items %}
-        dropTable( {{ item|lower }} );
-    {% endfor %}
+{% for item in items %}
+        $schema->dropTable( '{{ item|lower }}' );
+{% endfor %}
     }
 }
