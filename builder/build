@@ -52,7 +52,7 @@ $config = array(
 
 switch ($command) {
 
-    case "bundle":
+    case "bundles":
         makeAppControllerFile($allEntities);
         makeAppBootstrapFile($allEntities);
         makeDbFile($allEntities);
