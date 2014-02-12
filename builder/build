@@ -64,34 +64,34 @@ switch ($command) {
         makeRepositories($entityList, $config);
         break;
 
-    case "core":
+    case "cores":
         makeDbFile($allEntities);
         makeTravisFile($allEntities);
         makeCoreControllers($entityList, $config);
         makeCoreRepositories($entityList, $config);
         break;
 
-    case "controller":
+    case "controllers":
         makeDbFile($allEntities);
         makeTravisFile($allEntities);
         makeControllers($entityList, $config);
         makeCoreControllers($entityList, $config);
         break;
 
-    case "repository":
+    case "repositories":
         makeDbFile($allEntities);
         makeTravisFile($allEntities);
         makeCoreRepositories($entityList, $config);
         makeRepositories($entityList, $config);
         break;
 
-    case "corecontroller":
+    case "corecontrollers":
         makeDbFile($allEntities);
         makeTravisFile($allEntities);
         makeCoreControllers($entityList, $config);
         break;
 
-    case "corerepository":
+    case "corerepositories":
         makeDbFile($allEntities);
         makeTravisFile($allEntities);
         makeCoreRepositories($entityList, $config);

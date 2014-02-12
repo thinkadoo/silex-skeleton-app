@@ -51,27 +51,27 @@ $config = array(
 switch ($command) {
 
 
-    case "testbundle":
+    case "testbundles":
         makeTests($entityList, $allEntities, $config);
         break;
 
-    case "testcore":
+    case "testcores":
         makeCoreTests($entityList, $allEntities, $config);
         break;
 
-    case "testcontroller":
+    case "testcontrollers":
         testController($entityList, $allEntities, $config);
         break;
 
-    case "testrepository":
+    case "testrepositories":
         testRepository($entityList, $allEntities, $config);
         break;
 
-    case "testrepositorycore":
+    case "testrepositorycores":
         testRepository($entityList, $allEntities, $config);
         break;
 
-    case "testcontrollercore":
+    case "testcontrollercores":
         testController($entityList, $allEntities, $config);
         break;
 

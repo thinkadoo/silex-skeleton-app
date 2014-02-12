@@ -79,23 +79,23 @@ $ ./vendor/bin/phpcs ./src/ --standard=PSR2
 To generate some code:
 
 ``` sh
-$ ./builder/build bundle Yum Yam Yoo
-$ ./builder/build core Yum Yam Yoo
-$ ./builder/build controller Yum Yam Yoo
-$ ./builder/build repository Yum Yam Yoo
-$ ./builder/build corecontroller Yum Yam Yoo
-$ ./builder/build corerepository Yum Yam Yoo
+$ ./builder/build bundles Yum Yam Yoo
+$ ./builder/build cores Yum Yam Yoo
+$ ./builder/build controllers Yum Yam Yoo
+$ ./builder/build repositories Yum Yam Yoo
+$ ./builder/build corecontrollers Yum Yam Yoo
+$ ./builder/build corerepositorie Yum Yam Yoo
 ```
 
 To generate some tests:
 
 ``` sh
-$ ./testbuilder/buildtest testbundle Yum Yam Yoo
-$ ./testbuilder/buildtest testcore Yum Yam Yoo
-$ ./testbuilder/buildtest testcontroller Yum Yam Yoo
-$ ./testbuilder/buildtest testrepository Yum Yam Yoo
-$ ./testbuilder/buildtest testrepositorycore Yum Yam Yoo
-$ ./testbuilder/buildtest testcontrollercore Yum Yam Yoo
+$ ./testbuilder/buildtest testbundles Yum Yam Yoo
+$ ./testbuilder/buildtest testcores Yum Yam Yoo
+$ ./testbuilder/buildtest testcontrollers Yum Yam Yoo
+$ ./testbuilder/buildtest testrepositories Yum Yam Yoo
+$ ./testbuilder/buildtest testrepositorycores Yum Yam Yoo
+$ ./testbuilder/buildtest testcontrollercores Yum Yam Yoo
 ```
 
 
