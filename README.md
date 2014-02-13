@@ -98,7 +98,10 @@ $ ./testbuilder/buildtest testrepositorycores Yum Yam Yoo
 $ ./testbuilder/buildtest testcontrollercores Yum Yam Yoo
 ```
 
+New console API:
 
+php app/console demo:greet Minerva
+php app/console demo:greet Minerva --yell
 
 Final
 -----
