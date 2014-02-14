@@ -3,11 +3,19 @@
 // application.php
 
 require_once __DIR__ . '/bootstrap.php';
-require_once __DIR__ . '/../builder/GreetCommand.php';
 
-use Console\Command\GreetCommand;
+require_once __DIR__ . '/../Builder/BundleCommand.php';
+
 use Symfony\Component\Console\Application;
 
+
+
+use Builder\BundleCommand;
+
+
 $application = new Application();
-$application->add(new GreetCommand);
+
+
+$application->add(new BundleCommand);
+
 $application->run();
