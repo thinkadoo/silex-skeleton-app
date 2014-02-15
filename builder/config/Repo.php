@@ -26,6 +26,6 @@ class Repo
 
     public function getSourceDirectory()
     {
-        return __DIR__ . '/../src/';
+        return __DIR__ . '/../../src/';
     }
 } 
