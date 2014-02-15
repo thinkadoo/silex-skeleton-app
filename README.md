@@ -100,8 +100,9 @@ $ ./testbuilder/buildtest testcontrollercores Yum Yam Yoo
 
 New console API:
 
-php app/console demo:greet Minerva
-php app/console demo:greet Minerva --yell
+php app/console generate:bundle Yum id:int name:string surname:string
+php app/console generate:bundle Yam id:int name:string surname:string
+php app/console generate:bundle Yoo id:int name:string surname:string
 
 Final
 -----

@@ -9,17 +9,14 @@ class {{ className }} extends AbstractMigration
 {
     public function up(Schema $schema)
     {
-{% for item in items %}
-        $table = $schema->createTable('{{ item|lower }}');
-        $table->addColumn('id', 'bigint');
-        $table->addColumn('field', 'string');
+        $table = $schema->createTable('{{ tableName|lower }}');
+{% for key,value in properties %}
+        $table->addColumn('{{ key }}', '{{ value }}');
 {% endfor %}
     }
 
     public function down(Schema $schema)
     {
-{% for item in items %}
-        $schema->dropTable( '{{ item|lower }}' );
-{% endfor %}
+        $schema->dropTable( '{{ tableName|lower }}' );
     }
 }

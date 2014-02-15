@@ -11,6 +11,7 @@ require_once 'Bob/DBMigrationBuilder.php';
 require_once 'Bob/RepositoryBuilder.php';
 require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/TravisBuilder.php';
+require_once 'config/Repo.php';
 
 use Bob\ControllerBuilder;
 use Bob\ControllerCoreBuilder;
@@ -22,6 +23,7 @@ use Bob\TravisBuilder;
 use Bob\AppControllerBuilder;
 use Bob\AppBootstrapBuilder;
 
+use config\Repo;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -38,30 +40,57 @@ class BundleCommand extends Command
             ->addArgument(
                 'name',
                 InputArgument::OPTIONAL,
-                'Who do you want to greet?'
+                'What class do you want to generate?'
+            )
+            ->addArgument(
+                'properties',
+                InputArgument::IS_ARRAY,
+                'What are the properties of the class?'
             )
             ->addOption(
-                'yell',
+                'reflect',
                 null,
                 InputOption::VALUE_NONE,
-                'If set, the task will yell in uppercase letters'
+                'If set, the task will reflect what the input was'
             )
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $name = $input->getArgument('name');
-        if ($name) {
-            $text = 'Hello '.$name;
-        } else {
-            $text = 'Hello';
+        $className = $input->getArgument('name');
+        $properties = $input->getArgument('properties');
+        $entityList = array($className);
+
+        foreach($properties as $property)
+        {
+            explode(':', $property);
         }
 
-        if ($input->getOption('yell')) {
-            $text = strtoupper($text);
+        $propertiesKeysValues = array();
+        foreach ($properties as $pair) {
+            list($key,$value) = explode(':', $pair);
+            $propertiesKeysValues[$key]=str_replace(':','', $value);
         }
 
-        $output->writeln($text);
+        $repo = new Repo();
+        $config = $repo->config;
+        $dir = __DIR__.'/../src/';
+        $entitiesExist = $repo->getExistingClasses($dir);
+        $allEntities    = array_merge($entitiesExist, $entityList);
+
+        $bobCoreController = new ControllerCoreBuilder($allEntities, $config, $className);
+        $bobController = new ControllerBuilder($allEntities, $config, $className);
+        $bobCoreRepository = new RepositoryCoreBuilder($allEntities, $config, $className);
+        $bobCoreRepository = new RepositoryBuilder($allEntities, $config, $className);
+        $bobDbFile = new DbBuilder($allEntities);
+        $bobDbMigrationFile = new DBMigrationBuilder($className, $propertiesKeysValues);
+        $bobTravisFile = new TravisBuilder($allEntities);
+        $bobAppControllerFile = new AppControllerBuilder($allEntities);
+        $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
+
+        if ($input->getOption('reflect')) {
+            print_r($className, $propertiesKeysValues);
+        }
     }
 }

@@ -7,7 +7,7 @@ use TwigGenerator\Builder\Generator;
 
 class DBMigrationBuilder extends BaseBuilder
 {
-    function __construct($entityList)
+    function __construct($tableName, $properties)
     {
         parent::__construct();
 
@@ -15,8 +15,9 @@ class DBMigrationBuilder extends BaseBuilder
         $filenameName = $className.'.php';
 
         $this->setOutputName($filenameName);
-        $this->setVariable('items', array_combine($entityList, $entityList));
+        $this->setVariable('properties', $properties);
         $this->setVariable('className', $className);
+        $this->setVariable('tableName', $tableName);
 
         $generateDb = new Generator();
         $generateDb->setTemplateDirs(array(__DIR__.'/Work/DbMigrationTemplate/',));
@@ -26,15 +27,5 @@ class DBMigrationBuilder extends BaseBuilder
 
         $generateDb->writeOnDisk(__DIR__.'/../../db/restdb/migrations');
         print_r("# Done Generating Database Migration ;) \n");
-    }
-
-    public function makeGenericMigrationsForMultipleClasses()
-    {
-
-    }
-
-    public function makeMigrationForClass()
-    {
-
     }
 }
