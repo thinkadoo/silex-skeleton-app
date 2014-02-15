@@ -72,7 +72,8 @@ class BundleCommand extends Command
         $config = $repo->config;
         $dir = $repo->getSourceDirectory();
         $entitiesExist = $repo->getExistingClasses($dir);
-        $allEntities    = array_merge($entitiesExist, $entityList);
+        $allEntities = array();
+        $allEntities = array_merge($entitiesExist, $entityList);
 
         $bobCoreController = new ControllerCoreBuilder($allEntities, $config, $className);
         $bobController = new ControllerBuilder($allEntities, $config, $className);
