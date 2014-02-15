@@ -15,6 +15,8 @@ class Repo
     'repository' => 'https://github.com/thinkadoo/silex-skeleton-rest.git'
     );
 
+    var $sourceDirectory = '/../src/';
+
     public function getExistingClasses($dir)
     {
         $entitiesExist  = scandir($dir);
@@ -22,5 +24,10 @@ class Repo
         $throwAway      = array_shift($entitiesExist);
         //$throwAway      = array_shift($entitiesExist);
         return $entitiesExist;
+    }
+
+    public function getSourceDirectory()
+    {
+        return __DIR__ . $this->$sourceDirectory;
     }
 } 

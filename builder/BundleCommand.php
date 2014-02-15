@@ -62,11 +62,6 @@ class BundleCommand extends Command
         $properties = $input->getArgument('properties');
         $entityList = array($className);
 
-        foreach($properties as $property)
-        {
-            explode(':', $property);
-        }
-
         $propertiesKeysValues = array();
         foreach ($properties as $pair) {
             list($key,$value) = explode(':', $pair);
@@ -75,7 +70,7 @@ class BundleCommand extends Command
 
         $repo = new Repo();
         $config = $repo->config;
-        $dir = __DIR__.'/../src/';
+        $dir = $repo->getSourceDirectory();
         $entitiesExist = $repo->getExistingClasses($dir);
         $allEntities    = array_merge($entitiesExist, $entityList);
 
