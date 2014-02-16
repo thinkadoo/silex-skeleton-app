@@ -10,6 +10,12 @@ class {{ className }} extends AbstractMigration
     public function up(Schema $schema)
     {
         $table = $schema->createTable('{{ tableName|lower }}');
+        $table->addColumn('id', 'integer', array(
+            'unsigned'      => true,
+            'autoincrement' => true
+        ));
+        $table->setPrimaryKey(array('id'));
+        $table->addUniqueIndex(array('id'));
 {% for key,value in properties %}
         $table->addColumn('{{ key }}', '{{ value }}');
 {% endfor %}
