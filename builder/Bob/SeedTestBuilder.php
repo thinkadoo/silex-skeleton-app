@@ -5,7 +5,7 @@ namespace Bob;
 use TwigGenerator\Builder\BaseBuilder;
 use TwigGenerator\Builder\Generator;
 
-class SeedBuilder extends BaseBuilder
+class SeedTestBuilder extends BaseBuilder
 {
     function __construct($entityList, $config, $className)
     {

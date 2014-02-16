@@ -13,6 +13,14 @@ require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/TravisBuilder.php';
 require_once 'config/Repo.php';
 
+require_once 'Bob/ControllerTestBuilder.php';
+require_once 'Bob/ControllerCoreTestBuilder.php';
+require_once 'Bob/RepositoryCoreTestBuilder.php';
+require_once 'Bob/RepositoryTestBuilder.php';
+require_once 'Bob/DBTestBuilder.php';
+require_once 'Bob/SeedTestBuilder.php';
+require_once 'Bob/TestsBootstrapBuilder.php';
+
 use Bob\ControllerBuilder;
 use Bob\ControllerCoreBuilder;
 use Bob\RepositoryCoreBuilder;
@@ -22,6 +30,14 @@ use Bob\DBMigrationBuilder;
 use Bob\TravisBuilder;
 use Bob\AppControllerBuilder;
 use Bob\AppBootstrapBuilder;
+
+use \Bob\ControllerTestBuilder;
+use \Bob\ControllerCoreTestBuilder;
+use \Bob\RepositoryCoreTestBuilder;
+use \Bob\RepositoryTestBuilder;
+use \Bob\DbTestBuilder;
+use \Bob\SeedTestBuilder;
+use \Bob\TestsBootstrapBuilder;
 
 use config\Repo;
 use Symfony\Component\Console\Command\Command;
@@ -84,6 +100,13 @@ class BundleCommand extends Command
         $bobTravisFile = new TravisBuilder($allEntities);
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
+
+        $bobControllerTestFile = new ControllerTestBuilder($entityList, $config, $className);
+        $bobControllerCoreTestFile = new ControllerCoreTestBuilder($entityList, $config, $className);
+        $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder($entityList, $config, $className);
+        $bobRepositoryTestFile = new RepositoryTestBuilder($entityList, $config, $className);
+        $bobSeedFile = new SeedTestBuilder($entityList, $config, $className);
+        $bobTestsBootstrapFile = new TestsBootstrapBuilder($entityList);
 
         if ($input->getOption('reflect')) {
             print_r($className, $propertiesKeysValues);
