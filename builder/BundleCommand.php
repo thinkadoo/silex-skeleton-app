@@ -88,9 +88,9 @@ class BundleCommand extends Command
     {
         $className = $input->getArgument('name');
         $properties = $input->getArgument('properties');
-        $migration = $input->getArgument('migration');
-        $sql = $input->getArgument('sql');
-        $travis = $input->getArgument('travis');
+        $migration = $input->getOption('migration');
+        $sql = $input->getOption('sql');
+        $travis = $input->getOption('travis');
         $entityList = array($className);
 
         $propertiesKeysValues = array();
