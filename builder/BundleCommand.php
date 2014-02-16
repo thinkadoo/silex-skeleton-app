@@ -63,12 +63,6 @@ class BundleCommand extends Command
                 InputArgument::IS_ARRAY,
                 'What are the properties of the class?'
             )
-            ->addOption(
-                'reflect',
-                null,
-                InputOption::VALUE_NONE,
-                'If set, the task will reflect what the input was'
-            )
         ;
     }
 
@@ -109,8 +103,5 @@ class BundleCommand extends Command
         $bobDBFile = new DbTestBuilder($allEntities, $config, $className);
         $bobTestsBootstrapFile = new TestsBootstrapBuilder($allEntities);
 
-        if ($input->getOption('reflect')) {
-            print_r($className, $propertiesKeysValues);
-        }
     }
 }

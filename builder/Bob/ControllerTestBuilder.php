@@ -7,7 +7,7 @@ use TwigGenerator\Builder\Generator;
 
 class ControllerTestBuilder extends BaseBuilder
 {
-    function __construct($entityList, $config, $className)
+    function __construct($entityList, $config, $className, $properties)
     {
         parent::__construct();
 

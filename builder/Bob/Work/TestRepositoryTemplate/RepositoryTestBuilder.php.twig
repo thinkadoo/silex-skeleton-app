@@ -92,9 +92,9 @@
     {
         $inputId = 1;
 
-        $expected = 'test_name_string';
+        $expected = 'test_'.{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}.'_string';
         ${{ className }} = $this->{{ tableName }}Repository->find($inputId);
-        $actual = ${{ className }}['name'];
+        $actual = ${{ className }}[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
 
         $this->assertEquals($expected, $actual);
     }
@@ -153,13 +153,13 @@
     public function testUpdateInputId2NameNew{{ className }}()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'New {{ className }}');
+        $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
 
         $this->{{ tableName }}Repository->update($inputId, $inputParams);
         ${{ className }}Repository = $this->{{ tableName }}Repository->find($inputId);
 
         $expected = 'New {{ className }}';
-        $actual = ${{ className }}Repository['name'];
+        $actual = ${{ className }}Repository[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
         $this->assertEquals($expected, $actual);
     }
 
@@ -170,13 +170,13 @@
      */
     public function testInsertInputNameNew{{ className }}()
     {
-        $inputParams = array('name' => 'New {{ className }}');
+        $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
         $this->{{ tableName }}Repository->insert($inputParams);
         $lastInsertId = $this->db->lastInsertId();
         ${{ className }}Repository = $this->{{ tableName }}Repository->find($lastInsertId);
 
         $expected = 'New {{ className }}';
-        $actual = ${{ className }}Repository['name'];
+        $actual = ${{ className }}Repository[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
 
         $this->assertEquals($expected, $actual);
     }
