@@ -29,22 +29,7 @@
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array(
-            'id' => '2',
-            'name' => 'test_{{ tableName }}_name_2',
-            'surname' => 'test_{{ tableName }}_surname_2',
-            'email' => 'test_{{ tableName }}_name_2@email.com',
-            'employee_nr' => 'test_{{ tableName }}_employee_nr_2',
-            'role' => '0',
-            'password' => 'test_{{ tableName }}_password_2',
-            'salt' => 'test_{{ tableName }}_salt_2',
-            'locked' => '0',
-            'deleted' => '0',
-            'created_by' => 'test_{{ tableName }}_created_by',
-            'created_at' => '2013-01-01 00:00:00',
-            'updated_by' => 'test_{{ tableName }}_updated_by',
-            'updated_at' => '2013-01-01 00:00:00'
-        );
+        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>'test_{{ key }}_{{ value }}'{% if not loop.last %},{% endif %}{% endfor %});
 
         $actual = $data[1];
         $this->assertSame($expected, $actual);
@@ -63,22 +48,7 @@
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array(
-            'id' => '1',
-            'name' => 'test_{{ tableName }}_name',
-            'surname' => 'test_{{ tableName }}_surname',
-            'email' => 'test_{{ tableName }}_name@email.com',
-            'employee_nr' => 'test_{{ tableName }}_employee_nr',
-            'role' => '0',
-            'password' => 'test_{{ tableName }}_password',
-            'salt' => 'test_{{ tableName }}_salt',
-            'locked' => '0',
-            'deleted' => '0',
-            'created_by' => 'test_{{ tableName }}_created_by',
-            'created_at' => '2013-01-01 00:00:00',
-            'updated_by' => 'test_{{ tableName }}_updated_by',
-            'updated_at' => '2013-01-01 00:00:00'
-            );
+        $expected = array('id' => '1', {% for key,value in properties %}'{{ key }}'=>'test_{{ key }}_{{ value }}'{% if not loop.last %},{% endif %}{% endfor %});
 
         $actual = $data;
         $this->assertSame($expected, $actual);
@@ -91,14 +61,14 @@
      */
     public function testPostInputNameFooBar()
     {
-        $inputName = 'test_{{ tableName }}_name_Foo_Bar';
+        $input = array({% for key,value in properties %}'{{ key }}'=>'test_{{ tableName }}_name_Foo_Bar'{% if not loop.last %},{% endif %}{% endfor %});
 
         $client = static::createClient();
 
         $client->request('GET', "/$this->controllerName/");
-        $expected = count(json_decode($client->getResponse()->getContent(), true)) + 1;
+        $expected = count(json_decode($client->getResponse()->getContent(), true));
 
-        $client->request('POST', "/$this->controllerName/", array('name' => $inputName));
+        $client->request('POST', "/$this->controllerName/", $input);
         $client->request('GET', "/$this->controllerName/");
         $actual = count(json_decode($client->getResponse()->getContent(), true));
 
@@ -113,29 +83,14 @@
     public function testPutInputId2NameFooBar()
     {
         $inputId = "2";
-        $inputName = 'test_{{ tableName }}_name_Foo_Bar';
+        $input = array({% for key,value in properties %}'{{ key }}'=>'test_{{ tableName }}_name_Foo_Bar'{% if not loop.last %},{% endif %}{% endfor %});
 
         $client = static::createClient();
 
-        $client->request('PUT', "/$this->controllerName/$inputId", array('name' => $inputName));
+        $client->request('PUT', "/$this->controllerName/$inputId", $input);
         $client->request('GET', "/$this->controllerName/$inputId");
 
-        $expected = array(
-            'id' => '2',
-            'name' => 'test_{{ tableName }}_name_Foo_Bar',
-            'surname' => 'test_{{ tableName }}_surname_2',
-            'email' => 'test_{{ tableName }}_name_2@email.com',
-            'employee_nr' => 'test_{{ tableName }}_employee_nr_2',
-            'role' => '0',
-            'password' => 'test_{{ tableName }}_password_2',
-            'salt' => 'test_{{ tableName }}_salt_2',
-            'locked' => '0',
-            'deleted' => '0',
-            'created_by' => 'test_{{ tableName }}_created_by',
-            'created_at' => '2013-01-01 00:00:00',
-            'updated_by' => 'test_{{ tableName }}_updated_by',
-            'updated_at' => '2013-01-01 00:00:00'
-            );
+        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>'test_{{ tableName }}_name_Foo_Bar'{% if not loop.last %},{% endif %}{% endfor %});
 
         $actual = json_decode($client->getResponse()->getContent(), true);
 

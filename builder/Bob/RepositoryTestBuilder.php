@@ -19,10 +19,10 @@ class RepositoryTestBuilder extends BaseBuilder
         $corganisationWebSite = $config['corganisationWebSite'];
         $repository = $config['repository'];
 
-        $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Core';
+        $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Repository';
         $moduleName = $className;
 
-        $this->setOutputName($className.'RepositoryCoreTest.php');
+        $this->setOutputName($className.'RepositoryTest.php');
 
         $this->setVariable('phpVersion', $phpVersion);
         $this->setVariable('category', $category);
@@ -44,7 +44,8 @@ class RepositoryTestBuilder extends BaseBuilder
         $generateRepositoryCoreTestFile->setVariables(array('namespace' => $nameSpace,));
 
         $generateRepositoryCoreTestFile->addBuilder($this);
-        $generateRepositoryCoreTestFile->writeOnDisk(__DIR__.'/../../tests/'.$className.'/Tests/'.$className.'Bundle/Core/');
-        print("# Done Generating Test file ".$className."RepositoryCoreTest ;) \n");
+        $generateRepositoryCoreTestFile->writeOnDisk(__DIR__.'/../../tests/'.$className.'/Tests/'.$className.'Bundle/Repository/');
+        print("# Done Generating Test file ".$className."RepositoryTest ;) \n");
+
     }
 }

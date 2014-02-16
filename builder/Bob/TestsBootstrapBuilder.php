@@ -12,7 +12,7 @@ class TestsBootstrapBuilder extends BaseBuilder
         parent::__construct();
 
         $this->setOutputName('bootstrap.php');
-        $this->setVariable('items', array_combine($entityList, $entityList));
+        $this->setVariable('entities', array_combine($entityList, $entityList));
 
         $generateTestsBootstrap = new Generator();
         $generateTestsBootstrap->setTemplateDirs(array(__DIR__.'/Work/TestBootstrapTemplate/',));

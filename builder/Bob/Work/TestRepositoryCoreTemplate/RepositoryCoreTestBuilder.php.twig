@@ -97,7 +97,7 @@
     {
         $inputId = 1;
 
-        $expected = 'test_{{ tableName }}_name';
+        $expected = 'test_name_string';
         ${{ tableName }} = $this->repositoryCore->find($inputId);
         $actual = ${{ tableName }}['name'];
 
@@ -113,7 +113,7 @@
     {
         $inputId = 2;
 
-        $expected = 'test_{{ tableName }}_name_2';
+        $expected = 'test_name_string';
         ${{ tableName }} = $this->repositoryCore->find($inputId);
         $actual = ${{ tableName }}['name'];
 

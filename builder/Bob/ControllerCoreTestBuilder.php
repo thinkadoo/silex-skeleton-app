@@ -7,7 +7,7 @@ use TwigGenerator\Builder\Generator;
 
 class ControllerCoreTestBuilder extends BaseBuilder
 {
-    function __construct($entityList, $config, $className)
+    function __construct($entityList, $config, $className, $properties)
     {
         parent::__construct();
 
@@ -32,6 +32,7 @@ class ControllerCoreTestBuilder extends BaseBuilder
         $this->setVariable('repository', $repository);
 
         $this->setVariable('className', $className);
+        $this->setVariable('properties', $properties);
         $this->setVariable('tableName', strtolower($className));
         $this->setVariable('extends', 'WebTestCase');
         $this->setVariable('moduleName', $moduleName);

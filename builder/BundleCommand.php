@@ -101,10 +101,10 @@ class BundleCommand extends Command
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
 
-        $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className);
-        $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className);
-        $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder($allEntities, $config, $className);
-        $bobRepositoryTestFile = new RepositoryTestBuilder($allEntities, $config, $className);
+        $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
+        $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
+        $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
+        $bobRepositoryTestFile = new RepositoryTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
         $bobSeedFile = new SeedTestBuilder($className, $propertiesKeysValues);
         $bobDBFile = new DbTestBuilder($allEntities, $config, $className);
         $bobTestsBootstrapFile = new TestsBootstrapBuilder($allEntities);
