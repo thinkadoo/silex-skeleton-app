@@ -1,0 +1,32 @@
+<?php
+/**
+ * File: {{ className }}RepositoryTest.php
+ *
+ * PHP Version {{ phpVersion }}
+ *
+ * @category {{ category }}
+ * @package  Modules_{{ moduleName }}
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+{{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
+
+use {{ className }}\{{ className }}Bundle\Repository\{{ className }}Repository;
+use Silex\Application;
+
+/**
+ * Class {{ className }}RepositoryTest
+ *
+ * @category {{ category }}
+ * @package  {{ className }}\Tests\{{ className }}Bundle\Repository
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+class {{ className }}RepositoryTest {{ extends is defined ? "extends " ~ extends : "" }}
+{
+{% block functions %}
+{% endblock %}
+}
+/* End of file {{ className }}RepositoryTest.php */

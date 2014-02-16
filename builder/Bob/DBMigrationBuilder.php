@@ -26,6 +26,7 @@ class DBMigrationBuilder extends BaseBuilder
         $generateDb->addBuilder($this);
 
         $generateDb->writeOnDisk(__DIR__.'/../../db/restdb/migrations');
+        $generateDb->writeOnDisk(__DIR__.'/../../db/resttestdb/migrations');
         print_r("# Done Generating Database Migration ;) \n");
     }
 }

@@ -17,7 +17,7 @@ class SeedBuilder extends BaseBuilder
         $this->setVariable('tableName', strtolower($className));
 
         $generateYmlFile = new Generator();
-        $generateYmlFile->setTemplateDirs(array(__DIR__.'/Work/DataSetTemplate/',));
+        $generateYmlFile->setTemplateDirs(array(__DIR__.'/Work/TestDataSetTemplate/',));
         $generateYmlFile->setMustOverwriteIfExists(true);
 
         $generateYmlFile->addBuilder($this);

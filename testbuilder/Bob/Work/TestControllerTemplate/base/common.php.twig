@@ -1,0 +1,31 @@
+<?php
+/**
+ * File: {{ className }}ControllerTest.php
+ *
+ * PHP Version {{ phpVersion }}
+ *
+ * @category {{ category }}
+ * @package  Modules_{{ moduleName }}
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+{{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
+
+use Silex\WebTestCase;
+
+/**
+ * Class {{ className }}Controller
+ *
+ * @category {{ category }}
+ * @package  {{ className }}\Tests\{{ className }}Bundle\Controller
+ * @author   {{ author }} <{{ authorEmail }}>
+ * @license  {{ organisation }} {{ organisationWebSite }}
+ * @link     {{ repository }}
+ */
+class {{ className }}ControllerTest {{ extends is defined ? "extends " ~ extends : "" }}
+{
+    {% block functions %}
+    {% endblock %}
+}
+/* End of file {{ className }}ControllerTest.php */

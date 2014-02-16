@@ -7,8 +7,8 @@ require_once 'Bob/ControllerTestBuilder.php';
 require_once 'Bob/ControllerCoreTestBuilder.php';
 require_once 'Bob/RepositoryCoreTestBuilder.php';
 require_once 'Bob/RepositoryTestBuilder.php';
-require_once 'Bob/DbBuilder.php';
-require_once 'Bob/SeedBuilder.php';
+require_once 'Bob/DBTestBuilder.php';
+require_once 'Bob/SeedTestBuilder.php';
 require_once 'Bob/TestsBootstrapBuilder.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
@@ -16,7 +16,7 @@ use \Bob\ControllerTestBuilder;
 use \Bob\ControllerCoreTestBuilder;
 use \Bob\RepositoryCoreTestBuilder;
 use \Bob\RepositoryTestBuilder;
-use \Bob\DbBuilder;
+use \Bob\DbTestBuilder;
 use \Bob\SeedBuilder;
 use \Bob\TestsBootstrapBuilder;
 
@@ -161,7 +161,7 @@ switch ($command) {
 
         foreach($entityList as $className)
         {
-            $bobDBFile = new DbBuilder($entityList, $config, $className);
+            $bobDBFile = new DbTestBuilder($entityList, $config, $className);
         }
     }
 

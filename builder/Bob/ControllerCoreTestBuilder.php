@@ -5,7 +5,7 @@ namespace Bob;
 use TwigGenerator\Builder\BaseBuilder;
 use TwigGenerator\Builder\Generator;
 
-class DbBuilder extends BaseBuilder
+class ControllerCoreTestBuilder extends BaseBuilder
 {
     function __construct($entityList, $config, $className)
     {
@@ -19,9 +19,10 @@ class DbBuilder extends BaseBuilder
         $corganisationWebSite = $config['corganisationWebSite'];
         $repository = $config['repository'];
 
+        $nameSpace = $className. '\\Tests\\' . $className . 'Bundle\\Core';
         $moduleName = $className;
 
-        $this->setOutputName('db.php');
+        $this->setOutputName($className.'ControllerCoreTest.php');
 
         $this->setVariable('phpVersion', $phpVersion);
         $this->setVariable('category', $category);
@@ -32,17 +33,18 @@ class DbBuilder extends BaseBuilder
 
         $this->setVariable('className', $className);
         $this->setVariable('tableName', strtolower($className));
+        $this->setVariable('extends', 'WebTestCase');
         $this->setVariable('moduleName', $moduleName);
         $this->setVariable('author', $author);
         $this->setVariable('authorEmail', $authorEmail);
 
-        $generateDbFile = new Generator();
-        $generateDbFile->setTemplateDirs(array(__DIR__.'/Work/DbClassTemplate/',));
-        $generateDbFile->setMustOverwriteIfExists(true);
+        $generateControllerCoreTestFile = new Generator();
+        $generateControllerCoreTestFile->setTemplateDirs(array(__DIR__.'/Work/TestControllerCoreTemplate/',));
+        $generateControllerCoreTestFile->setMustOverwriteIfExists(true);
+        $generateControllerCoreTestFile->setVariables(array('namespace' => $nameSpace,));
 
-        $generateDbFile->addBuilder($this);
-        $generateDbFile->writeOnDisk(__DIR__.'/../../tests/'.$className.'/Tests/');
-        print("# Done Generating db.php file ".$className." ;) \n");
-
+        $generateControllerCoreTestFile->addBuilder($this);
+        $generateControllerCoreTestFile->writeOnDisk(__DIR__.'/../../tests/'.$className.'/Tests/'.$className.'Bundle/Core/');
+        print("# Done Generating Test file ".$className."RepositoryCoreTest ;) \n");
     }
 }
