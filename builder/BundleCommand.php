@@ -95,9 +95,9 @@ class BundleCommand extends Command
         $bobController = new ControllerBuilder($allEntities, $config, $className);
         $bobCoreRepository = new RepositoryCoreBuilder($allEntities, $config, $className);
         $bobCoreRepository = new RepositoryBuilder($allEntities, $config, $className);
-        $bobDbFile = new DbBuilder($allEntities);
+        $bobDbFile = new DbBuilder($allEntities, $className, $propertiesKeysValues);
         $bobDbMigrationFile = new DBMigrationBuilder($className, $propertiesKeysValues);
-        $bobTravisFile = new TravisBuilder($allEntities);
+        $bobTravisFile = new TravisBuilder($allEntities, $className, $propertiesKeysValues);
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
 

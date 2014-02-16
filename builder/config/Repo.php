@@ -20,7 +20,7 @@ class Repo
         $entitiesExist  = scandir($dir);
         $throwAway      = array_shift($entitiesExist);
         $throwAway      = array_shift($entitiesExist);
-        //$throwAway      = array_shift($entitiesExist);
+        $throwAway      = array_shift($entitiesExist);
         return $entitiesExist;
     }
 
