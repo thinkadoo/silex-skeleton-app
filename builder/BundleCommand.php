@@ -63,6 +63,24 @@ class BundleCommand extends Command
                 InputArgument::IS_ARRAY,
                 'What are the properties of the class?'
             )
+            ->addOption(
+                'migration',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, generate migration files'
+            )
+            ->addOption(
+                'sql',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, generate sql file'
+            )
+            ->addOption(
+                'travis',
+                null,
+                InputOption::VALUE_NONE,
+                'If set, generate travis file'
+            )
         ;
     }
 
@@ -70,6 +88,9 @@ class BundleCommand extends Command
     {
         $className = $input->getArgument('name');
         $properties = $input->getArgument('properties');
+        $migration = $input->getArgument('migration');
+        $sql = $input->getArgument('sql');
+        $travis = $input->getArgument('travis');
         $entityList = array($className);
 
         $propertiesKeysValues = array();
@@ -89,9 +110,6 @@ class BundleCommand extends Command
         $bobController = new ControllerBuilder($allEntities, $config, $className);
         $bobCoreRepository = new RepositoryCoreBuilder($allEntities, $config, $className);
         $bobCoreRepository = new RepositoryBuilder($allEntities, $config, $className);
-        $bobDbFile = new DbBuilder($allEntities, $className, $propertiesKeysValues);
-        $bobDbMigrationFile = new DBMigrationBuilder($className, $propertiesKeysValues);
-        $bobTravisFile = new TravisBuilder($allEntities, $className, $propertiesKeysValues);
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
 
@@ -103,5 +121,19 @@ class BundleCommand extends Command
         $bobDBFile = new DbTestBuilder($allEntities, $config, $className);
         $bobTestsBootstrapFile = new TestsBootstrapBuilder($allEntities);
 
+        if ($migration)
+        {
+            $bobDbMigrationFile = new DBMigrationBuilder($className, $propertiesKeysValues);
+        }
+
+        if ($sql)
+        {
+            $bobDbFile = new DbBuilder($allEntities, $className, $propertiesKeysValues);
+        }
+
+        if ($travis)
+        {
+            $bobTravisFile = new TravisBuilder($allEntities, $className, $propertiesKeysValues);
+        }
     }
 }
