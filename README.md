@@ -76,6 +76,14 @@ Finally for code standards:
 $ ./vendor/bin/phpcs ./src/ --standard=PSR2
 ```
 
+Console API:
+
+``` sh
+php app/console generate:bundle Yum id:int name:string surname:string
+php app/console generate:bundle Yam id:int name:string surname:string
+php app/console generate:bundle Yoo id:int name:string surname:string
+```
+
 To generate some code:
 
 ``` sh
@@ -97,12 +105,6 @@ $ ./testbuilder/buildtest testrepositories Yum Yam Yoo
 $ ./testbuilder/buildtest testrepositorycores Yum Yam Yoo
 $ ./testbuilder/buildtest testcontrollercores Yum Yam Yoo
 ```
-
-New console API:
-
-php app/console generate:bundle Yum id:int name:string surname:string
-php app/console generate:bundle Yam id:int name:string surname:string
-php app/console generate:bundle Yoo id:int name:string surname:string
 
 Final
 -----
