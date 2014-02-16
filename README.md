@@ -84,28 +84,6 @@ php app/console generate:bundle Yam id:int name:string surname:string
 php app/console generate:bundle Yoo id:int name:string surname:string
 ```
 
-To generate some code:
-
-``` sh
-$ ./builder/build bundles Yum Yam Yoo
-$ ./builder/build cores Yum Yam Yoo
-$ ./builder/build controllers Yum Yam Yoo
-$ ./builder/build repositories Yum Yam Yoo
-$ ./builder/build corecontrollers Yum Yam Yoo
-$ ./builder/build corerepositorie Yum Yam Yoo
-```
-
-To generate some tests:
-
-``` sh
-$ ./testbuilder/buildtest testbundles Yum Yam Yoo
-$ ./testbuilder/buildtest testcores Yum Yam Yoo
-$ ./testbuilder/buildtest testcontrollers Yum Yam Yoo
-$ ./testbuilder/buildtest testrepositories Yum Yam Yoo
-$ ./testbuilder/buildtest testrepositorycores Yum Yam Yoo
-$ ./testbuilder/buildtest testcontrollercores Yum Yam Yoo
-```
-
 Final
 -----
 Take your time and look around the code to understand more and do not hesitate to let me know if you have an idea how to improve this.
