@@ -7,12 +7,13 @@ use TwigGenerator\Builder\Generator;
 
 class SeedTestBuilder extends BaseBuilder
 {
-    function __construct($entityList, $config, $className)
+    function __construct($className, $properties)
     {
         parent::__construct();
 
         $this->setOutputName('seed'.$className.'.yml');
 
+        $this->setVariable('properties', $properties);
         $this->setVariable('className', $className);
         $this->setVariable('tableName', strtolower($className));
 
