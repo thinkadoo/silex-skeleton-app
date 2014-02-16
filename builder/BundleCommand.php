@@ -101,12 +101,13 @@ class BundleCommand extends Command
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
 
-        $bobControllerTestFile = new ControllerTestBuilder($entityList, $config, $className);
-        $bobControllerCoreTestFile = new ControllerCoreTestBuilder($entityList, $config, $className);
-        $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder($entityList, $config, $className);
-        $bobRepositoryTestFile = new RepositoryTestBuilder($entityList, $config, $className);
-        $bobSeedFile = new SeedTestBuilder($entityList, $config, $className);
-        $bobTestsBootstrapFile = new TestsBootstrapBuilder($entityList);
+        $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className);
+        $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className);
+        $bobRepositoryCoreTestFile = new RepositoryCoreTestBuilder($allEntities, $config, $className);
+        $bobRepositoryTestFile = new RepositoryTestBuilder($allEntities, $config, $className);
+        $bobSeedFile = new SeedTestBuilder($allEntities, $config, $className);
+        $bobDBFile = new DbTestBuilder($allEntities, $config, $className);
+        $bobTestsBootstrapFile = new TestsBootstrapBuilder($allEntities);
 
         if ($input->getOption('reflect')) {
             print_r($className, $propertiesKeysValues);
