@@ -3,11 +3,17 @@ user:
     id: 1
     name: "test_name_string"
     surname: "test_surname_string"
+    password: "test_password_string"
+    salt: "test_salt_string"
   -
     id: 2
     name: "test_name_string"
     surname: "test_surname_string"
+    password: "test_password_string"
+    salt: "test_salt_string"
   -
     id: 3
     name: "test_name_string"
     surname: "test_surname_string"
+    password: "test_password_string"
+    salt: "test_salt_string"

@@ -74,6 +74,7 @@ Finally for code standards:
 
 ``` sh
 $ ./vendor/bin/phpcs ./src/ --standard=PSR2
+$ ./vendor/bin/phpcs ./tests/ --standard=PSR2
 ```
 
 Console API:
