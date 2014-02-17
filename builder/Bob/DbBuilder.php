@@ -7,14 +7,12 @@ use TwigGenerator\Builder\Generator;
 
 class DbBuilder extends BaseBuilder
 {
-    function __construct($entities, $className, $properties)
+    function __construct($currentEntities)
     {
         parent::__construct();
 
         $this->setOutputName('db.sql');
-        $this->setVariable('entities', array_combine($entities, $entities));
-        $this->setVariable('className', $className);
-        $this->setVariable('properties', $properties);
+        $this->setVariable('currentEntities', $currentEntities);
 
         $generateDb = new Generator();
         $generateDb->setTemplateDirs(array(__DIR__.'/Work/DbTemplate/',));

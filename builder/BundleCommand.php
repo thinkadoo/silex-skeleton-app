@@ -128,7 +128,8 @@ class BundleCommand extends Command
 
         if ($sql)
         {
-            $bobDbFile = new DbBuilder($allEntities, $className, $propertiesKeysValues);
+            $currentEntities = $repo->getExistingEntities();
+            $bobDbFile = new DbBuilder($currentEntities);
         }
 
         if ($travis)

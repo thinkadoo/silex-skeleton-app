@@ -72,7 +72,7 @@
         $client->request('GET', "/$this->controllerName/");
         $actual = count(json_decode($client->getResponse()->getContent(), true));
 
-    $this->assertGreaterThan($expected, $actual);
+        $this->assertGreaterThan($expected, $actual);
     }
 
     /**
