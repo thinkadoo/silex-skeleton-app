@@ -79,8 +79,8 @@ $ ./vendor/bin/phpcs ./src/ --standard=PSR2
 Console API:
 
 ``` sh
-php app/console generate:bundle Yum name:string surname:string --sql
-php app/console generate:bundle Yam name:string surname:string --travis
+php app/console generate:bundle Yoo name:string surname:string --sql
+php app/console generate:bundle Yoo name:string surname:string --travis
 php app/console generate:bundle Yoo name:string surname:string --migration
 ```
 
