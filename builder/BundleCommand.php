@@ -134,7 +134,8 @@ class BundleCommand extends Command
 
         if ($travis)
         {
-            $bobTravisFile = new TravisBuilder($allEntities, $className, $propertiesKeysValues);
+            $currentEntities = $repo->getExistingEntities();
+            $bobTravisFile = new TravisBuilder($currentEntities);
         }
     }
 }

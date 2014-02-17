@@ -7,14 +7,13 @@ use TwigGenerator\Builder\Generator;
 
 class TravisBuilder extends BaseBuilder
 {
-    function __construct($entities, $className, $properties)
+    function __construct($currentEntities)
     {
         parent::__construct();
 
         $this->setOutputName('.travis.yml');
-        $this->setVariable('entities', array_combine($entities, $entities));
-        $this->setVariable('className', $className);
-        $this->setVariable('properties', $properties);
+
+        $this->setVariable('currentEntities', $currentEntities);
 
         $generateTravis = new Generator();
         $generateTravis->setTemplateDirs(array(__DIR__.'/Work/TravisTemplate/',));

@@ -12,6 +12,7 @@ class DbBuilder extends BaseBuilder
         parent::__construct();
 
         $this->setOutputName('db.sql');
+
         $this->setVariable('currentEntities', $currentEntities);
 
         $generateDb = new Generator();
