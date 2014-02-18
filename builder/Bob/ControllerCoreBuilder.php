@@ -16,7 +16,7 @@ class ControllerCoreBuilder extends BaseBuilder
         $organisation = $config['organisation'];
         $author = $config['author'];
         $authorEmail = $config['authorEmail'];
-        $corganisationWebSite = $config['corganisationWebSite'];
+        $organisationWebSite = $config['organisationWebSite'];
         $repository = $config['repository'];
 
         $nameSpace = $className. '\\' . $className . 'Bundle\\Core';
@@ -28,7 +28,7 @@ class ControllerCoreBuilder extends BaseBuilder
         $this->setVariable('category', $category);
         $this->setVariable('author', $author);
         $this->setVariable('organisation', $organisation);
-        $this->setVariable('organisationWebSite', $corganisationWebSite);
+        $this->setVariable('organisationWebSite', $organisationWebSite);
         $this->setVariable('repository', $repository);
 
         $this->setVariable('className', $className);

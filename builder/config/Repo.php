@@ -14,7 +14,7 @@ class Repo
     'organisation' => 'Thinkadoo',
     'author' => 'Andre Venter',
     'authorEmail' => 'andre.n.venter@gmail.com',
-    'corganisationWebSite' => 'http://think-a-doo.net',
+    'organisationWebSite' => 'http://think-a-doo.net',
     'repository' => 'https://github.com/thinkadoo/silex-skeleton-rest.git'
     );
 

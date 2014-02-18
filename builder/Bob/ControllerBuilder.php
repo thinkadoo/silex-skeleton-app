@@ -19,7 +19,7 @@ class ControllerBuilder extends BaseBuilder
         $organisation = $config['organisation'];
         $author = $config['author'];
         $authorEmail = $config['authorEmail'];
-        $organisationWebSite = $config['corganisationWebSite'];
+        $organisationWebSite = $config['organisationWebSite'];
         $repository = $config['repository'];
 
         $this->setOutputName($className.'Controller.php');
