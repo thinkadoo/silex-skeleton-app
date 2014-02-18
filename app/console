@@ -2,7 +2,7 @@
 <?php
 // application.php
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/../builder/bootstrap.php';
 
 require_once __DIR__ . '/../builder/BundleCommand.php';
 
