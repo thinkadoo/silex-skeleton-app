@@ -2,8 +2,6 @@
 
 namespace config;
 
-require_once __DIR__.'/../../vendor/autoload.php';
-
 use Symfony\Component\Yaml\Parser;
 
 class Repo
