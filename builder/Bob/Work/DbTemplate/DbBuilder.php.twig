@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS `restdb`;
 {% for itemKey,itemVal in entity %}
 {% for itKey,itVal in itemVal %}
 {% if loop.first %}
-CREATE TABLE IF NOT EXISTS restdb.{{ itemKey }} (id int(11) NOT NULL AUTO_INCREMENT,{% for key,value in itVal %}{% if not loop.first %} {{ key }} {% for type in (value|split('_')) %}{% if loop.last %}{% if type == 'string' %}varchar(255) DEFAULT NULL,{% endif %}{% endif %}{% endfor %}{% endif %}{% endfor %} PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS restdb.{{ itemKey }} (id int(11) NOT NULL AUTO_INCREMENT,{% for key,value in itVal %}{% if not loop.first %} {{ key }} {% for type in (value|split('_')) %}{% if loop.last %}{% if type == 'string' %}varchar(255) DEFAULT NULL,{% elseif type == 'integer' %}int(11) DEFAULT NULL,{% endif %}{% endif %}{% endfor %}{% endif %}{% endfor %} PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 {% endif %}
 INSERT INTO restdb.{{ itemKey }} VALUES(null, {% for key,value in itVal %}{% if not loop.first %}'{{ value }}'{% if not loop.last %}, {% endif %}{% endif %}{% endfor %});
 {% endfor %}
@@ -18,7 +18,7 @@ CREATE DATABASE IF NOT EXISTS `resttestdb`;
 {% for itemKey,itemVal in entity %}
 {% for itKey,itVal in itemVal %}
 {% if loop.first %}
-CREATE TABLE IF NOT EXISTS resttestdb.{{ itemKey }} (id int(11) NOT NULL AUTO_INCREMENT,{% for key,value in itVal %}{% if not loop.first %} {{ key }} {% for type in (value|split('_')) %}{% if loop.last %}{% if type == 'string' %}varchar(255) DEFAULT NULL,{% endif %}{% endif %}{% endfor %}{% endif %}{% endfor %} PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS resttestdb.{{ itemKey }} (id int(11) NOT NULL AUTO_INCREMENT,{% for key,value in itVal %}{% if not loop.first %} {{ key }} {% for type in (value|split('_')) %}{% if loop.last %}{% if type == 'string' %}varchar(255) DEFAULT NULL,{% elseif type == 'integer' %}int(11) DEFAULT NULL,{% endif %}{% endif %}{% endfor %}{% endif %}{% endfor %} PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 {% endif %}
 INSERT INTO resttestdb.{{ itemKey }} VALUES(null, {% for key,value in itVal %}{% if not loop.first %}'{{ value }}'{% if not loop.last %}, {% endif %}{% endif %}{% endfor %});
 {% endfor %}
