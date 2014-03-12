@@ -46,22 +46,22 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class BundleCommand extends Command
+class RestBundleCommand extends Command
 {
     protected function configure()
     {
         $this
-            ->setName('generate:bundle')
-            ->setDescription('Generate a bundle')
+            ->setName('generate:restbundle')
+            ->setDescription('Generate a rest bundle')
             ->addArgument(
                 'name',
                 InputArgument::OPTIONAL,
-                'What class do you want to generate?'
+                'What rest class do you want to generate?'
             )
             ->addArgument(
                 'properties',
                 InputArgument::IS_ARRAY,
-                'What are the properties of the class?'
+                'What are the properties of the rest class?'
             )
             ->addOption(
                 'migration',

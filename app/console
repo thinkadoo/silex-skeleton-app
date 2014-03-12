@@ -4,7 +4,8 @@
 
 require_once __DIR__ . '/../builder/bootstrap.php';
 
-require_once __DIR__ . '/../builder/BundleCommand.php';
+require_once __DIR__ . '/../builder/RestBundleCommand.php';
+require_once __DIR__ . '/../builder/AppBundleCommand.php';
 
 use Symfony\Component\Console\Application;
 
@@ -12,6 +13,7 @@ use Builder\BundleCommand;
 
 $application = new Application();
 
-$application->add(new BundleCommand);
+$application->add(new RestBundleCommand);
+$application->add(new AppBundleCommand);
 
 $application->run();
