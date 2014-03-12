@@ -65,6 +65,15 @@
         $targetRepository = "{{ className }}\\{{ className }}Bundle\\Repository\\" . $this->repository . "Repository";
 
         /**
+         * crud
+         */
+            $controller->get("/crud", function() use ($app, $targetRepository) {
+            $xcrud = Xcrud::get_instance(strtolower('{{ fieldName }}'));
+            $xcrud->table(strtolower('{{ fieldName }}'));
+            return $xcrud;
+        });
+
+        /**
          * get
          */
         $controller->get("/", function() use ($app, $targetRepository) {
