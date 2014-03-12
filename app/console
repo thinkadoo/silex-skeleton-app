@@ -9,7 +9,8 @@ require_once __DIR__ . '/../builder/AppBundleCommand.php';
 
 use Symfony\Component\Console\Application;
 
-use Builder\BundleCommand;
+use Builder\RestBundleCommand;
+use Builder\AppBundleCommand;
 
 $application = new Application();
 
