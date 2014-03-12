@@ -68,8 +68,8 @@
          * crud
          */
             $controller->get("/crud", function() use ($app, $targetRepository) {
-            $xcrud = Xcrud::get_instance(strtolower('{{ fieldName }}'));
-            $xcrud->table(strtolower('{{ fieldName }}'));
+            $xcrud = Xcrud::get_instance('{{ fieldName }}');
+            $xcrud->table('{{ fieldName }}');
             return $xcrud;
         });
 
