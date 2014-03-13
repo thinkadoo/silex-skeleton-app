@@ -174,13 +174,24 @@
     public function testUpdateInputId2NameFooBar()
     {
         $inputId = 2;
-        $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'Foo Bar');
+        $whatIsThere = $this->repositoryCore->find($inputId);
+
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
+        }else{
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'Foo Bar');
+        }
 
         $this->repositoryCore->update($inputId, $inputParams);
         $repositoryCore = $this->repositoryCore->find($inputId);
 
-        $expected = 'Foo Bar';
-        $actual = $repositoryCore[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'Foo Bar';
+        }
+
+        $actual = $repositoryCore['name'];
         $this->assertEquals($expected, $actual);
     }
 
