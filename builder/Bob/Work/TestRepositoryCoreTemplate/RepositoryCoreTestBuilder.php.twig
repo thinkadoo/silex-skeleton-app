@@ -202,14 +202,28 @@
      */
     public function testInsertInputNameFooBar()
     {
-        $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'Foo Bar');
+        $inputId = 2;
+        $whatIsThere = $this->repositoryCore->find($inputId);
+
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
+        }else{
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'Foo Bar');
+        }
+
         $this->repositoryCore->insert($inputParams);
         $lastInsertId = $this->db->lastInsertId();
         $repositoryCore = $this->repositoryCore->find($lastInsertId);
 
-        $expected = 'Foo Bar';
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'Foo Bar';
+        }
+
         $actual = $repositoryCore[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
 
         $this->assertEquals($expected, $actual);
     }
+
 {% endblock %}
