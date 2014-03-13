@@ -26,9 +26,9 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    {% for item in items %}
-                        <li><a href="../{{ item | lower }}/crud">{{ item }}</a></li>
-                    {% endfor %}
+{% for item in items %}
+                    <li><a href="../{{ item | lower }}/crud">{{ item }}</a></li>
+{% endfor %}
                 </ul>
             </li>
         </ul>
@@ -37,7 +37,7 @@
 
 <div class="col-md-12">
 
-    {{ xcrud | raw }}
+    {{ '{{ xcrud | raw }}' }}
 
 </div>
 
