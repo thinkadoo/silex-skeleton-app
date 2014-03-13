@@ -159,7 +159,7 @@
     public function testUpdateInputId2NameNewUser()
     {
         $inputId = 2;
-        $whatIsThere = $this->userRepository->find($inputId);
+        $whatIsThere = $this->{{ tableName }}Repository->find($inputId);
 
         if ($whatIsThere['name'] == '0'){
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
