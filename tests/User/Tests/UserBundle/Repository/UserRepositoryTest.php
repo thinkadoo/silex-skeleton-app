@@ -116,8 +116,14 @@ class UserRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     public function testFindInputId1OutputNameDownloadSilexSkeletonRest()
     {
         $inputId = 1;
+        $whatIsThere = $this->userRepository->find($inputId);
 
-        $expected = 'test_'.'name'.'_string';
+        if ($whatIsThere['name'] == '0'){
+            $expected = '0';
+        }else{
+            $expected = 'test_'.'name'.'_string';
+        }
+
         $User = $this->userRepository->find($inputId);
         $actual = $User['name'];
 
@@ -178,12 +184,23 @@ class UserRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
     public function testUpdateInputId2NameNewUser()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'New User');
+        $whatIsThere = $this->userRepository->find($inputId);
+
+        if ($whatIsThere['name'] == '0'){
+            $inputParams = array('name' => 1);
+        }else{
+            $inputParams = array('name' => 'New User');
+        }
 
         $this->userRepository->update($inputId, $inputParams);
         $UserRepository = $this->userRepository->find($inputId);
 
-        $expected = 'New User';
+        if ($whatIsThere['name'] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'New User';
+        }
+
         $actual = $UserRepository['name'];
         $this->assertEquals($expected, $actual);
     }
@@ -195,12 +212,25 @@ class UserRepositoryTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testInsertInputNameNewUser()
     {
-        $inputParams = array('name' => 'New User');
+        $inputId = 2;
+        $whatIsThere = $this->userRepository->find($inputId);
+
+        if ($whatIsThere['name'] == '0'){
+            $inputParams = array('name' => 1);
+        }else{
+            $inputParams = array('name' => 'New User');
+        }
+
         $this->userRepository->insert($inputParams);
         $lastInsertId = $this->db->lastInsertId();
         $UserRepository = $this->userRepository->find($lastInsertId);
 
-        $expected = 'New User';
+        if ($whatIsThere['name'] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'New User';
+        }
+
         $actual = $UserRepository['name'];
 
         $this->assertEquals($expected, $actual);

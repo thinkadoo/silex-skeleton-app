@@ -199,12 +199,23 @@ class UserRepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     public function testUpdateInputId2NameFooBar()
     {
         $inputId = 2;
-        $inputParams = array('name' => 'Foo Bar');
+        $whatIsThere = $this->repositoryCore->find($inputId);
+
+        if ($whatIsThere['name'] == '0'){
+            $inputParams = array('name' => 1);
+        }else{
+            $inputParams = array('name' => 'Foo Bar');
+        }
 
         $this->repositoryCore->update($inputId, $inputParams);
         $repositoryCore = $this->repositoryCore->find($inputId);
 
-        $expected = 'Foo Bar';
+        if ($whatIsThere['name'] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'Foo Bar';
+        }
+
         $actual = $repositoryCore['name'];
         $this->assertEquals($expected, $actual);
     }
@@ -216,12 +227,25 @@ class UserRepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
      */
     public function testInsertInputNameFooBar()
     {
-        $inputParams = array('name' => 'Foo Bar');
+        $inputId = 2;
+        $whatIsThere = $this->repositoryCore->find($inputId);
+
+        if ($whatIsThere['name'] == '0'){
+            $inputParams = array('name' => 1);
+        }else{
+            $inputParams = array('name' => 'Foo Bar');
+        }
+
         $this->repositoryCore->insert($inputParams);
         $lastInsertId = $this->db->lastInsertId();
         $repositoryCore = $this->repositoryCore->find($lastInsertId);
 
-        $expected = 'Foo Bar';
+        if ($whatIsThere['name'] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'Foo Bar';
+        }
+
         $actual = $repositoryCore['name'];
 
         $this->assertEquals($expected, $actual);
