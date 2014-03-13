@@ -29,7 +29,7 @@
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>'test_{{ key }}_{{ value }}'{% if not loop.last %},{% endif %}{% endfor %});
+        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>{% if value == 'string' %}'test_{{ key }}_{{ value }}'{% endif %}{% if value == 'integer' %}'0'{% endif %}{% if not loop.last %},{% endif %}{% endfor %});
 
         $actual = $data[1];
         $this->assertSame($expected, $actual);
@@ -48,7 +48,7 @@
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array('id' => '1', {% for key,value in properties %}'{{ key }}'=>'test_{{ key }}_{{ value }}'{% if not loop.last %},{% endif %}{% endfor %});
+        $expected = array('id' => '1', {% for key,value in properties %}'{{ key }}'=>{% if value == 'string' %}'test_{{ key }}_{{ value }}'{% endif %}{% if value == 'integer' %}'0'{% endif %}{% if not loop.last %},{% endif %}{% endfor %});
 
         $actual = $data;
         $this->assertSame($expected, $actual);
@@ -90,7 +90,7 @@
         $client->request('PUT', "/$this->controllerName/$inputId", $input);
         $client->request('GET', "/$this->controllerName/$inputId");
 
-        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>'test_{{ tableName }}_name_Foo_Bar'{% if not loop.last %},{% endif %}{% endfor %});
+        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>{% if value == 'string' %}'test_{{ tableName }}_name_Foo_Bar'{% endif %}{% if value == 'integer' %}'0'{% endif %}{% if not loop.last %},{% endif %}{% endfor %});
 
         $actual = json_decode($client->getResponse()->getContent(), true);
 
