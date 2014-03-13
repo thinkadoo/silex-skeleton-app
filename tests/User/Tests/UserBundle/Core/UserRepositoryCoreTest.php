@@ -122,9 +122,9 @@ class UserRepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 1;
 
-        $expected = 'test_'.'name'.'_string';
+        $expected = array('id' => '1', 'name'=>'test_name_string','surname'=>'test_surname_string');
         $user = $this->repositoryCore->find($inputId);
-        $actual = $user['name'];
+        $actual = $user;
 
         $this->assertEquals($expected, $actual);
     }
@@ -138,9 +138,9 @@ class UserRepositoryCoreTest extends \PHPUnit_Extensions_Database_TestCase
     {
         $inputId = 2;
 
-        $expected = 'test_'.'name'.'_string';
+        $expected = array('id' => '2', 'name'=>'test_name_string','surname'=>'test_surname_string');
         $user = $this->repositoryCore->find($inputId);
-        $actual = $user['name'];
+        $actual = $user;
 
         $this->assertEquals($expected, $actual);
     }
