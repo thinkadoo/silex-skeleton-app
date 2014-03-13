@@ -12,6 +12,9 @@
  */
 namespace User\UserBundle\Core;
 
+require_once __DIR__.'/../../../../xcrud/xcrud.php';
+use Xcrud;
+
 use Silex\Application;
 use Silex\Route;
 use Silex\ControllerCollection;
@@ -91,6 +94,15 @@ class ControllerCore implements ControllerProviderInterface
         $controller = $this->controller;
 
         $targetRepository = "User\\UserBundle\\Repository\\" . $this->repository . "Repository";
+
+        /**
+         * crud
+         */
+            $controller->get("/crud", function() use ($app, $targetRepository) {
+            $xcrud = Xcrud::get_instance('user');
+            $xcrud->table('user');
+            return $xcrud;
+        });
 
         /**
          * get

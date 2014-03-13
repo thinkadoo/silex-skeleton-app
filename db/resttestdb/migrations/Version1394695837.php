@@ -5,7 +5,7 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Migrations\AbstractMigration,
     Doctrine\DBAL\Schema\Schema;
 
-class Version1392663883 extends AbstractMigration
+class Version1394695837 extends AbstractMigration
 {
     public function up(Schema $schema)
     {
@@ -18,8 +18,6 @@ class Version1392663883 extends AbstractMigration
         $table->addUniqueIndex(array('id'));
         $table->addColumn('name', 'string');
         $table->addColumn('surname', 'string');
-        $table->addColumn('password', 'string');
-        $table->addColumn('salt', 'string');
     }
 
     public function down(Schema $schema)

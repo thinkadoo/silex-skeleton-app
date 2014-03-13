@@ -53,7 +53,7 @@ class UserControllerCoreTest extends WebTestCase
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array('id' => '2', 'name'=>'test_name_string','surname'=>'test_surname_string','password'=>'test_password_string','salt'=>'test_salt_string');
+        $expected = array('id' => '2', 'name'=>'test_name_string','surname'=>'test_surname_string');
 
         $actual = $data[1];
         $this->assertSame($expected, $actual);
@@ -72,7 +72,7 @@ class UserControllerCoreTest extends WebTestCase
         $response = $client->getResponse();
         $data = json_decode($response->getContent(), true);
 
-        $expected = array('id' => '1', 'name'=>'test_name_string','surname'=>'test_surname_string','password'=>'test_password_string','salt'=>'test_salt_string');
+        $expected = array('id' => '1', 'name'=>'test_name_string','surname'=>'test_surname_string');
 
         $actual = $data;
         $this->assertSame($expected, $actual);
@@ -85,7 +85,7 @@ class UserControllerCoreTest extends WebTestCase
      */
     public function testPostInputNameFooBar()
     {
-        $input = array('name'=>'test_user_name_Foo_Bar','surname'=>'test_user_name_Foo_Bar','password'=>'test_user_name_Foo_Bar','salt'=>'test_user_name_Foo_Bar');
+        $input = array('name'=>'test_user_name_Foo_Bar','surname'=>'test_user_name_Foo_Bar');
 
         $client = static::createClient();
 
@@ -107,14 +107,14 @@ class UserControllerCoreTest extends WebTestCase
     public function testPutInputId2NameFooBar()
     {
         $inputId = "2";
-        $input = array('name'=>'test_user_name_Foo_Bar','surname'=>'test_user_name_Foo_Bar','password'=>'test_user_name_Foo_Bar','salt'=>'test_user_name_Foo_Bar');
+        $input = array('name'=>'test_user_name_Foo_Bar','surname'=>'test_user_name_Foo_Bar');
 
         $client = static::createClient();
 
         $client->request('PUT', "/$this->controllerName/$inputId", $input);
         $client->request('GET', "/$this->controllerName/$inputId");
 
-        $expected = array('id' => '2', 'name'=>'test_user_name_Foo_Bar','surname'=>'test_user_name_Foo_Bar','password'=>'test_user_name_Foo_Bar','salt'=>'test_user_name_Foo_Bar');
+        $expected = array('id' => '2', 'name'=>'test_user_name_Foo_Bar','surname'=>'test_user_name_Foo_Bar');
 
         $actual = json_decode($client->getResponse()->getContent(), true);
 
