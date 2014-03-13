@@ -2,15 +2,18 @@
   -
     id: 1
 {% for key,value in properties %}
-    {{ key }}: "test_{{ key }}_{{ value }}"
+    {{ key }}: {% if value == 'string' %}"test_{{ key }}_{{ value }}"{% endif %}{% if value == 'integer' %}"0"{% endif %}
+
 {% endfor %}
   -
     id: 2
 {% for key,value in properties %}
-    {{ key }}: "test_{{ key }}_{{ value }}"
+    {{ key }}: {% if value == 'string' %}"test_{{ key }}_{{ value }}"{% endif %}{% if value == 'integer' %}"0"{% endif %}
+
 {% endfor %}
   -
     id: 3
 {% for key,value in properties %}
-    {{ key }}: "test_{{ key }}_{{ value }}"
+    {{ key }}: {% if value == 'string' %}"test_{{ key }}_{{ value }}"{% endif %}{% if value == 'integer' %}"0"{% endif %}
+
 {% endfor %}

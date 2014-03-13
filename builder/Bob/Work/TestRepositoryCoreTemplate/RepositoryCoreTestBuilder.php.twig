@@ -97,9 +97,9 @@
     {
         $inputId = 1;
 
-        $expected = 'test_'.{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}.'_string';
+        $expected = array('id' => '1', {% for key,value in properties %}'{{ key }}'=>{% if value == 'string' %}'test_{{ key }}_{{ value }}'{% endif %}{% if value == 'integer' %}'0'{% endif %}{% if not loop.last %},{% endif %}{% endfor %});
         ${{ tableName }} = $this->repositoryCore->find($inputId);
-        $actual = ${{ tableName }}[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
+        $actual = ${{ tableName }};
 
         $this->assertEquals($expected, $actual);
     }
@@ -113,9 +113,9 @@
     {
         $inputId = 2;
 
-        $expected = 'test_'.{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}.'_string';
+        $expected = array('id' => '2', {% for key,value in properties %}'{{ key }}'=>{% if value == 'string' %}'test_{{ key }}_{{ value }}'{% endif %}{% if value == 'integer' %}'0'{% endif %}{% if not loop.last %},{% endif %}{% endfor %});
         ${{ tableName }} = $this->repositoryCore->find($inputId);
-        $actual = ${{ tableName }}[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
+        $actual = ${{ tableName }};
 
         $this->assertEquals($expected, $actual);
     }
