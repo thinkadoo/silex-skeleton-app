@@ -6,6 +6,10 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 
 $app['monolog']->addDebug('Testing the Monolog logging from /config/prod.php ');
 
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__.'/../../views',
+));
+
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',

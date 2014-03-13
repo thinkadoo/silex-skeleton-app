@@ -98,10 +98,13 @@ class ControllerCore implements ControllerProviderInterface
         /**
          * crud
          */
-            $controller->get("/crud", function() use ($app, $targetRepository) {
+        $controller->get("/crud", function() use ($app, $targetRepository) {
             $xcrud = Xcrud::get_instance('user');
             $xcrud->table('user');
-            return $xcrud;
+            return $app['twig']->render('xcrud.twig', array(
+                'xcrud' => $xcrud,
+                'className' => $this->repository
+            ));
         });
 
         /**

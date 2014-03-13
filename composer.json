@@ -14,7 +14,9 @@
         "silex/silex": "1.1.*",
         "symfony/class-loader": "2.1.*",
         "doctrine/dbal": "2.2.*",
-        "monolog/monolog": "1.7.0"
+        "monolog/monolog": "1.7.0",
+        "twig/twig": "v1.15.1",
+        "symfony/twig-bridge": "v2.4.2"
     },
     "require-dev":{
         "symfony/browser-kit"   : "2.1.*",

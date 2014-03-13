@@ -112,6 +112,7 @@ class AppBundleCommand extends Command
         $bobCoreRepository = new RepositoryBuilder($allEntities, $config, $className);
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
+        $bobXCRUDViewFile = new XCRUDViewBuilder.php($allEntities);
 
         $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
         $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);

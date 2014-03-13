@@ -67,10 +67,13 @@
         /**
          * crud
          */
-            $controller->get("/crud", function() use ($app, $targetRepository) {
+        $controller->get("/crud", function() use ($app, $targetRepository) {
             $xcrud = Xcrud::get_instance('{{ fieldName }}');
             $xcrud->table('{{ fieldName }}');
-            return $xcrud;
+            return $app['twig']->render('xcrud.twig', array(
+                'xcrud' => $xcrud,
+                'className' => $this->repository
+            ));
         });
 
         /**
