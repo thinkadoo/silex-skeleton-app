@@ -91,8 +91,14 @@
     public function testFindInputId1OutputNameDownloadSilexSkeletonRest()
     {
         $inputId = 1;
+        $whatIsThere = $this->{{ tableName }}Repository->find($inputId);
 
-        $expected = 'test_'.{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}.'_string';
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $expected = '0';
+        }else{
+            $expected = 'test_'.{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}.'_string';
+        }
+
         ${{ className }} = $this->{{ tableName }}Repository->find($inputId);
         $actual = ${{ className }}[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
 
@@ -150,15 +156,26 @@
      *
      * @return void
      */
-    public function testUpdateInputId2NameNew{{ className }}()
+    public function testUpdateInputId2NameNewUser()
     {
         $inputId = 2;
-        $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
+        $whatIsThere = $this->userRepository->find($inputId);
+
+        if ($whatIsThere['name'] == '0'){
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
+        }else{
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
+        }
 
         $this->{{ tableName }}Repository->update($inputId, $inputParams);
         ${{ className }}Repository = $this->{{ tableName }}Repository->find($inputId);
 
-        $expected = 'New {{ className }}';
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'New {{ className }}';
+        }
+
         $actual = ${{ className }}Repository[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
         $this->assertEquals($expected, $actual);
     }
@@ -170,12 +187,25 @@
      */
     public function testInsertInputNameNew{{ className }}()
     {
-        $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
+        $inputId = 2;
+        $whatIsThere = $this->{{ tableName }}Repository->find($inputId);
+
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
+        }else{
+            $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
+        }
+
         $this->{{ tableName }}Repository->insert($inputParams);
         $lastInsertId = $this->db->lastInsertId();
         ${{ className }}Repository = $this->{{ tableName }}Repository->find($lastInsertId);
 
-        $expected = 'New {{ className }}';
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
+            $expected = '1';
+        }else{
+            $expected = 'New {{ className }}';
+        }
+
         $actual = ${{ className }}Repository[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
 
         $this->assertEquals($expected, $actual);
