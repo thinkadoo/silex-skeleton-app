@@ -4,10 +4,8 @@ date_default_timezone_set('Africa/Johannesburg');
 
 return array(
     'driver'    => 'pdo_mysql',
-    'host'      => '127.0.0.1',
-    'port'      => '8889',
+    'host'      => '127.0.0.1:8889',
     'user'      => 'root',
     'password'  => '',
-    'dbname'    => 'resttestdb'
+    'dbname'    => 'restdb'
 );
-

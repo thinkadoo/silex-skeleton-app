@@ -1,4 +1,4 @@
 name: Doctrine Sandbox Migrations
 migrations_namespace: DoctrineMigrations
 table_name: doctrine_migration_versions
-migrations_directory: /Users/nomad/Projects/silex-skeleton-rest/db/resttestdb/migrations
+migrations_directory: /Users/nomad/Projects/silex-skeleton-app/db/resttestdb/migrations

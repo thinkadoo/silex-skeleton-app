@@ -47,6 +47,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use PDO;
 
 class RestBundleCommand extends Command
 {
@@ -127,6 +128,27 @@ class RestBundleCommand extends Command
         if ($migration)
         {
             $bobDbMigrationFile = new DBMigrationBuilder($className, $propertiesKeysValues);
+
+            // before you can run any migration - you need to drop the table that that migration affects
+            $tableToRemove = strtolower($className);
+
+            $db = new PDO('mysql:host=localhost;dbname=restdb', 'root', '');
+            $dropTable = $db->prepare("DROP TABLE IF EXISTS $tableToRemove");
+            $dropTable->execute();
+
+            $dbtest = new PDO('mysql:host=localhost;dbname=resttestdb', 'root', '');
+            $dropTestTable = $dbtest->prepare("DROP TABLE IF EXISTS $tableToRemove");
+            $dropTestTable->execute();
+
+            chdir(__DIR__ .'/../db/restdb/');
+            exec('php ./doctrine-migrations.phar migrations:status');
+            exec('php ./doctrine-migrations.phar migrations:migrate --no-interaction');
+
+            chdir('../');
+            chdir('resttestdb');
+            exec('php ./doctrine-migrations.phar migrations:status');
+            exec('php ./doctrine-migrations.phar migrations:migrate --no-interaction');
+            print_r("# Done Migrating your Databases to this Entity version ;) \n");
         }
 
         if ($sql)
