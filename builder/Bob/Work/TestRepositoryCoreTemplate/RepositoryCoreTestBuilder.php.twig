@@ -191,7 +191,7 @@
             $expected = 'Foo Bar';
         }
 
-        $actual = $repositoryCore['name'];
+        $actual = $repositoryCore[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}];
         $this->assertEquals($expected, $actual);
     }
 

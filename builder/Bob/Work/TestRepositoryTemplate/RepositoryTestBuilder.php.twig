@@ -161,7 +161,7 @@
         $inputId = 2;
         $whatIsThere = $this->{{ tableName }}Repository->find($inputId);
 
-        if ($whatIsThere['name'] == '0'){
+        if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
         }else{
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'New {{ className }}');
