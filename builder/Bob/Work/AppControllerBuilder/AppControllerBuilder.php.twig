@@ -5,6 +5,5 @@ $app->mount('/{{ item|lower }}', new {{ item }}\{{ item }}Bundle\Controller\{{ i
 {% endfor %}
 
 $app->get('/', function () use ($app) {
-return $app['twig']->render('welcome.twig', array(
-
-));
+        return $app['twig']->render('welcome.twig', array());
+});
