@@ -12,11 +12,4 @@ before_script:
 - pyrus install --force phpunit/DbUnit
 - phpenv rehash
 
-- mysql -e "CREATE DATABASE IF NOT EXISTS resttestdb;" -uroot;
-
-- mysql -e "CREATE TABLE IF NOT EXISTS resttestdb.user (id int(11) NOT NULL AUTO_INCREMENT, name varchar(255) DEFAULT NULL, surname varchar(255) DEFAULT NULL, PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8;" -uroot;
-- mysql -e "INSERT INTO resttestdb.user VALUES(null,'test_name_string','test_surname_string');" -uroot;
-- mysql -e "INSERT INTO resttestdb.user VALUES(null,'test_name_string','test_surname_string');" -uroot;
-- mysql -e "INSERT INTO resttestdb.user VALUES(null,'test_name_string','test_surname_string');" -uroot;
-
 script: phpunit -c app/
