@@ -104,6 +104,12 @@ class AppBundleCommand extends Command
 
         $repo = new Repo();
         $config = $repo->config;
+
+        $go = $repo->checkResevedTerms($propertiesKeysValues);
+        if(!$go){
+            die("Sorry thats not allowed! \n");
+        }
+
         $dir = $repo->getSourceDirectory();
         $entitiesExist = $repo->getExistingClasses($dir);
         $allEntities = array();

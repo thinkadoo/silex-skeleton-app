@@ -6,6 +6,8 @@ use Symfony\Component\Yaml\Parser;
 
 class Repo
 {
+    var $message =array();
+
     var $config = array(
     'phpVersion' => "5.3.21",
     'category' => 'Api_Rest_Implementation',
@@ -43,8 +45,38 @@ class Repo
         {
             $value = $yaml->parse(file_get_contents(__DIR__.'/../../tests/'.$folder.'/Tests/DataSet/'.$folder.'/seed'.$folder.'.yml'));
             $entitiesWithProperties[] = $value;
+
         }
 
         return $entitiesWithProperties;
     }
+
+    public function checkResevedTerms($properties)
+    {
+        $yaml = new Parser();
+        $terms = $yaml->parse(file_get_contents(__DIR__.'/reserved.yml'));
+
+        foreach ($properties as $key => $val){
+            $this->message [] = $this->propertyInList($key,$terms);
+        }
+
+        foreach ($this->message as $notAllowed){
+            if($notAllowed){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected function propertyInList($property,$terms)
+    {
+        foreach ($terms as $term){
+            if ((string)$property === (string)$term){
+                return true;
+            };
+        }
+    }
+
+
 } 
