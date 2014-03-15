@@ -32,6 +32,7 @@ class ControllerBuilder extends BaseBuilder
         $this->setVariable('repository', $repository);
 
         $this->setVariable('className', $className);
+        $this->setVariable('fieldName', strtolower($className));
         $this->setVariable('extends', 'ControllerCore');
         $this->setVariable('moduleName', $moduleName);
         $this->setVariable('author', $author);

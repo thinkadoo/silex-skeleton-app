@@ -18,7 +18,7 @@
         /**
          * crud
          */
-        $controller->get("/crud", function() use ($app, $targetRepository)
+        $controller->get("/crud", function() use ($app)
         {
             $xcrud = Xcrud::get_instance('{{ fieldName }}');
             $xcrud->table('{{ fieldName }}');
