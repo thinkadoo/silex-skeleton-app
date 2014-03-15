@@ -6,7 +6,8 @@ use Symfony\Component\Yaml\Parser;
 
 class Repo
 {
-    var $message =array();
+    var $reserved = array();
+    var $caseResults = array();
 
     var $config = array(
     'phpVersion' => "5.3.21",
@@ -57,11 +58,25 @@ class Repo
         $terms = $yaml->parse(file_get_contents(__DIR__.'/reserved.yml'));
 
         foreach ($properties as $key => $val){
-            $this->message [] = $this->propertyInList($key,$terms);
+            $this->caseResults [$key] = $this->checkUpperCase($key);
         }
 
-        foreach ($this->message as $notAllowed){
-            if($notAllowed){
+        foreach ($this->caseResults as $notAllowedCase){
+            if($notAllowedCase){
+                print_r($this->caseResults);
+                return false;
+            }
+        }
+
+        print_r($this->caseResults);
+
+        foreach ($properties as $key => $val){
+            $this->reserved [$key] = $this->propertyInList($key,$terms);
+        }
+
+        foreach ($this->reserved as $notAllowedWord){
+            if($notAllowedWord){
+                print_r($this->reserved);
                 return false;
             }
         }
@@ -75,6 +90,13 @@ class Repo
             if ((string)$property === (string)$term){
                 return true;
             };
+        }
+    }
+
+    protected function checkUpperCase($key)
+    {
+        if ($key !== strtolower($key)){
+            return true;
         }
     }
 

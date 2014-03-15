@@ -106,6 +106,7 @@ class AppBundleCommand extends Command
         $config = $repo->config;
 
         $go = $repo->checkResevedTerms($propertiesKeysValues);
+
         if(!$go){
             die("Sorry thats not allowed! \n");
         }
