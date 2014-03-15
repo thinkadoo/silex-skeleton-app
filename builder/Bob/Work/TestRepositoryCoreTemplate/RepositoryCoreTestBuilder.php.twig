@@ -178,7 +178,7 @@
 
         if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
-        }else{
+        } else {
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'Foo Bar');
         }
 
@@ -187,7 +187,7 @@
 
         if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
             $expected = '1';
-        }else{
+        } else {
             $expected = 'Foo Bar';
         }
 
@@ -207,7 +207,7 @@
 
         if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 1);
-        }else{
+        } else {
             $inputParams = array({% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %} => 'Foo Bar');
         }
 
@@ -217,7 +217,7 @@
 
         if ($whatIsThere[{% for key,value in properties %}{% if loop.first %}'{{ key }}'{% endif %}{% endfor %}] == '0'){
             $expected = '1';
-        }else{
+        } else {
             $expected = 'Foo Bar';
         }
 
