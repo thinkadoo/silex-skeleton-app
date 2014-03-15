@@ -12,6 +12,9 @@
  */
 {{ namespace is defined ? "namespace " ~ namespace ~ ";" : "" }}
 
+require_once __DIR__.'/../../../../xcrud/xcrud.php';
+
+use Xcrud;
 use Silex\Application;
 
 use {{ className }}\{{ className }}Bundle\Core\ControllerCore;

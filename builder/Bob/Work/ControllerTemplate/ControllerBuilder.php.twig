@@ -11,12 +11,26 @@
      */
     public function connect(Application $app)
     {
+        // @codingStandardsIgnoreStart
+
         $controller = $this->controller;
 
-        // In here, you can write additional controller
-        // or overwrite existing controller in ControllerCore
+        /**
+         * crud
+         */
+        $controller->get("/crud", function() use ($app, $targetRepository)
+        {
+            $xcrud = Xcrud::get_instance('{{ fieldName }}');
+            $xcrud->table('{{ fieldName }}');
+            return $app['twig']->render('xcrud.twig', array(
+                'xcrud' => $xcrud,
+                'className' => $this->repository
+            ));
+        });
 
         parent::connect($app);
         return $controller;
+
+        // @codingStandardsIgnoreEnd
     }
 {% endblock %}

@@ -65,21 +65,10 @@
         $targetRepository = "{{ className }}\\{{ className }}Bundle\\Repository\\" . $this->repository . "Repository";
 
         /**
-         * crud
-         */
-        $controller->get("/crud", function() use ($app, $targetRepository) {
-            $xcrud = Xcrud::get_instance('{{ fieldName }}');
-            $xcrud->table('{{ fieldName }}');
-            return $app['twig']->render('xcrud.twig', array(
-                'xcrud' => $xcrud,
-                'className' => $this->repository
-            ));
-        });
-
-        /**
          * get
          */
-        $controller->get("/", function() use ($app, $targetRepository) {
+        $controller->get("/", function() use ($app, $targetRepository)
+        {
             $repository = new $targetRepository($app['db']);
             $results = $repository->findAll();
 
@@ -89,7 +78,8 @@
         /**
          * get/id
          */
-        $controller->get("/{id}", function($id) use ($app, $targetRepository) {
+        $controller->get("/{id}", function($id) use ($app, $targetRepository)
+        {
             $repository = new $targetRepository($app['db']);
             $result = $repository->find($id);
 
@@ -100,17 +90,19 @@
         /**
          * post
          */
-        $controller->post("/", function(Request $request) use ($app, $targetRepository) {
-        $repository = new $targetRepository($app['db']);
-        $params = $request->request->all();
+        $controller->post("/", function(Request $request) use ($app, $targetRepository)
+        {
+            $repository = new $targetRepository($app['db']);
+            $params = $request->request->all();
 
-        return $app->json($repository->insert($params));
+            return $app->json($repository->insert($params));
         });
 
         /**
          * put/id
          */
-        $controller->put("/{id}", function(Request $request, $id) use ($app, $targetRepository) {
+        $controller->put("/{id}", function(Request $request, $id) use ($app, $targetRepository)
+        {
             $repository = new $targetRepository($app['db']);
             $params = $request->request->all();
 
@@ -121,7 +113,8 @@
         /**
          * delete/id
          */
-        $controller->delete("/{id}", function($id) use ($app, $targetRepository) {
+        $controller->delete("/{id}", function($id) use ($app, $targetRepository)
+        {
             $repository = new $targetRepository($app['db']);
 
             return $app->json($repository->delete($id));
