@@ -6,3 +6,23 @@
 h2, .h2 {
     font-size: 24px;
 }
+
+.graph-panel {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    margin-right: 12px;
+    padding: 0;
+}
+
+.graphs {
+    margin-top: 14px;
+    background-color: #f8f8f8;
+    border-radius: 6px;
+    padding-left: 12px;
+    padding-right: 0px;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
