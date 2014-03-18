@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Manager</a>
+        <a class="navbar-brand" href="{{ "{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}{% else %}{{ app.request.getRequestURI() }}/../../{% endif %}" }}">Manager</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -17,7 +17,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
                 <ul class="dropdown-menu">
 {% for item in items %}
-                    <li><a href="../{{ item | lower }}/crud">{{ item }}</a></li>
+                    <li><a href="{{ "{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}" }}{{ item | lower }}/crud{{ "{% else %}{% endif %}" }}">{{ item }}</a></li>
 {% endfor %}
                 </ul>
             </li>
