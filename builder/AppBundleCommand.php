@@ -11,6 +11,9 @@ require_once 'Bob/DBMigrationBuilder.php';
 require_once 'Bob/RepositoryBuilder.php';
 require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/TravisBuilder.php';
+require_once 'Bob/AppConfigDevBuilder.php';
+require_once 'Bob/AppConfigProdBuilder.php';
+require_once 'Bob/ViewBuilder.php';
 require_once 'config/Repo.php';
 
 require_once 'Bob/ControllerTestBuilder.php';
@@ -32,6 +35,9 @@ use Bob\TravisBuilder;
 use Bob\AppControllerBuilder;
 use Bob\AppBootstrapBuilder;
 use Bob\XCRUDViewBuilder;
+use Bob\ViewBuilder;
+use Bob\AppConfigDevBuilder;
+use Bob\AppConfigProdBuilder;
 
 use \Bob\ControllerTestBuilder;
 use \Bob\ControllerCoreTestBuilder;
@@ -123,6 +129,9 @@ class AppBundleCommand extends Command
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
         $bobXCRUDViewFile = new XCRUDViewBuilder($allEntities);
+        $bobViewFile = new ViewBuilder($allEntities,$className);
+        $bobAppConfigDevBuilder = new AppConfigDevBuilder($allEntities);
+        $bobAppConfigProdBuilder = new AppConfigProdBuilder($allEntities);
 
         $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
         $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
