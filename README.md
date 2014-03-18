@@ -45,8 +45,6 @@ For a code coverage report in html, you can just run this command at your main d
 $ $ ./vendor/bin/phpunit -c app/ --coverage-html coverage
 ```
 
-
-
 Standards
 ---------
 
