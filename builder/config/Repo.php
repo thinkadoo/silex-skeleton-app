@@ -68,8 +68,6 @@ class Repo
             }
         }
 
-        print_r($this->caseResults);
-
         foreach ($properties as $key => $val){
             $this->reserved [$key] = $this->propertyInList($key,$terms);
         }
