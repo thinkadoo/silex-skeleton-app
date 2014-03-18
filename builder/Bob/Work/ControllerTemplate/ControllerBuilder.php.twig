@@ -22,7 +22,7 @@
         {
             $xcrud = Xcrud::get_instance('{{ fieldName }}');
             $xcrud->table('{{ fieldName }}');
-            return $app['twig']->render('xcrud.twig', array(
+            return $app['twig']->render('{{ fieldName }}.twig', array(
                 'xcrud' => $xcrud,
                 'className' => $this->repository
             ));

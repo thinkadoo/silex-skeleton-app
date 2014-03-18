@@ -12,7 +12,7 @@ class ViewBuilder extends BaseBuilder
     {
         parent::__construct();
 
-        $this->setOutputName(strtolower($className).'view.php.twig');
+        $this->setOutputName(strtolower($className).'.twig');
 
         $this->setVariable('className', $className);
 

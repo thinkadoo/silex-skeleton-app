@@ -5,22 +5,22 @@ namespace Bob;
 use TwigGenerator\Builder\BaseBuilder;
 use TwigGenerator\Builder\Generator;
 
-class XCRUDViewBuilder extends BaseBuilder
+class MenuViewBuilder extends BaseBuilder
 {
     function __construct($entityList)
     {
         parent::__construct();
 
-        $this->setOutputName('xcrud.twig');
+        $this->setOutputName('menu.twig');
         $this->setVariable('items', array_combine($entityList, $entityList));
 
         $generateAppBootstrap = new Generator();
-        $generateAppBootstrap->setTemplateDirs(array(__DIR__.'/Work/XCRUDViewTemplate/',));
+        $generateAppBootstrap->setTemplateDirs(array(__DIR__.'/Work/MenuViewTemplate/',));
         $generateAppBootstrap->setMustOverwriteIfExists(true);
 
         $generateAppBootstrap->addBuilder($this);
 
         $generateAppBootstrap->writeOnDisk(__DIR__.'/../../views/');
-        print("# Done Generating XCRUD View File ;) \n");
+        print("# Done Generating Menu Template File ;) \n");
     }
 }

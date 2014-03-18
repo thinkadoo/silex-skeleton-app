@@ -11,7 +11,7 @@ class AppConfigProdBuilder extends BaseBuilder
     {
         parent::__construct();
 
-        $this->setOutputName('bootstrap.php');
+        $this->setOutputName('prod.php');
         $this->setVariable('items', array_combine($entityList, $entityList));
 
         $generateAppBootstrap = new Generator();
@@ -20,7 +20,7 @@ class AppConfigProdBuilder extends BaseBuilder
 
         $generateAppBootstrap->addBuilder($this);
 
-        $generateAppBootstrap->writeOnDisk(__DIR__.'/../../app/');
+        $generateAppBootstrap->writeOnDisk(__DIR__.'/../../app/config');
         print("# Done Generating App Config Prod File ;) \n");
     }
 }
