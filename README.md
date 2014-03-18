@@ -36,6 +36,17 @@ For testing purposes, you can just run this command at your main directory:
 $ ./vendor/bin/phpunit -c app/
 ```
 
+Code Coverage
+-------
+
+For a code coverage report in html, you can just run this command at your main directory:
+
+``` sh
+$ $ ./vendor/bin/phpunit -c app/ --coverage-html coverage
+```
+
+
+
 Standards
 ---------
 
