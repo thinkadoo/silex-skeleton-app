@@ -52,15 +52,17 @@ Generation
 Console API:
 
 ``` sh
-php app/console generate:restbundle User name:string surname:string --sql
-php app/console generate:restbundle User name:string surname:string --travis
-php app/console generate:restbundle User name:string surname:string --migration
+php app/console generate:restbundle User user_name:string user_surname:string --sql
+php app/console generate:restbundle User user_name:string user_surname:string --travis
+php app/console generate:restbundle User user_name:string user_surname:string --migration
+php app/console generate:restbundle User user_name:string user_surname:string --migration --sql
 ```
 
 Console APP:
 
 ``` sh
-php app/console generate:appbundle User name:string surname:string --sql
-php app/console generate:appbundle User name:string surname:string --travis
-php app/console generate:appbundle User name:string surname:string --migration
+php app/console generate:appbundle User user_name:string user_surname:string --sql
+php app/console generate:appbundle User user_name:string user_surname:string --travis
+php app/console generate:appbundle User user_name:string user_surname:string --migration
+php app/console generate:appbundle User user_name:string user_surname:string --migration --sql
 ```
