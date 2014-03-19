@@ -11,7 +11,7 @@ For the UI Application to work, you need to purchase xCRUD http://xcrud.com/
 Installation
 ------------
 
-You need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases. Why do we need to have 2 same database? It's not compulsory. The idea is just to differentiate between our development and our test database environment.
+You need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases. It separates the production/development and test database environment.
 
 Change the configurations to suit your environment.
 
