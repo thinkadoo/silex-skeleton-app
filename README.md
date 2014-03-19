@@ -11,7 +11,11 @@ For the UI Application to work, you need to purchase xCRUD http://xcrud.com/
 Installation
 ------------
 
-You need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases. It separates the production/development and test database environment.
+Create two empty dababases: restdb and resttestdb.
+This separates the production/development and test database environment.
+
+If you generate code the dbs above need to exist.
+To run unit tests you need to include the --sql option and you need to put the content of /db/db.sql into the sql command of your MySQL database. It will create 2 databases.
 
 Change the configurations to suit your environment.
 
@@ -25,7 +29,7 @@ Change the configurations to suit your environment.
  * /editors
  * /uploads
 
- Edit the /xcrud/xcrud_config.php file to point to your restdb database with the same details as you used to set up dev.php and prod.php above.
+ Edit the /xcrud/xcrud_config.php file to point to your restdb and resttestdb alternative databases with the same details as you used to set up dev.php and prod.php above.
 
 Testing
 -------
