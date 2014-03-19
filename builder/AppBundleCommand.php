@@ -13,6 +13,7 @@ require_once 'Bob/RepositoryCoreBuilder.php';
 require_once 'Bob/TravisBuilder.php';
 require_once 'Bob/AppConfigDevBuilder.php';
 require_once 'Bob/AppConfigProdBuilder.php';
+require_once 'Bob/AppConfigTestBuilder.php';
 require_once 'Bob/ViewBuilder.php';
 require_once 'config/Repo.php';
 
@@ -38,6 +39,7 @@ use Bob\MenuViewBuilder;
 use Bob\ViewBuilder;
 use Bob\AppConfigDevBuilder;
 use Bob\AppConfigProdBuilder;
+use Bob\AppConfigTestBuilder;
 
 use \Bob\ControllerTestBuilder;
 use \Bob\ControllerCoreTestBuilder;
@@ -132,6 +134,7 @@ class AppBundleCommand extends Command
         $bobViewFile = new ViewBuilder($allEntities,$className);
         $bobAppConfigDevBuilder = new AppConfigDevBuilder($allEntities);
         $bobAppConfigProdBuilder = new AppConfigProdBuilder($allEntities);
+        $bobAppConfigTestBuilder = new AppConfigTestBuilder($allEntities);
 
         $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
         $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
