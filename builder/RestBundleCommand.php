@@ -128,10 +128,10 @@ class RestBundleCommand extends Command
         $bobCoreRepository = new RepositoryBuilder($allEntities, $config, $className);
         $bobAppControllerFile = new AppControllerBuilder($allEntities);
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
-        $bobMenuViewFile = new MenuViewBuilder($allEntities);
-        $bobViewFile = new ViewBuilder($allEntities,$className);
-        $bobAppConfigDevBuilder = new AppConfigDevBuilder($allEntities);
-        $bobAppConfigProdBuilder = new AppConfigProdBuilder($allEntities);
+        //$bobMenuViewFile = new MenuViewBuilder($allEntities);
+        //$bobViewFile = new ViewBuilder($allEntities,$className);
+        //$bobAppConfigDevBuilder = new AppConfigDevBuilder($allEntities);
+        //$bobAppConfigProdBuilder = new AppConfigProdBuilder($allEntities);
 
         $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
         $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
