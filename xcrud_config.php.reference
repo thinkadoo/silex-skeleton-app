@@ -1,4 +1,5 @@
 <?php /** Configuration file; f0ska xCRUD v.1.6.15; 03/2014 */
+
 class Xcrud_config
 {
     // default connection
