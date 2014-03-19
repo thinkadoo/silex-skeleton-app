@@ -1,10 +1,10 @@
 <?php
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-'twig.path' => array(
-    __DIR__.'/../../views',
+    'twig.path' => array(
+        __DIR__.'/../../views',
 {% for item in items %}
-    __DIR__.'/../../src/{{ item }}/{{ item }}Bundle/View',
+        __DIR__.'/../../src/{{ item }}/{{ item }}Bundle/View',
 {% endfor %}
     )
 ));
