@@ -12,6 +12,7 @@
     public function connect(Application $app)
     {
         // @codingStandardsIgnoreStart
+        // @codeCoverageIgnoreStart
 
         $controller = $this->controller;
 
@@ -31,6 +32,7 @@
         parent::connect($app);
         return $controller;
 
+        // @codeCoverageIgnoreEnd
         // @codingStandardsIgnoreEnd
     }
 {% endblock %}
