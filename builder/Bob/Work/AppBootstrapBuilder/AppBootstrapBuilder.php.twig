@@ -6,6 +6,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 
+    $loader->registerNamespace('Renderer', __DIR__.'/../lib');
 {% for item in items %}
     $loader->registerNamespace('{{ item }}', __DIR__.'/../src');
 {% endfor %}

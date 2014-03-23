@@ -21,9 +21,8 @@
          */
         $controller->get("/crud", function() use ($app)
         {
-            $xcrud = Xcrud::get_instance('{{ fieldName }}');
-            $xcrud->table('{{ fieldName }}');
-            return $app['twig']->render('{{ fieldName }}.twig', array(
+            $xcrud = $app['xcrud'];
+            return $app['twig']->render('user.twig', array(
                 'xcrud' => $xcrud,
                 'className' => $this->repository
             ));
