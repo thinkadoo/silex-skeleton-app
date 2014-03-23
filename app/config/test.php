@@ -1,14 +1,15 @@
 <?php
 
-$app['debug'] = true;
-$app['exception_handler']->disable();
-
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../../views',
+    'twig.path' => array(
+        __DIR__.'/../../views',
+        __DIR__.'/../../src/User/UserBundle/View',
+        __DIR__.'/../../src/Realestate/RealestateBundle/View',
+    )
 ));
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
+        'db.options' => array(
         'driver'   => 'pdo_mysql',
         'dbname'   => 'resttestdb',
         'host'     => 'localhost',
