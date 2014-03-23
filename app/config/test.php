@@ -3,8 +3,6 @@
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => array(
         __DIR__.'/../../views',
-        __DIR__.'/../../src/User/UserBundle/View',
-        __DIR__.'/../../src/Realestate/RealestateBundle/View',
     )
 ));
 
