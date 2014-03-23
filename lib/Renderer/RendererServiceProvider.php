@@ -2,7 +2,7 @@
 
 namespace Renderer;
 
-require_once __DIR__.'../../../xcrud/xcrud.php';
+require_once __DIR__.'/xcrud/xcrud.php';
 use Xcrud;
 
 use Silex\Application;
