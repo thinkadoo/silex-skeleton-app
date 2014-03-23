@@ -1,6 +1,7 @@
 /lib/Renderer/xcrud
 /lib/Renderer/editors
-/lib/Renderer/uploads
+
+/uploads
 
 /app/phpunit.xml
 /vendor/
