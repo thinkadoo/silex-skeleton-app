@@ -9,6 +9,7 @@ $app['monolog']->addDebug('Testing the Monolog logging from /config/prod.php ');
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => array(
         __DIR__.'/../../views',
+        __DIR__.'/../../src/User/UserBundle/View',
     )
 ));
 
@@ -17,6 +18,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'driver'   => 'pdo_mysql',
         'dbname'   => 'restdb',
         'host'     => 'localhost',
+        'port'     => 80,
         'user'     => 'root',
         'password' => ''
     ),
