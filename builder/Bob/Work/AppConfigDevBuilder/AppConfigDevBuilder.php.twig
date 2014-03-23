@@ -17,12 +17,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     )
 ));
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-    'driver'   => 'pdo_mysql',
-    'dbname'   => 'restdb',
-    'host'     => 'localhost',
-    'user'     => 'root',
-    'password' => ''
+        'db.options' => array(
+        'driver'   => 'pdo_mysql',
+        'dbname'   => 'restdb',
+        'host'     => 'localhost',
+        'user'     => 'root',
+        'password' => ''
     ),
 ));
 
