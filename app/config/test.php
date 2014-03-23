@@ -8,12 +8,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-        'db.options' => array(
+    'db.options' => array(
         'driver'   => 'pdo_mysql',
         'dbname'   => 'resttestdb',
         'host'     => 'localhost',
-        'port'     => 80,
         'user'     => 'root',
-        'password' => ''
+        'password' => '',
+        'port'     => 80,
     ),
 ));
