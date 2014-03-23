@@ -6,6 +6,8 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 
+    $loader->registerNamespace('Renderer', __DIR__.'/../lib');
+
 $loader->register();
 
 return $loader;
