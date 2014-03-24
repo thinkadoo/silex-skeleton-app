@@ -65,17 +65,39 @@ Generation
 Console API:
 
 ``` sh
-php app/console generate:restbundle User user_name:string user_surname:string --sql
-php app/console generate:restbundle User user_name:string user_surname:string --travis
-php app/console generate:restbundle User user_name:string user_surname:string --migration
-php app/console generate:restbundle User user_name:string user_surname:string --migration --sql
+php app/console generate:restbundle Party party_name:string party_type:string --sql
+php app/console generate:restbundle Party party_name:string party_type:string --travis
+php app/console generate:restbundle Party party_name:string party_type:string --migration
+
+php app/console generate:restbundle Party party_name:string party_type:string --migration --sql
+php app/console generate:appbundle PartyRole role_name:string role_data:string --migration --sql
+php app/console generate:restbundle PartyRelationship relationship_name:string relationship_data:string party_id:string party_role_id:string --migration --sql
 ```
 
 Console APP:
 
 ``` sh
-php app/console generate:appbundle User user_name:string user_surname:string --sql
-php app/console generate:appbundle User user_name:string user_surname:string --travis
-php app/console generate:appbundle User user_name:string user_surname:string --migration
-php app/console generate:appbundle User user_name:string user_surname:string --migration --sql
+php app/console generate:appbundle Party party_name:string party_type:string --sql
+php app/console generate:appbundle Party party_name:string party_type:string --travis
+php app/console generate:appbundle Party party_name:string party_type:string --migration
+
+php app/console generate:appbundle Party party_name:string party_type:string --migration --sql
+php app/console generate:appbundle PartyRole role_name:string role_data:string --migration --sql
+php app/console generate:appbundle PartyRelationship relationship_name:string relationship_data:string party_id:string party_role_id:string --migration --sql
+
+        /**
+         * crud
+         */
+        $controller->get("/crud", function() use ($app)
+        {
+            $xcrud = $app['xcrud'];
+            $xcrud->table('partyrelationship');
+            $xcrud->relation('party_id','party','id','party_name');
+            $xcrud->relation('party_role_id','partyrole','id','role_name');
+            return $app['twig']->render('partyrelationship.twig', array(
+                'xcrud' => $xcrud,
+                'className' => $this->repository
+            ));
+        });
+        
 ```
