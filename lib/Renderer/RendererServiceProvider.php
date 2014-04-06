@@ -12,7 +12,9 @@ class RendererServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['xcrud'] = Xcrud::get_instance('x');
+        $options = $app['db.options'];
+        $app['xcrud'] = Xcrud::get_instance($options['dbname']);
+        $app['xcrud']->connection($options['user'], $options['password'], $options['dbname'], $options['host'].':'.$options['port']);
         return $app['xcrud'];
     }
 
