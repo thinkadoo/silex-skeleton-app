@@ -3,6 +3,8 @@
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => array(
         __DIR__.'/../../views',
+        __DIR__.'/../../src/Party/PartyBundle/View',
+        __DIR__.'/../../src/PartyRelationship/PartyRelationshipBundle/View',
     )
 ));
 
@@ -13,6 +15,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'host'     => 'localhost',
         'user'     => 'root',
         'password' => '',
-        'port'     => 80,
+        'port'     => 3306,
     ),
 ));
