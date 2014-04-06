@@ -41,7 +41,7 @@ $ ./vendor/bin/phpunit -c app/
 ```
 
 Code Coverage
--------
+-------------
 
 For a code coverage report in html, you can just run this command at your main directory:
 
