@@ -70,7 +70,7 @@ php app/console generate:restbundle Party party_name:string party_type:string --
 php app/console generate:restbundle Party party_name:string party_type:string --migration
 
 php app/console generate:restbundle Party party_name:string party_type:string --migration --sql
-php app/console generate:appbundle PartyRole role_name:string role_data:string --migration --sql
+php app/console generate:restbundle PartyRole role_name:string role_data:string --migration --sql
 php app/console generate:restbundle PartyRelationship relationship_name:string relationship_data:string party_id:string party_role_id:string --migration --sql
 ```
 
