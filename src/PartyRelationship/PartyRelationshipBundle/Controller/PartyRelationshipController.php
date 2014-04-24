@@ -50,6 +50,8 @@ class PartyRelationshipController extends ControllerCore
         {
             $xcrud = $app['xcrud'];
             $xcrud->table('partyrelationship');
+            $xcrud->relation('party_id','party','id','party_name');
+            $xcrud->relation('party_role_id','partyrole','id','role_name');
             return $app['twig']->render('partyrelationship.twig', array(
                 'xcrud' => $xcrud,
                 'className' => $this->repository
