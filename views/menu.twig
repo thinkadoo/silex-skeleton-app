@@ -16,7 +16,9 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Placeholder</a></li>
+                    <li><a href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}party/crud{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}party/crud{% else %}../party/crud{% endif %}">Party</a></li>
+                    <li><a href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}partyrelationship/crud{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}partyrelationship/crud{% else %}../partyrelationship/crud{% endif %}">PartyRelationship</a></li>
+                    <li><a href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}partyrole/crud{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}partyrole/crud{% else %}../partyrole/crud{% endif %}">PartyRole</a></li>
                 </ul>
             </li>
         </ul>

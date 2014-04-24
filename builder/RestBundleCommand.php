@@ -144,11 +144,11 @@ class RestBundleCommand extends Command
             // before you can run any migration - you need to drop the table that that migration affects
             $tableToRemove = strtolower($className);
 
-            $db = new PDO('mysql:host=localhost;dbname=restdb', 'root', '');
+            $db = new PDO('mysql:host=127.0.0.1;dbname=restdb', 'root', 'root');
             $dropTable = $db->prepare("DROP TABLE IF EXISTS $tableToRemove");
             $dropTable->execute();
 
-            $dbtest = new PDO('mysql:host=localhost;dbname=resttestdb', 'root', '');
+            $dbtest = new PDO('mysql:host=127.0.0.1;dbname=resttestdb', 'root', 'root');
             $dropTestTable = $dbtest->prepare("DROP TABLE IF EXISTS $tableToRemove");
             $dropTestTable->execute();
 

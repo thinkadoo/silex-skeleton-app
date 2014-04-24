@@ -1,0 +1,13 @@
+party:
+  -
+    id: 1
+    party_name: "test_party_name_string"
+    party_type: "test_party_type_string"
+  -
+    id: 2
+    party_name: "test_party_name_string"
+    party_type: "test_party_type_string"
+  -
+    id: 3
+    party_name: "test_party_name_string"
+    party_type: "test_party_type_string"

@@ -24,10 +24,10 @@
     <php>
         <server name="APP_DIR" value="./app" />
         <var name="DB_DRIVER" value="pdo_mysql" />
-        <var name="DB_DSN" value="mysql:host=localhost;dbname=resttestdb" />
-        <var name="DB_HOST" value="localhost" />
+        <var name="DB_DSN" value="mysql:host=127.0.0.1;dbname=resttestdb" />
+        <var name="DB_HOST" value="127.0.0.1" />
         <var name="DB_USER" value="root" />
-        <var name="DB_PASSWD" value="" />
+        <var name="DB_PASSWD" value="root" />
         <var name="DB_DBNAME" value="resttestdb" />
     </php>
 </phpunit>

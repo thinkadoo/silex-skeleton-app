@@ -13,4 +13,8 @@
 
 $loader = include_once __DIR__.'/../app/bootstrap.php';
 
+    $loader->registerNamespace('Party\Tests', __DIR__);
+    $loader->registerNamespace('PartyRelationship\Tests', __DIR__);
+    $loader->registerNamespace('PartyRole\Tests', __DIR__);
+
 /* End of file bootstrap.php */

@@ -1,0 +1,19 @@
+partyrelationship:
+  -
+    id: 1
+    relationship_name: "test_relationship_name_string"
+    relationship_data: "test_relationship_data_string"
+    party_id: "test_party_id_string"
+    party_role_id: "test_party_role_id_string"
+  -
+    id: 2
+    relationship_name: "test_relationship_name_string"
+    relationship_data: "test_relationship_data_string"
+    party_id: "test_party_id_string"
+    party_role_id: "test_party_role_id_string"
+  -
+    id: 3
+    relationship_name: "test_relationship_name_string"
+    relationship_data: "test_relationship_data_string"
+    party_id: "test_party_id_string"
+    party_role_id: "test_party_role_id_string"

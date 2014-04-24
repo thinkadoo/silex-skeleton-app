@@ -1,0 +1,13 @@
+partyrole:
+  -
+    id: 1
+    role_name: "test_role_name_string"
+    role_data: "test_role_data_string"
+  -
+    id: 2
+    role_name: "test_role_name_string"
+    role_data: "test_role_data_string"
+  -
+    id: 3
+    role_name: "test_role_name_string"
+    role_data: "test_role_data_string"

@@ -13,9 +13,9 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_mysql',
         'dbname'   => 'resttestdb',
-        'host'     => 'localhost',
+        'host'     => '127.0.0.1',
         'user'     => 'root',
-        'password' => '',
-        'port'     => 80,
+        'password' => 'root',
+        'port'     => 3306,
     ),
 ));
