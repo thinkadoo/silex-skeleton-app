@@ -132,9 +132,9 @@ class AppBundleCommand extends Command
         $bobAppBootstrapFile = new AppBootstrapBuilder($allEntities);
         $bobMenuViewFile = new MenuViewBuilder($allEntities);
         $bobViewFile = new ViewBuilder($allEntities,$className);
-        $bobAppConfigDevBuilder = new AppConfigDevBuilder($allEntities);
-        $bobAppConfigProdBuilder = new AppConfigProdBuilder($allEntities);
-        $bobAppConfigTestBuilder = new AppConfigTestBuilder($allEntities);
+        $bobAppConfigDevBuilder = new AppConfigDevBuilder($allEntities,$config);
+        $bobAppConfigProdBuilder = new AppConfigProdBuilder($allEntities,$config);
+        $bobAppConfigTestBuilder = new AppConfigTestBuilder($allEntities,$config);
 
         $bobControllerTestFile = new ControllerTestBuilder($allEntities, $config, $className, $propertiesKeysValues);
         $bobControllerCoreTestFile = new ControllerCoreTestBuilder($allEntities, $config, $className, $propertiesKeysValues);

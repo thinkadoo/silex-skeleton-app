@@ -19,12 +19,12 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
-        'driver'   => 'pdo_mysql',
-        'dbname'   => 'restdb',
-        'host'     => '127.0.0.1',
-        'user'     => 'root',
-        'password' => 'root',
-        'port'     => 3306,
+        'driver'   => '{{ driver }}',
+        'dbname'   => '{{ dbname }}',
+        'host'     => '{{ host }}',
+        'user'     => '{{ user }}',
+        'password' => '{{ password }}',
+        'port'     => {{ port }},
     ),
 ));
 

@@ -11,11 +11,11 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
-        'driver'   => 'pdo_mysql',
-        'dbname'   => 'resttestdb',
-        'host'     => '127.0.0.1',
-        'user'     => 'root',
-        'password' => 'root',
-        'port'     => 3306,
+        'driver'   => '{{ driver }}',
+        'dbname'   => '{{ testdbname }}',
+        'host'     => '{{ host }}',
+        'user'     => '{{ user }}',
+        'password' => '{{ password }}',
+        'port'     => {{ port }},
     ),
 ));

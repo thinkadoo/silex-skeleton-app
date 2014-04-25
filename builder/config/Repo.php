@@ -16,7 +16,16 @@ class Repo
     'author' => 'Andre Venter',
     'authorEmail' => 'andre.n.venter@gmail.com',
     'organisationWebSite' => 'http://think-a-doo.net',
-    'repository' => 'https://github.com/thinkadoo/silex-skeleton-app.git'
+    'repository' => 'https://github.com/thinkadoo/silex-skeleton-app.git',
+        'db' => array(
+            'driver'   => 'pdo_mysql',
+            'dbname'   => 'restdb',
+            'testdbname'   => 'resttestdb',
+            'host'     => '127.0.0.1',
+            'user'     => 'root',
+            'password' => 'root',
+            'port'     => 3306
+        )
     );
 
     public function getExistingClasses($dir)
