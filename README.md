@@ -36,6 +36,7 @@ Change the configurations to suit your environment.
 $ php -S localhost:8888
 ```
 For development mode: navigate to "http://localhost:8888/web/index_dev.php/" with your browser.
+
 For production mode: navigate to "http://localhost:8888/web/index.php/" with your browser.
 
 Testing
