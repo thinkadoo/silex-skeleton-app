@@ -31,6 +31,13 @@ Change the configurations to suit your environment.
 
  Edit the /xcrud/xcrud_config.php file to point to your restdb and resttestdb alternative databases with the same details as you used to set up dev.php and prod.php above.
 
+ Start the PHP Development server from the project root directory with:
+ ``` sh
+$ php -S localhost:8888
+```
+For development mode: navigate to "http://localhost:8888/web/index_dev.php/" with your browser.
+For production mode: navigate to "http://localhost:8888/web/index.php/" with your browser.
+
 Testing
 -------
 
