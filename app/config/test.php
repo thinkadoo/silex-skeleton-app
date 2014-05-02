@@ -15,7 +15,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'dbname'   => 'resttestdb',
         'host'     => '127.0.0.1',
         'user'     => 'root',
-        'password' => 'root',
+        'password' => '',
         'port'     => 3306,
     ),
 ));

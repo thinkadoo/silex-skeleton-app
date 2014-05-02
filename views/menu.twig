@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}{% else %}{{ app.request.getRequestURI() }}/../../{% endif %}">Manager</a>
+        <a class="navbar-brand" href="{% if app.request.getRequestURI() == '/web/index.php/' %}{{ app.request.getRequestURI() }}{% elseif app.request.getRequestURI() == '/web/index_dev.php/' %}{{ app.request.getRequestURI() }}{% else %}{{ app.request.getRequestURI() }}/../../{% endif %}">Manager</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -16,9 +16,9 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}party/crud{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}party/crud{% else %}../party/crud{% endif %}">Party</a></li>
-                    <li><a href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}partyrelationship/crud{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}partyrelationship/crud{% else %}../partyrelationship/crud{% endif %}">PartyRelationship</a></li>
-                    <li><a href="{% if app.request.getRequestURI() == '/silex-skeleton-app/web/index.php/' %}{{ app.request.getRequestURI() }}partyrole/crud{% elseif app.request.getRequestURI() == '/silex-skeleton-app/web/index_dev.php/' %}{{ app.request.getRequestURI() }}partyrole/crud{% else %}../partyrole/crud{% endif %}">PartyRole</a></li>
+                    <li><a href="{% if app.request.getRequestURI() == '/web/index.php/' %}{{ app.request.getRequestURI() }}party/crud{% elseif app.request.getRequestURI() == '/web/index_dev.php/' %}{{ app.request.getRequestURI() }}party/crud{% else %}../party/crud{% endif %}">Party</a></li>
+                    <li><a href="{% if app.request.getRequestURI() == '/web/index.php/' %}{{ app.request.getRequestURI() }}partyrelationship/crud{% elseif app.request.getRequestURI() == '/web/index_dev.php/' %}{{ app.request.getRequestURI() }}partyrelationship/crud{% else %}../partyrelationship/crud{% endif %}">PartyRelationship</a></li>
+                    <li><a href="{% if app.request.getRequestURI() == '/web/index.php/' %}{{ app.request.getRequestURI() }}partyrole/crud{% elseif app.request.getRequestURI() == '/web/index_dev.php/' %}{{ app.request.getRequestURI() }}partyrole/crud{% else %}../partyrole/crud{% endif %}">PartyRole</a></li>
                 </ul>
             </li>
         </ul>
