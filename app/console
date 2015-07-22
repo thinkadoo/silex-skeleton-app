@@ -6,15 +6,18 @@ require_once __DIR__ . '/../builder/bootstrap.php';
 
 require_once __DIR__ . '/../builder/RestBundleCommand.php';
 require_once __DIR__ . '/../builder/AppBundleCommand.php';
+require_once __DIR__ . '/../builder/ArchiBundleCommand.php';
 
 use Symfony\Component\Console\Application;
 
 use Builder\RestBundleCommand;
 use Builder\AppBundleCommand;
+use Builder\ArchiBundleCommand;
 
 $application = new Application();
 
 $application->add(new RestBundleCommand);
 $application->add(new AppBundleCommand);
+$application->add(new ArchiBundleCommand);
 
 $application->run();

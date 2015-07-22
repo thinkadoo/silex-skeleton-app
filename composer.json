@@ -26,7 +26,8 @@
         "raveren/kint": "v0.9",
         "instaclick/php-code-sniffer": "dev-patch-3",
         "cedriclombardot/twig-generator": "dev-master",
-        "symfony/console": "v2.3.10"
+        "symfony/console": "v2.3.10",
+        "jwage/easy-csv": "1.0.*@dev"
     },
     "minimum-stability": "dev",
     "version": "1.0.0"

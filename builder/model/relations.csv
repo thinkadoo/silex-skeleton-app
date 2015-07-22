@@ -1,0 +1,6 @@
+"ID","Type","Name","Documentation","Source","Target"
+"fcc66033","AssignmentRelationship","","","f89fb6f5","9ebd8bd4"
+"9977c902","AssociationRelationship","","","b101f447","40702326"
+"c324fc1a","AssociationRelationship","","","b5b5fdcd","9ebd8bd4"
+"87d8f6d7","CompositionRelationship","","","54de02bd","27a23ed2"
+"6907a6e8","TriggeringRelationship","","","40702326","b5b5fdcd"
