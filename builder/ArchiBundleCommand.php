@@ -31,17 +31,17 @@ class ArchiBundleCommand extends Command
     {
         $archiModelFolder = $input->getArgument('archiModelFolder');
 
-        $reader = new \EasyCSV\Reader($archiModelFolder.'/'.'elements.csv');
+        $reader = new \EasyCSV\Reader( __DIR__ . '/' . $archiModelFolder.'/'.'elements.csv');
         $elements = $reader->getAll();
         print_r("elements = \n");
         print_r($elements);
 
-        $reader = new \EasyCSV\Reader($archiModelFolder.'/'.'relations.csv');
+        $reader = new \EasyCSV\Reader( __DIR__ . '/' . $archiModelFolder.'/'.'relations.csv');
         $relations = $reader->getAll();
         print_r("relations = \n");
         print_r($relations);
 
-        $reader = new \EasyCSV\Reader($archiModelFolder.'/'.'properties.csv');
+        $reader = new \EasyCSV\Reader( __DIR__ . '/' . $archiModelFolder.'/'.'properties.csv');
         $properties = $reader->getAll();
         print_r("properties = \n");
         print_r($properties);
