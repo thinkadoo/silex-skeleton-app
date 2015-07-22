@@ -18,11 +18,11 @@ class ArchiBundleCommand extends Command
     {
         $this
             ->setName('generate:archibundle')
-            ->setDescription('Generate a Mobile app from Archi Data')
+            ->setDescription('Generate an API from an Archi model')
             ->addArgument(
                 'archiModelFolder',
                 InputArgument::REQUIRED,
-                'What rest class do you want to generate?'
+                'Where is the Archi model folder?'
             )
         ;
     }
