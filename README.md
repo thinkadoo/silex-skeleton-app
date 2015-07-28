@@ -111,3 +111,7 @@ php app/console generate:appbundle PartyRelationship relationship_name:string re
         });
         
 ```
+
+```
+php app/console generate:archibundle model
+```
